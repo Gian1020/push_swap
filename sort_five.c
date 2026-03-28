@@ -9,10 +9,10 @@ void	sort_five(t_stack **l_stack_a, t_stack **l_stack_b)
 
 	size = list_size(*l_stack_a);
 	if (!l_stack_a || !*l_stack_a || !l_stack_b)
-		return;
+		return ;
 	if (size < 4 || size > 5)
-		return;
-	if(size == 5)
+		return ;
+	if (size == 5)
 		push_min_to_b(l_stack_a, l_stack_b);
 	push_min_to_b(l_stack_a, l_stack_b);
 	sort_three(l_stack_a);

@@ -1,12 +1,62 @@
 #include "push_swap.h"
 
+/*Analizza la SIZE di A per scegliere un range adeguato.*/
+static int	select_range(int size_a)
+{
+	if (size_a <= 100)
+		return (15);
+	else if (size_a > 100 && size_a <= 300)
+		return (30);
+	else
+		return (45);
+}
+
+/* Funzione che gestisce l ordinamento di A se SIZE > 5.
+ * 1) Analizzo SIZE scegliere per un range adeguato tramite selection_range.
+ * 2) Inseriamo tutti gli elementi di a in B con una pre-selezione.
+ *    - Analizza l'indice di A:
+ * 	se l indice fa parte del range corrente, lo inseriamo davanti in a B.
+ *    - Altrimenti se fa parte del range subito successivo lo aggiungiamo in B
+ * 	ma come ultimo elemento.
+ *    - Altrimenti lo mettiamo in fondo ad A.
+ * 3) Inseriamo il nodo più grande di B in A fino a che B non è vuoto.
+ * */
+void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b)
+{
+	int	i;
+	int	range;
+
+	if (!l_stack_a || !*l_stack_a || !l_stack_b)
+		return ;
+	i = 0;
+	range = select_range(list_size(*l_stack_a));
+	while (*l_stack_a)
+	{
+		if ((*l_stack_a)->idx <= i)
+		{
+			pb(l_stack_a, l_stack_b);
+			i++;
+		}
+		else if ((*l_stack_a)->idx <= (range + i))
+		{
+			pb(l_stack_a, l_stack_b);
+			rb(l_stack_b);
+			i++;
+		}
+		else
+			ra(l_stack_a);
+	}
+	while (*l_stack_b)
+		push_max_to_a(l_stack_a, l_stack_b);
+}
+
 /* Coordina la strategia di ordinamento in base al numero di elementi.
  * Verifica se lo stack è già ordinato o troppo piccolo, quindi delega 
- * l'esecuzione ad algoritmi specializzati per gestire i vari casi.*/
+ * l'esecuzione ad algoritmi specializzati per gestire i vari casi. */
 void	sort_stack(t_stack **l_stack_a)
 {
-	int	size;
-	t_stack *l_stack_b;
+	int		size;
+	t_stack	*l_stack_b;
 
 	size = list_size(*l_stack_a);
 	if (!l_stack_a || size < 2 || is_sorted(*l_stack_a))
@@ -18,4 +68,7 @@ void	sort_stack(t_stack **l_stack_a)
 		sort_three(l_stack_a);
 	else if (size <= 5)
 		sort_five(l_stack_a, &l_stack_b);
+	else
+		sort_big(l_stack_a, &l_stack_b);
+	list_clear(&l_stack_b);
 }

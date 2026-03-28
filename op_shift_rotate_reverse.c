@@ -1,13 +1,14 @@
 #include "push_swap.h"
 
-/* Sposta l'ultimo elemento dello stack in prima posizione (rotazione verso il basso).
+/* Rotazione verso il basso.
+ * Sposta l'ultimo elemento dello stack in prima posizione 
  * Aggiorna i puntatori 'first' e 'last' per mantenere la circolarità della lista
  * doppiamente concatenata e scrive l'operazione se 'op_name' è fornito.
  * Ritorna 1 in caso di successo, 0 se lo stack ha meno di 2 elementi.*/
 static int	shift_rotate_reverse(t_stack **l_stack, char *op_name)
 {
 	t_stack	*first;
-	t_stack *last;
+	t_stack	*last;
 	t_stack	*new_last;
 
 	if (!l_stack || !*l_stack || !(*l_stack)->next)
@@ -16,7 +17,7 @@ static int	shift_rotate_reverse(t_stack **l_stack, char *op_name)
 	last = list_last(*l_stack);
 	new_last = last->prev;
 	new_last->next = NULL;
-	last->prev=NULL;
+	last->prev = NULL;
 	last->next = first;
 	first->prev = last;
 	*l_stack = last;

@@ -6,20 +6,20 @@
  * Ritorna 1 in caso di successo, 0 se lo stack sorgente è vuoto.*/
 static int	push(t_stack **l_stack_take, t_stack **l_stack_push)
 {
-	t_stack *stack_to_push;
+	t_stack	*stack_to_push;
 
-	if(!l_stack_take || !*l_stack_take || !l_stack_push)
+	if (!l_stack_take || !*l_stack_take || !l_stack_push)
 		return (0);
 	stack_to_push = *l_stack_take;
 	if (stack_to_push->next)
 	{
 		stack_to_push->next->prev = NULL;
 		*l_stack_take = stack_to_push->next;
-		stack_to_push->next = NULL; 
+		stack_to_push->next = NULL;
 	}
 	else
 		*l_stack_take = NULL;
-	if(!*l_stack_push)
+	if (!*l_stack_push)
 		*l_stack_push = stack_to_push;
 	else
 	{

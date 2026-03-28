@@ -1,21 +1,6 @@
 #include "push_swap.h"
 
-/* Verifica se la lista è ordinata in ordine crescente.
- * Se lo è torna 1 altrimenti 0.*/
-int	is_sorted(t_stack *l_stack)
-{
-	if(!l_stack)
-		return (1);
-	while (l_stack && l_stack->next)
-	{
-		if (l_stack->idx > l_stack->next->idx)
-			return (0);
-		l_stack = l_stack->next;
-	}
-	return (1);
-}
-
-/* Restituisce l'indice attuale del nodo con il valore più piccolo della lista.*/
+/* Restituisce l'index attuale del nodo con il valore più piccolo della lista.*/
 int	find_pos_idx_min(t_stack *l_stack)
 {
 	int	i;
@@ -27,9 +12,9 @@ int	find_pos_idx_min(t_stack *l_stack)
 	i = 0;
 	idx_stack_min = 0;
 	idx_value_min = l_stack->idx;
-	while(l_stack != NULL)
+	while (l_stack != NULL)
 	{
-		if(l_stack->idx < idx_value_min)
+		if (l_stack->idx < idx_value_min)
 		{
 			idx_value_min = l_stack->idx;
 			idx_stack_min = i;
@@ -52,9 +37,9 @@ int	find_pos_idx_max(t_stack *l_stack)
 	i = 0;
 	idx_stack_max = 0;
 	idx_value_max = l_stack->idx;
-	while(l_stack != NULL)
+	while (l_stack != NULL)
 	{
-		if(l_stack->idx > idx_value_max)
+		if (l_stack->idx > idx_value_max)
 		{
 			idx_value_max = l_stack->idx;
 			idx_stack_max = i;
@@ -65,51 +50,68 @@ int	find_pos_idx_max(t_stack *l_stack)
 	return (idx_stack_max);
 }
 
-int	find_pos_in_stack(t_stack *l_stack, int idx_to_find)
-{
-	int	i;
-
-	i = 0;
-	while(l_stack != NULL)
-	{
-		if(l_stack->idx == idx_to_find)
-			return (i);
-		i++;
-		l_stack = l_stack->next;
-	}
-	return (-1);
-}
-
-/* Individua il valore minimo in A e lo sposta in B ottimizzando il numero di mosse.
- * Calcola la posizione (index) del minimo rispetto alla mezzeria dello stack (size/2)
+/* Individua il valore min in A inserendolo in B ottimizzando il num di mosse.
+ * Calcola l'index del minimo rispetto alla mezzeria dello stack (size/2)
  * per decidere se utilizzare rotazioni dirette (ra) o inverse (rra). 
  * Una volta che il primo elemento è in posizione 0 
- *  -la
- *  o inserisce come primo elemento di B*/
+ * lo inserisce come primo elemento di B*/
 void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	int	idx_min;
+	int	pos_min;
 	int	size;
 
 	if (!l_stack_a || !*l_stack_a)
 		return ;
-	idx_min = find_pos_idx_min(*l_stack_a);
+	pos_min = find_pos_idx_min(*l_stack_a);
 	size = list_size(*l_stack_a);
-	if (idx_min <= size / 2)
+	if (pos_min <= size / 2)
 	{
-		while (idx_min > 0)
+		while (pos_min > 0)
 		{
 			ra(l_stack_a);
-			idx_min--;
+			pos_min--;
 		}
 	}
 	else
 	{
-		while (idx_min < size)
+		while (pos_min < size)
 		{
 			rra(l_stack_a);
-			idx_min++;
+			pos_min++;
 		}
 	}
 	pb(l_stack_a, l_stack_b);
+}
+
+/* Individua il valore max in B inserendolo in A ottimizzando num di mosse.
+ * Calcola l'index del minimo rispetto alla mezzeria dello stack (size/2)
+ * per decidere se utilizzare rotazioni dirette (rb) o inverse (rrb).
+ * Una volta che il primo elemento è in posizione 0
+ * lo inserisce come primo elemento di A*/
+void	push_max_to_a(t_stack **l_stack_a, t_stack **l_stack_b)
+{
+	int	pos_max;
+	int	size;
+
+	if (!l_stack_b || !*l_stack_b || !l_stack_a)
+		return ;
+	pos_max = find_pos_idx_max(*l_stack_b);
+	size = list_size(*l_stack_b);
+	if (pos_max <= size / 2)
+	{
+		while (pos_max > 0)
+		{
+			rb(l_stack_b);
+			pos_max--;
+		}
+	}
+	else
+	{
+		while (pos_max < size)
+		{
+			rrb(l_stack_b);
+			pos_max++;
+		}
+	}
+	pa(l_stack_a, l_stack_b);
 }

@@ -61,6 +61,7 @@ void	list_clear(t_stack **node)
 	}
 	*node = NULL;
 }
+
 /* Restituisce il numero nodi della lista.*/
 int	list_size(t_stack *begin)
 {
@@ -74,8 +75,8 @@ int	list_size(t_stack *begin)
 	}
 	return (i);
 }
-
-/* Stampa il valore e l'indice della lista, utile per il debug.*/
+/*
+//Stampa il valore e l'indice della lista, utile per il debug.
 void	print_list(t_stack *begin, char *label)
 {
 	ft_printf("----------%s----------\n", label);
@@ -87,16 +88,16 @@ void	print_list(t_stack *begin, char *label)
 	while (begin != NULL)
 	{
 		ft_printf("n : %d || ", begin->value);
-		ft_printf("idx : %u\n",begin->idx);
+		ft_printf("idx : %d\n",begin->idx);
 		begin = begin->next;
 	}
 	ft_printf("------------------------\n");
 }
-
+*/
 /* Restituisce l'ultimo nodo della lista.*/
 t_stack	*list_last(t_stack *begin)
 {
-	while((begin)->next != NULL)
+	while ((begin)->next != NULL)
 		begin = begin->next;
 	return (begin);
 }

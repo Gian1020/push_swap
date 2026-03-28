@@ -3,7 +3,6 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <limits.h>
 #include "libft.h"
 #include "libftprintf.h"
 
@@ -31,12 +30,15 @@ void	print_list(t_stack *begin, char *label);
 
 void	sort_three(t_stack **l_stack);
 void	sort_five(t_stack **l_stack_a, t_stack **l_stack_b);
+void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b);
 void	sort_stack(t_stack **l_stack_a);
 
 int	is_sorted(t_stack *l_stack);
 int	find_pos_idx_max(t_stack *l_stack);
 int	find_pos_idx_min(t_stack *l_stack);
+void	push_max_to_a(t_stack **l_stack_a,t_stack **l_stack_b);
 void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b);
+void	push_back_to_a(t_stack **l_stack_a, t_stack **l_stack_b);
 
 int	sa(t_stack **l_stack_a);
 int	sb(t_stack **l_stack_b);

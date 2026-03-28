@@ -7,9 +7,9 @@ void	sort_three(t_stack **l_stack)
 {
 	int	idx_max;
 	int	idx_min;
-	
-	if(!l_stack || list_size(*l_stack) != 3)
-		return ;	
+
+	if (!l_stack || list_size(*l_stack) != 3)
+		return ;
 	idx_max = find_pos_idx_max(*l_stack);
 	if (idx_max == 0)
 		ra(l_stack);
