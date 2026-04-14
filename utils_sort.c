@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 /* Restituisce l'index attuale del nodo con il valore più piccolo della lista.*/
-int	find_pos_idx_min(t_stack *l_stack)
+int	get_pos_idx_min(t_stack *l_stack)
 {
 	int	i;
 	int	idx_stack_min;
@@ -26,7 +26,7 @@ int	find_pos_idx_min(t_stack *l_stack)
 }
 
 /* Restituisce l'indice attuale del nodo con il valore più grande della lista.*/
-int	find_pos_idx_max(t_stack *l_stack)
+int	get_pos_idx_max(t_stack *l_stack, int target_to_ignore)
 {
 	int	i;
 	int	idx_stack_max;
@@ -36,10 +36,10 @@ int	find_pos_idx_max(t_stack *l_stack)
 		return (-1);
 	i = 0;
 	idx_stack_max = 0;
-	idx_value_max = l_stack->idx;
+	idx_value_max = -1;
 	while (l_stack != NULL)
 	{
-		if (l_stack->idx > idx_value_max)
+		if (l_stack->idx != target_to_ignore && l_stack->idx > idx_value_max)
 		{
 			idx_value_max = l_stack->idx;
 			idx_stack_max = i;
@@ -62,7 +62,7 @@ void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b)
 
 	if (!l_stack_a || !*l_stack_a)
 		return ;
-	pos_min = find_pos_idx_min(*l_stack_a);
+	pos_min = get_pos_idx_min(*l_stack_a);
 	size = list_size(*l_stack_a);
 	if (pos_min <= size / 2)
 	{
@@ -88,30 +88,27 @@ void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b)
  * per decidere se utilizzare rotazioni dirette (rb) o inverse (rrb).
  * Una volta che il primo elemento è in posizione 0
  * lo inserisce come primo elemento di A*/
-void	push_max_to_a(t_stack **l_stack_a, t_stack **l_stack_b)
+void	bring_to_top_b(t_stack **l_stack, int target_pos)
 {
-	int	pos_max;
 	int	size;
 
-	if (!l_stack_b || !*l_stack_b || !l_stack_a)
+	if (!l_stack || !*l_stack)
 		return ;
-	pos_max = find_pos_idx_max(*l_stack_b);
-	size = list_size(*l_stack_b);
-	if (pos_max <= size / 2)
+	size = list_size(*l_stack);
+	if (target_pos <= size / 2)
 	{
-		while (pos_max > 0)
+		while (target_pos > 0)
 		{
-			rb(l_stack_b);
-			pos_max--;
+			rb(l_stack);
+			target_pos--;
 		}
 	}
 	else
 	{
-		while (pos_max < size)
+		while (target_pos < size)
 		{
-			rrb(l_stack_b);
-			pos_max++;
+			rrb(l_stack);
+			target_pos++;
 		}
 	}
-	pa(l_stack_a, l_stack_b);
 }

@@ -71,7 +71,7 @@ int	atoi_check(char *str, int *flag_err)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		n = (n * 10) + str[i] - '0';
-		if ((n * sign) > 2147483647 || (n * sign) < -2147483648)
+		if (n > 2147483647)
 		{
 			*flag_err = 1;
 			break ;

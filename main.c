@@ -79,7 +79,7 @@ void	fast_sort(t_stack *begin_list)
 
 	i = 0;
 	size = list_size(begin_list);
-	while (i <= size)
+	while (i < size)
 	{
 		current = begin_list;
 		min_node = NULL;

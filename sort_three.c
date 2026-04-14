@@ -10,12 +10,12 @@ void	sort_three(t_stack **l_stack)
 
 	if (!l_stack || list_size(*l_stack) != 3)
 		return ;
-	idx_max = find_pos_idx_max(*l_stack);
+	idx_max = get_pos_idx_max(*l_stack, -1);
 	if (idx_max == 0)
 		ra(l_stack);
 	if (idx_max == 1)
 		rra(l_stack);
-	idx_min = find_pos_idx_min(*l_stack);
+	idx_min = get_pos_idx_min(*l_stack);
 	if (idx_min == 1)
 		sa(l_stack);
 }

@@ -3,12 +3,24 @@
 /*Analizza la SIZE di A per scegliere un range adeguato.*/
 static int	select_range(int size_a)
 {
+	if (size_a <= 20)
+		return (4);
 	if (size_a <= 100)
-		return (15);
-	else if (size_a > 100 && size_a <= 300)
-		return (30);
+		return (16);
+	if (size_a <= 200)
+		return (24);
+	if (size_a <= 500)
+		return (35);
+	return (45);
+}
+
+static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
+		int range, int i)
+{
+	if (*l_stack_a && (*l_stack_a)->idx > (range + i))
+		rr(l_stack_a, l_stack_b);
 	else
-		return (45);
+		rb(l_stack_b);
 }
 
 /* Funzione che gestisce l ordinamento di A se SIZE > 5.
@@ -23,8 +35,8 @@ static int	select_range(int size_a)
  * */
 void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	int	i;
-	int	range;
+	int		i;
+	int		range;
 
 	if (!l_stack_a || !*l_stack_a || !l_stack_b)
 		return ;
@@ -40,14 +52,14 @@ void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b)
 		else if ((*l_stack_a)->idx <= (range + i))
 		{
 			pb(l_stack_a, l_stack_b);
-			rb(l_stack_b);
+			do_rr_or_rb(l_stack_a, l_stack_b, range, i);
 			i++;
 		}
 		else
 			ra(l_stack_a);
 	}
 	while (*l_stack_b)
-		push_max_to_a(l_stack_a, l_stack_b);
+		push_smart_to_a(l_stack_a, l_stack_b);
 }
 
 /* Coordina la strategia di ordinamento in base al numero di elementi.

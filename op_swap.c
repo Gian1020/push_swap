@@ -46,12 +46,11 @@ int	sb(t_stack **l_stack_b)
  * Stampa "ss\n" nel terminale se entrambe vanno a buon fine*/
 int	ss(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	int	flag;
-
-	flag = 0;
-	flag += swap(l_stack_a, NULL);
-	flag += swap(l_stack_b, NULL);
-	if (flag == 2)
-		write(1, "ss\n", 3);
-	return (flag);
+	if (!*l_stack_a || !*l_stack_b
+		|| !(*l_stack_a)->next || !(*l_stack_b)->next)
+		return (0);
+	swap(l_stack_a, NULL);
+	swap(l_stack_b, NULL);
+	write(1, "ss\n", 3);
+	return (1);
 }

@@ -14,7 +14,6 @@ typedef struct	l_stack
 	struct l_stack	*next;
 }	t_stack;
 
-
 void	handle_error(t_stack **l_stack_a, t_stack **l_stack_b);
 
 int	have_duplicate(t_stack *begin_list);
@@ -26,7 +25,7 @@ void	list_clear(t_stack **node);
 int	list_size(t_stack *begin);
 t_stack	*init_list(char **argv, int *flag_err);
 t_stack *list_last(t_stack *begin);
-void	print_list(t_stack *begin, char *label);
+//void	print_list(t_stack *begin, char *label);
 
 void	sort_three(t_stack **l_stack);
 void	sort_five(t_stack **l_stack_a, t_stack **l_stack_b);
@@ -34,11 +33,13 @@ void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b);
 void	sort_stack(t_stack **l_stack_a);
 
 int	is_sorted(t_stack *l_stack);
-int	find_pos_idx_max(t_stack *l_stack);
-int	find_pos_idx_min(t_stack *l_stack);
-void	push_max_to_a(t_stack **l_stack_a,t_stack **l_stack_b);
+int	get_pos_idx_max(t_stack *l_stack, int target_to_ignore);
+int	get_pos_idx_min(t_stack *l_stack);
 void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b);
 void	push_back_to_a(t_stack **l_stack_a, t_stack **l_stack_b);
+int	smart_choice(int pos_first_max, int pos_sec_max, int size);
+void	bring_to_top_b(t_stack **l_stack, int target_pos);
+void	push_smart_to_a(t_stack **l_stack_a,t_stack **l_stack_b);
 
 int	sa(t_stack **l_stack_a);
 int	sb(t_stack **l_stack_b);
