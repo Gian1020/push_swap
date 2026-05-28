@@ -3,13 +3,13 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include "/libft/libft.h"
-# include "/libftprintf/libftprintf.h"
+# include "./libft/libft.h"
+# include "./libftprintf/ft_printf.h"
 
-typedef struct	l_stack
+typedef struct l_stack
 {
-	int	value;
-	int	idx;
+	int				value;
+	int				idx;
 	struct l_stack	*prev;
 	struct l_stack	*next;
 }	t_stack;
@@ -24,7 +24,7 @@ int		list_push_back(t_stack **begin_list, int value);
 void	list_clear(t_stack **node);
 int		list_size(t_stack *begin);
 t_stack	*init_list(char **argv, int *flag_err);
-t_stack *list_last(t_stack *begin);
+t_stack	*list_last(t_stack *begin);
 //void	print_list(t_stack *begin, char *label);
 
 void	sort_three(t_stack **l_stack);
@@ -39,7 +39,7 @@ void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b);
 void	push_back_to_a(t_stack **l_stack_a, t_stack **l_stack_b);
 int		smart_choice(int pos_first_max, int pos_sec_max, int size);
 void	bring_to_top_b(t_stack **l_stack, int target_pos);
-void	push_smart_to_a(t_stack **l_stack_a,t_stack **l_stack_b);
+void	push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b);
 
 int		sa(t_stack **l_stack_a);
 int		sb(t_stack **l_stack_b);
