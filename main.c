@@ -70,7 +70,7 @@ t_stack	*argv_to_list(char **argv, int *flag_err)
  * in una sequenza continua di interi.
  * Esegue una ricerca iterativa del valore minimo non ancora indicizzato
  * (quelli con idx == -1) e gli assegna il valore 'i' corrente.*/
-void	fast_sort(t_stack *begin_list)
+static void	fast_sort(t_stack *begin_list)
 {
 	int		i;
 	int		size;
