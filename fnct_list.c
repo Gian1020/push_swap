@@ -75,7 +75,7 @@ int	list_size(t_stack *begin)
 	}
 	return (i);
 }
-
+/*
 //Stampa il valore e l'indice della lista, utile per il debug.
 void	print_list(t_stack *begin, char *label)
 {
@@ -92,7 +92,7 @@ void	print_list(t_stack *begin, char *label)
 		begin = begin->next;
 	}
 	ft_printf("------------------------\n");
-}
+}*/
 
 /* Restituisce l'ultimo nodo della lista.*/
 t_stack	*list_last(t_stack *begin)

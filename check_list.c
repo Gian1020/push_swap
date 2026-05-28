@@ -55,29 +55,29 @@ static int	is_space(char *str)
  * In caso  non li rispetti setta la flag a 1.*/
 int	atoi_check(char *str, int *flag_err)
 {
-	int			i;
-	int			sign;
-	long long	n;
+	int				i;
+	int				j;
+	int				sign;
+	long long		n;
 
 	i = is_space(str);
 	n = 0;
 	sign = 1;
-	if (str[i] == '-' || str[i] == '+')
+	if ((str[i] == '-' || str[i] == '+'))
 	{
 		if (str[i] == '-')
 			sign *= -1;
 		i++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	j = i;
+	while (ft_isdigit(str[i]))
 	{
 		n = (n * 10) + str[i] - '0';
-		if ((n > 2147483648 && sign == -1) ||
-				(n > 2147483647 && sign == 1 ))
-		{
+		if ((n > 2147483648 && sign == -1) || (n > 2147483647 && sign == 1))
 			*flag_err = 1;
-			break ;
-		}
 		i++;
 	}
+	if (j == i || str[i] != '\0')
+		*flag_err = 1;
 	return ((int)n * sign);
 }
