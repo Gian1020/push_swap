@@ -65,3 +65,4 @@
     - Il conteggio di ciascun tipo di operazione (`sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`). (wc -l)
     
 ### Funzione che stampa i float
+- [x] **Funzione che stampa l'indice di disordine in percentuale e lo tronca alla seconda cifra decimale.

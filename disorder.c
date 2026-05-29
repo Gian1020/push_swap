@@ -6,7 +6,7 @@
 /*   By: gipimpin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 15:37:33 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/05/29 18:11:03 by gipimpin         ###   ########.fr       */
+/*   Updated: 2026/05/29 18:23:46 by gipimpin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	print_disorder(float f)
 	write(1, "%", 1);
 	write(1, "\n", 1);
 }
-
 
 float	compute_disorder(t_stack *a)
 {

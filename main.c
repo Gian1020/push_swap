@@ -102,7 +102,7 @@ static void	fast_sort(t_stack *begin_list)
 int	main(int argc, char **argv)
 {
 	int		flag_err;
-	float		disorder;
+	float	disorder;
 	t_stack	*l_stack_a;
 
 	if (argc < 2)
