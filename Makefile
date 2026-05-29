@@ -17,6 +17,7 @@ RM	= rm -f
 
 LIBFT_DIR	= ./libft
 LIBFT_A		= $(LIBFT_DIR)/libft.a
+
 # Flag per il linker (collegamento):
 # -L : Indica al compilatore in quale cartella cercare la libreria (es. -L./libft).
 # -l : Indica il nome della libreria da cercare (aggiunge in automatico 'lib' e '.a').
