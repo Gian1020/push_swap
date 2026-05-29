@@ -3,7 +3,7 @@ NAME	= push_swap
 
 # Regole compilatore e flag
 CC	= cc
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g
 
 # Make per compilare LIBFT e PRINTF
 MAKE	= make
@@ -12,7 +12,7 @@ MAKE	= make
 RM	= rm -f
 
 # --------------------------------------------------------------
-# 							LIBFT
+#			LIBFT
 # --------------------------------------------------------------
 
 LIBFT_DIR	= ./libft
@@ -23,7 +23,7 @@ LIBFT_A		= $(LIBFT_DIR)/libft.a
 LIBFT_FLAG	= -L$(LIBFT_DIR) -lft
 
 # --------------------------------------------------------------
-# 					 LIBFTPRINTF
+# 			 LIBFTPRINTF
 # --------------------------------------------------------------
 PRINTF_DIR	= ./libftprintf
 PRINTF_A	= $(PRINTF_DIR)/libftprintf.a
@@ -34,9 +34,9 @@ PRINTF_FLAG	= -L$(PRINTF_DIR) -lftprintf
 INC_LIB	= -I./includes -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
 # Variabile che contiene tutti i file sorgente di push_swap
-SRCS	= check_list.c fnct_list.c error.c op_push.c\
-		  op_shift_rotate.c op_shift_rotate_reverse.c op_swap.c utils_sort.c\
-		  sort_three.c sort_five.c sort_stack.c smart_sort.c main.c
+SRCS	= check_list.c fnct_list.c error.c op_push.c op_shift_rotate.c\
+	  op_shift_rotate_reverse.c op_swap.c utils_sort.c\
+	  sort_three.c sort_five.c sort_stack.c smart_sort.c main.c disorder.c
 
 # Sostituzione di testo: cambia le estensioni della stringa da .c a .o
 OBJS	= $(SRCS:.c=.o)
@@ -60,7 +60,7 @@ $(LIBFT_A):
 
 # Regola per entrare nella cartella di libftprintf ed eseguire il suo Makefile
 $(PRINTF_A): 
-	$(MAKE) -C $(PRINTF_DIR)
+	$(MAKE) -C $(PRINTF_DIR) -b
 
 # Regola principale per creare l'eseguibile push_swap.
 # Dipende dalla creazione di libft.a, libftprintf.a e di tutti i file .o

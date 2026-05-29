@@ -63,3 +63,5 @@
     - Il nome della strategia utilizzata e la sua classe di complessità teorica.
     - Il numero totale di operazioni.
     - Il conteggio di ciascun tipo di operazione (`sa`, `sb`, `ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`). (wc -l)
+    
+### Funzione che stampa i float

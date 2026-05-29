@@ -101,6 +101,7 @@ static void	fast_sort(t_stack *begin_list)
 int	main(int argc, char **argv)
 {
 	int		flag_err;
+	int		disorder;
 	t_stack	*l_stack_a;
 
 	if (argc < 2)
@@ -110,6 +111,8 @@ int	main(int argc, char **argv)
 	if (!l_stack_a || flag_err || have_duplicate(l_stack_a))
 		handle_error(&l_stack_a, NULL);
 	fast_sort(l_stack_a);
+	disorder = compute_disorder(l_stack_a) * 10;
+	print_disord(disorder);
 	if (!is_sorted(l_stack_a))
 		sort_stack(&l_stack_a);
 	list_clear(&l_stack_a);
