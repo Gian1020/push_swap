@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 /* Libera una matrice allocata dinamicamente (char **).
  * Scorre ogni elemento fino al terminatore NULL, libera la memoria
@@ -113,9 +112,6 @@ int	main(int argc, char **argv)
 		handle_error(&l_stack_a, NULL);
 	fast_sort(l_stack_a);
 	disorder = compute_disorder(l_stack_a);
-	printf("main.c = %f\n", disorder);
-	fflush(stdout);
-	print_disorder(disorder);
 	if (!is_sorted(l_stack_a))
 		sort_stack(&l_stack_a);
 	list_clear(&l_stack_a);

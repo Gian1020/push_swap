@@ -6,7 +6,7 @@
 - [ ] **Fast sort:** Migliorare l'algoritmo della funzione `fast_sort` (attuale complessità O(n^2)).
 
 ### 🧮 Indice di Disordine
-- [ ] **Calcolo del disordine:** Implementare la funzione che calcola l'indice di disordine.
+- [x] **Calcolo del disordine:** Implementare la funzione che calcola l'indice di disordine.
     ```python
     function compute_disorder(stack a):
         mistakes = 0
@@ -55,7 +55,7 @@
     - `--complex`
     - `--adaptive`
 - [x] **Stampa Output:** Stampare tutti i comandi nel terminale, ognuno seguito da `\n`.
-- [ ] **Gestione Errori:** In caso d'errore stampare nel terminale `"Error\n"`.
+- [x] **Gestione Errori:** In caso d'errore stampare nel terminale `"Error\n"`.
 
 ### 📊 Benchmark (Opzionale)
 - [ ] **Modalità `--bench`:** L'output del benchmark deve essere inviato a `stderr` e apparire **solo** quando il flag è presente. Dopo l'ordinamento deve visualizzare:
