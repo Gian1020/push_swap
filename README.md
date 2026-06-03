@@ -1,5 +1,7 @@
 # PUSH_SWAP
 
+https://gemini.google.com/share/9f01f4d47110
+
 ## 📋 Roadmap & TODO
 
 ### 🚀 Ottimizzazione
