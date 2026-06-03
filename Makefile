@@ -36,7 +36,7 @@ INC_LIB	= -I./includes -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
 # Variabile che contiene tutti i file sorgente di push_swap
 SRCS	= check_list.c fnct_list.c error.c op_push.c op_shift_rotate.c\
-	  op_shift_rotate_reverse.c op_swap.c utils_sort.c\
+	  op_shift_rotate_reverse.c op_swap.c utils_sort.c init_list.c\
 	  sort_three.c sort_five.c sort_stack.c smart_sort.c main.c disorder.c sort_max_min_extraction.c
 
 # Sostituzione di testo: cambia le estensioni della stringa da .c a .o
@@ -52,7 +52,7 @@ all: $(NAME)
 # -c : Compila il file .c in .o senza tentare di creare l'eseguibile finale (niente linking).
 # -o : Specifica al compilatore come chiamare il file in uscita.
 %.o: %.c
-	$(CC)  $(CFLAGS) $(INC_LIB) -c $< -o $@
+	$(CC) $(CFLAGS) $(INC_LIB) -c $< -o $@
 
 # Regola per entrare nella cartella di libft ed eseguire il suo Makefile interno:
 # -C : Change directory. Si sposta nella cartella specificata prima di lanciare make.

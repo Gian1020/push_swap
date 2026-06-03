@@ -1,0 +1,45 @@
+1. Modulo di Analisi e Aggiornamento (I Sensori)
+Queste funzioni non muovono nulla; si limitano a ispezionare gli stack e ad aggiornare le informazioni dentro i tuoi nodi.
+
+init_nodes_a(): È la funzione "madre" che chiami all'inizio di ogni iterazione finché spingi verso b. Il suo unico compito è 
+azzerare i dati del ciclo precedente e chiamare in sequenza le tre funzioni qui sotto.
+
+set_target_a(): Per ogni nodo in a, scansiona b e trova il suo nodo bersaglio. È esattamente in questa funzione che scrivi il controllo: 
+"Se il mio numero in a è più piccolo di tutti i numeri in b, il suo target diventa il nodo con il valore massimo in b".
+
+calculate_cost(): Prende la posizione attuale del nodo in a e la posizione del suo target in b. Calcola matematicamente quante mosse 
+servono per portare entrambi in cima, tenendo conto di quando conviene ruotare gli stack nella stessa direzione (rr o rrr) per risparmiare mosse.
+
+set_cheapest(): Fa una rapida scansione dello stack a, trova il nodo con il costo totale calcolato inferiore, e accende un flag 
+(es. is_cheapest = true) solo per quel nodo.
+
+2. Modulo di Esecuzione (Il Motore)
+Queste funzioni leggono i dati analizzati e traducono i calcoli in operazioni reali di Push_swap.
+
+move_a_to_b(): Cerca nello stack a il nodo marcato come "cheapest". Una volta trovato, guarda in che direzione devono ruotare a e b e 
+orchestra le sotto-funzioni di rotazione. Alla fine del processo, esegue pb.
+
+rotate_both(): Una funzione dedicata all'ottimizzazione. Se sia il nodo "cheapest" che il suo target si trovano nella metà superiore dei rispettivi stack, 
+questa funzione esegue rr finché uno dei due non arriva in cima. Se sono entrambi nella metà inferiore, usa rrr.
+
+prep_for_push(): Una funzione di "rifinitura". Dopo aver usato rotate_both (o se i nodi dovevano ruotare in direzioni opposte), 
+
+controlla se il nodo in a o il suo target in b non sono ancora in cima. Se non lo sono, esegue le rotazioni singole necessarie (ra, rra, rb, rrb) 
+per allinearli perfettamente prima di fare pb.
+
+3. Modulo di Ritorno e Chiusura (La Fase Finale)
+Una volta che in a rimangono solo i 3 elementi e li hai ordinati, devi riportare tutto indietro. 
+La logica qui è molto più snella perché sposti sempre e solo il primo elemento in cima a b.
+
+set_target_b(): Molto simile alla prima, ma a ruoli invertiti. Guarda il nodo in cima a b e cerca il suo bersaglio in a. 
+Poiché a deve essere crescente, cerca il numero in a "strettamente maggiore e più vicino". Caso limite: se il numero in b è più grande di tutti, il target diventa il valore minimo in a.
+
+move_b_to_a(): Non serve calcolare i costi. Prende il target trovato in a, capisce se è più veloce usare ra o rra per portarlo in cima, lo allinea ed esegue pa.
+
+min_on_top(): La primissima funzione che chiami alla fine di tutto. Trova il nodo con il valore 
+più basso in a e ruota lo stack finché quel numero non diventa il primo elemento in assoluto.
+
+Avere moduli così nettamente separati è una salvezza. Se un numero finisce nel posto sbagliato, 
+sai subito se la colpa è della matematica in calculate_cost() o delle rotazioni in prep_for_push(). 
+Inoltre, quando andrai a testare tutto da terminale con strumenti come Valgrind per verificare la gestione della memoria, 
+avere una struttura così granulare renderà il tracciamento dei puntatori incredibilmente più pulito.

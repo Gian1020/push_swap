@@ -101,13 +101,26 @@ static void	fast_sort(t_stack *begin_list)
 int	main(int argc, char **argv)
 {
 	int		flag_err;
-	// float	disorder;
+	int		flag_algo;
+	int		flag_bench;
 	t_stack	*l_stack_a;
+	t_algo	*check_algo;
 
 	if (argc < 2)
 		return (0);
 	flag_err = 0;
-	l_stack_a = argv_to_list(&argv[1], &flag_err);
+	check_algo = init_flag();
+	flag_algo = check_flag(argv[1], check_algo);
+	flag_bench = insert_in_algo(check_algo, &argv[2][2], "bench");
+	if (flag_algo || flag_bench)
+		flag_err = 1;
+	print_algo(check_algo);
+	if (!flag_algo && !flag_bench)
+		l_stack_a = argv_to_list(&argv[3], &flag_err);
+	else if(!flag_algo) 
+		l_stack_a = argv_to_list(&argv[2], &flag_err);
+	else
+		l_stack_a = argv_to_list(&argv[1], &flag_err);
 	if (!l_stack_a || flag_err || have_duplicate(l_stack_a))
 		handle_error(&l_stack_a, NULL);
 	fast_sort(l_stack_a);
@@ -117,5 +130,6 @@ int	main(int argc, char **argv)
 		sort_stack(&l_stack_a);
 	//print_list(l_stack_a, "Dopo");
 	list_clear(&l_stack_a);
+	free(check_algo);
 	return (0);
 }

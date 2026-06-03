@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpecelli <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/03 17:23:18 by gpecelli          #+#    #+#             */
-/*   Updated: 2026/06/03 17:23:18 by gpecelli         ###   ########.fr       */
+/*   Created: 2026/06/03 16:12:53 by gpecelli          #+#    #+#             */
+/*   Updated: 2026/06/03 17:23:20 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
- * Calculates the length of the list.
- * Returns the total number of nodes counted up to the NULL terminator.
- * */
-int	ft_lstsize(t_list *lst)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int		i;
-	t_list	*curr;
+	size_t	i;
 
 	i = 0;
-	curr = lst;
-	while (curr != NULL)
-	{
+	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
-		curr = curr->next;
-	}
-	return (i);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
