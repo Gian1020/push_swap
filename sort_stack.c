@@ -81,6 +81,6 @@ void	sort_stack(t_stack **l_stack_a)
 	else if (size <= 5)
 		sort_five(l_stack_a, &l_stack_b);
 	else
-		sort_big(l_stack_a, &l_stack_b);
+		sort_max_min_extraction(l_stack_a, &l_stack_b);
 	list_clear(&l_stack_b);
 }

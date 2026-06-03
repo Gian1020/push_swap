@@ -25,11 +25,12 @@ void	list_clear(t_stack **node);
 int		list_size(t_stack *begin);
 t_stack	*init_list(char **argv, int *flag_err);
 t_stack	*list_last(t_stack *begin);
-//void	print_list(t_stack *begin, char *label);
+void	print_list(t_stack *begin, char *label);
 
 void	sort_three(t_stack **l_stack);
 void	sort_five(t_stack **l_stack_a, t_stack **l_stack_b);
 void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b);
+void	sort_max_min_extraction(t_stack **l_stack_a, t_stack **l_stack_b);
 void	sort_stack(t_stack **l_stack_a);
 
 float	compute_disorder(t_stack *a);
