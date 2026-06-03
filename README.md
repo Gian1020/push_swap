@@ -1,11 +1,6 @@
 # PUSH_SWAP
 
-https://gemini.google.com/share/9f01f4d47110
-
 ## 📋 Roadmap & TODO
-
-### 🚀 Ottimizzazione
-- [ ] **Fast sort:** Migliorare l'algoritmo della funzione `fast_sort` (attuale complessità O(n^2)).
 
 ### 🧮 Indice di Disordine
 - [x] **Calcolo del disordine:** Implementare la funzione che calcola l'indice di disordine.
@@ -32,7 +27,7 @@ https://gemini.google.com/share/9f01f4d47110
 | **Reverse Rotate** | `rra`, `rrb`, `rrr` | Ruotano lo stack verso il basso |
 
 ### 🧠 Algoritmi di Ordinamento
-- [ ] **Implementare Simple algorithm** *(Da scegliere O(n^2))*
+- [x] **Implementare Simple algorithm** *(Da scegliere O(n^2))*
     - Insertion sort adaptation
     - Selection sort adaptation
     - Bubble sort adaptation
