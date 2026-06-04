@@ -9,7 +9,7 @@
 /*   Updated: 2026/06/03 14:39:03 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
+/*
 #include "push_swap.h"
 
 // set_target_a(): Per ogni nodo in a, scansiona b e trova il suo nodo bersaglio. È esattamente in questa funzione che scrivi il controllo: 
@@ -23,7 +23,12 @@ void	set_target_a(t_stack *l_stack_a, t_stack *l_stack_b)
 // calculate_cost(): Prende la posizione attuale del nodo in a e la posizione del suo target in b. Calcola matematicamente quante mosse 
 // servono per portare entrambi in cima, tenendo conto di quando conviene ruotare gli stack nella stessa direzione (rr o rrr) per risparmiare mosse.
 
-calculate_cost()
+cost_a()
+{
+
+}
+
+cost_b()
 {
 
 }
@@ -54,4 +59,4 @@ void	init_node_a(t_stack **l_stack_a, t_stack **l_stack_b)
     // → set targets (A → B)
     // → calculate costs
     // → mark cheapest
-}
+}*/

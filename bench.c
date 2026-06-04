@@ -12,16 +12,19 @@
 
 #include "push_swap.h"
 
-void	bench_writer(t_data_bench *data_bench, t_algo *algo_config, float f)
+void	bench_writer(t_data_bench *data_bench)
 {
 	ft_putstr_fd("[bench] disorder: ", 2);
-	print_disorder(f);
+	print_disorder(data_bench->float);
 	ft_putchar_fd('\n', 2);
-
 	ft_putstr_fd("[bench] strategy: ", 2);
-// manca qualcosa
+	if (data->bench < 0.2)
+		ft_putstr_fd("Simple O(n^2)"i, 2);
+	else if (data->bench >= 0.2 && data->bench <= 0.5)
+		ft_putstr_fd("Medium O(n sqrt(n))", 2);
+	else
+		ft_putstr_fd("Complex O(n log n)", 2);
 	ft_putchar_fd('\n', 2);
-
 	ft_putstr_fd("[bench] total_ops: ", 2);
 	ft_putnbr_fd(data_bench->total_ops, 2);
 	ft_putchar('\n', 2);
@@ -31,7 +34,7 @@ void	bench_writer(t_data_bench *data_bench, t_algo *algo_config, float f)
 	ft_putchar_fd('\n', 2);
 }
 
-void	bench_writer_row4(t_data_bench *data_bench, t_algo *algo_config, float f)
+void	bench_writer_row4(t_data_bench *data_bench)
 {
 	ft_putstr_fd("[bench] sa: ", 2);
 	ft_putnbr_fd(data_bench->sa, 2);
@@ -45,7 +48,7 @@ void	bench_writer_row4(t_data_bench *data_bench, t_algo *algo_config, float f)
 	ft_putnbr_fd(data_bench->pb, 2);
 }
 
-void	bench_writer_row5(t_data_bench *data_bench, t_algo *algo_config, float f)
+void	bench_writer_row5(t_data_bench *data_bench)
 {
 	ft_putstr_fd("[bench] ra: ", 2);
 	ft_putnbr_fd(data_bench->ra, 2);

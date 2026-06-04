@@ -109,7 +109,7 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (0);
 	flag_err = 0;
-	check_algo = init_flag();
+	check_algo = init_struct_algo();
 	flag_algo = check_flag(argv[1], check_algo);
 	flag_bench = insert_in_algo(check_algo, &argv[2][2], "bench");
 	if (flag_algo || flag_bench)
@@ -117,7 +117,7 @@ int	main(int argc, char **argv)
 	print_algo(check_algo);
 	if (!flag_algo && !flag_bench)
 		l_stack_a = argv_to_list(&argv[3], &flag_err);
-	else if(!flag_algo) 
+	else if (!flag_algo) 
 		l_stack_a = argv_to_list(&argv[2], &flag_err);
 	else
 		l_stack_a = argv_to_list(&argv[1], &flag_err);
@@ -125,6 +125,8 @@ int	main(int argc, char **argv)
 		handle_error(&l_stack_a, NULL);
 	fast_sort(l_stack_a);
 	//print_list(l_stack_a, "Prima");
+	// TODO creare la struct data_bench e assegnargli il disordine
+	// questa struct dobbiamo passarcela in tutte le funzioni di sorting
 	//disorder = compute_disorder(l_stack_a);
 	if (!is_sorted(l_stack_a))
 		sort_stack(&l_stack_a);

@@ -71,7 +71,7 @@ void	print_list(t_stack *begin, char *label)
 	while (begin != NULL)
 	{
 		ft_printf("n : %d || ", begin->value);
-		ft_printf("idx : %d\n",begin->idx);
+		ft_printf("idx : %d\n", begin->idx);
 		begin = begin->next;
 	}
 	ft_printf("------------------------\n");

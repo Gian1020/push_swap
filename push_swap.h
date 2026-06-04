@@ -6,25 +6,11 @@
 # include "./libft/libft.h"
 # include "./libftprintf/ft_printf_bonus.h"
 
-/*
- * t_stack - node structure for push_swap (Turkish algorithm)
- *
- * value      : actual integer value of the node (never modified)
- * idx        : current position index of the node inside its stack (dynamic)
- * target     : index/value of the best insertion position in the opposite stack
- *
- * cost_a     : number of operations required to bring this node to the top of stack A
- * cost_b     : number of operations required to bring the target node to the top of stack B
- *
- * is_cheap   : flag marking the node with the lowest combined cost in the current iteration
- *
- * prev/next  : doubly linked list pointers for stack navigation
- */
-
 typedef struct l_stack
 {
 	int				value;
 	int				idx;
+	int				curr_pos;
 	int				target;
 	int				cost_a;
 	int				cost_b;
@@ -35,14 +21,14 @@ typedef struct l_stack
 
 typedef struct s_algo
 {
-	int simple;
-	int medium;
-	int complex;
-	int adaptive;
-	int bench;
+	int		simple;
+	int		medium;
+	int		complex;
+	int		adaptive;
+	int		bench;
 }	t_algo;
 
-typedef struct	s_data_bench
+typedef struct s_data_bench
 {
 	int		total_ops;
 	int		sa;
@@ -63,14 +49,13 @@ void	handle_error(t_stack **l_stack_a, t_stack **l_stack_b);
 int		have_duplicate(t_stack *begin_list);
 int		atoi_check(char *str, int *flag_err);
 
-void	bench_writer(t_data_bench *data_bench, t_algo *algo_config, float f);
-void	bench_writer_row4(t_data_bench *data_bench, t_algo *algo_config, float f);
-void	bench_writer_row5(t_data_bench *data_bench, t_algo *algo_config, float f);
+void	bench_writer(t_data_bench *data_bench);
+void	bench_writer_row4(t_data_bench *data_bench);
+void	bench_writer_row5(t_data_bench *data_bench);
 
-
-t_algo	*init_flag();
-int	insert_in_algo(t_algo *check_algo, char *s1, char *s2);
-int	check_flag(char	*flag_to_check, t_algo *check_algo);
+t_algo	*init_struct_algo(void);
+int		insert_in_algo(t_algo *check_algo, char *s1, char *s2);
+int		check_flag(char	*flag_to_check, t_algo *check_algo);
 void	print_algo(t_algo *check_algo);
 
 t_stack	*new_node(int value);

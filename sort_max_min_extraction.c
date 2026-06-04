@@ -14,8 +14,8 @@
 
 void	push_back_to_a(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	if (!l_stack_b || !*l_stack_b)                                                                                                                                                                                               
-           return ;
+	if (!l_stack_b || !*l_stack_b)
+		return ;
 	while (*l_stack_b != NULL)
 	{
 		pa(l_stack_a, l_stack_b);

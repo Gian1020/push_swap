@@ -30,7 +30,7 @@ t_stack	*new_node(int value)
 	return (node);
 }
 
-t_algo	*init_flag()
+t_algo	*init_struct_algo(void)
 {
 	t_algo	*algo_config;
 
@@ -45,7 +45,7 @@ t_algo	*init_flag()
 	return (algo_config);
 }
 
-t_data_bench	*init_data_bench()
+t_data_bench	*init_data_bench(void)
 {
 	t_data_bench	*data_bench;
 

@@ -11,12 +11,11 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	print_disorder(float f)
 {
 	char	c;
-	int	i;
+	int		i;
 
 	i = 0;
 	write(2, "\n", 1);
@@ -53,7 +52,5 @@ float	compute_disorder(t_stack *a)
 		}
 		a = a->next;
 	}
-	printf("dis.c: %f\n", mistakes / total_pairs);
-	fflush(stdout);
 	return (mistakes / total_pairs);
 }

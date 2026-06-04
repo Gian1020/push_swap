@@ -13,13 +13,8 @@ void	handle_error(t_stack **l_stack_a, t_stack **l_stack_b)
 	exit(1);
 }
 
-// t_stack	*flag_validation(char **argv, int *flag_err, t_algo *check_algo)
-// {
-	
-// }
-
 int	insert_in_algo(t_algo *check_algo, char *s1, char *s2)
-{	
+{
 	int	res_cmp;
 
 	res_cmp = ft_strcmp(s1, s2);
@@ -53,26 +48,26 @@ int	check_flag(char	*flag_to_check, t_algo *check_algo)
 	if (flag_to_check[0] == '-' && flag_to_check[1] == '-')
 	{
 		if (flag_to_check[2] == 's')
-			return (insert_in_algo(check_algo,	&flag_to_check[2], "simple"));
+			return (insert_in_algo(check_algo, &flag_to_check[2], "simple"));
 		else if (flag_to_check[2] == 'm')
-			return (insert_in_algo(check_algo,	&flag_to_check[2], "medium"));
+			return (insert_in_algo(check_algo, &flag_to_check[2], "medium"));
 		else if (flag_to_check[2] == 'c')
-			return (insert_in_algo(check_algo,	&flag_to_check[2], "complex"));
+			return (insert_in_algo(check_algo, &flag_to_check[2], "complex"));
 		else if (flag_to_check[2] == 'b')
-			return (insert_in_algo(check_algo,	&flag_to_check[2], "bench"));
+			return (insert_in_algo(check_algo, &flag_to_check[2], "bench"));
 		else if (flag_to_check[2] == 'a')
-			return (insert_in_algo(check_algo,	&flag_to_check[2], "adaptive"));
+			return (insert_in_algo(check_algo, &flag_to_check[2], "adaptive"));
 	}
 	return (1);
 }
 
 void	print_algo(t_algo *check_algo)
 {
-	ft_printf("s = %d ",check_algo->simple);
-	ft_printf("m = %d ",check_algo->medium);
-	ft_printf("c = %d ",check_algo->complex);
-	ft_printf("a = %d ",check_algo->adaptive);
-	ft_printf("b = %d \n",check_algo->bench);
+	ft_printf("s = %d ", check_algo->simple);
+	ft_printf("m = %d ", check_algo->medium);
+	ft_printf("c = %d ", check_algo->complex);
+	ft_printf("a = %d ", check_algo->adaptive);
+	ft_printf("b = %d \n", check_algo->bench);
 }
 
 // TODO non prendere bench bench
