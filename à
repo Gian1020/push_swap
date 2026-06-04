@@ -1,16 +1,18 @@
 #include "push_swap.h"
 
-void	sort_two(t_stack **l_stack, t_data_bench *data)
+void	sort_two(t_stack **l_stack, t_data_bench data)
 {
 	if (!l_stack || list_size(*l_stack) != 2 || is_sorted(*l_stack))
 		return ;
-	sa(l_stack, data);
+	sa(l_stack);
+	data->total += 1;
+	data->sa += 1;
 }
 
 /* Ordina uno stack di 3 elementi in massimo 2 mosse.
  * 1. Identifica e sposta il valore massimo in terza posizione (bottom).
  * 2. Verifica se il valore minimo è in prima posizione. */
-void	sort_three(t_stack **l_stack, t_data_bench *data)
+void	sort_three(t_stack **l_stack)
 {
 	int	idx_max;
 	int	idx_min;
@@ -19,10 +21,10 @@ void	sort_three(t_stack **l_stack, t_data_bench *data)
 		return ;
 	idx_max = get_pos_idx_max(*l_stack, -1);
 	if (idx_max == 0)
-		ra(l_stack, data);
+		ra(l_stack);
 	if (idx_max == 1)
-		rra(l_stack, data);
+		rra(l_stack);
 	idx_min = get_pos_idx_min(*l_stack);
 	if (idx_min == 1)
-		sa(l_stack, data);
+		sa(l_stack);
 }

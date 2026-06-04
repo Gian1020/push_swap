@@ -15,12 +15,12 @@ static int	select_range(int size_a)
 }
 
 static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
-		int range, int i)
+		int range, int i, t_data_bench *data)
 {
 	if (*l_stack_a && (*l_stack_a)->idx > (range + i))
-		rr(l_stack_a, l_stack_b);
+		rr(l_stack_a, l_stack_b, data);
 	else
-		rb(l_stack_b);
+		rb(l_stack_b, data);
 }
 
 /* Funzione che gestisce l ordinamento di A se SIZE > 5.
@@ -33,7 +33,7 @@ static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
  *    - Altrimenti lo mettiamo in fondo ad A.
  * 3) Inseriamo il nodo più grande di B in A fino a che B non è vuoto.
  * */
-void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b)
+void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	int		i;
 	int		range;
@@ -46,26 +46,26 @@ void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b)
 	{
 		if ((*l_stack_a)->idx <= i)
 		{
-			pb(l_stack_a, l_stack_b);
+			pb(l_stack_a, l_stack_b, data);
 			i++;
 		}
 		else if ((*l_stack_a)->idx <= (range + i))
 		{
-			pb(l_stack_a, l_stack_b);
-			do_rr_or_rb(l_stack_a, l_stack_b, range, i);
+			pb(l_stack_a, l_stack_b, data);
+			do_rr_or_rb(l_stack_a, l_stack_b, range, i, data);
 			i++;
 		}
 		else
-			ra(l_stack_a);
+			ra(l_stack_a, data);
 	}
 	while (*l_stack_b)
-		push_smart_to_a(l_stack_a, l_stack_b);
+		push_smart_to_a(l_stack_a, l_stack_b, data);
 }
 
 /* Coordina la strategia di ordinamento in base al numero di elementi.
  * Verifica se lo stack è già ordinato o troppo piccolo, quindi delega 
  * l'esecuzione ad algoritmi specializzati per gestire i vari casi. */
-void	sort_stack(t_stack **l_stack_a)
+void	sort_stack(t_stack **l_stack_a, t_data_bench *data)
 {
 	int		size;
 	t_stack	*l_stack_b;
@@ -75,12 +75,13 @@ void	sort_stack(t_stack **l_stack_a)
 		return ;
 	l_stack_b = NULL;
 	if (size == 2)
-		sa(l_stack_a);
+		sort_two(l_stack_a, data);
 	else if (size == 3)
-		sort_three(l_stack_a);
+		sort_three(l_stack_a, data);
 	else if (size <= 5)
-		sort_five(l_stack_a, &l_stack_b);
+		sort_five(l_stack_a, &l_stack_b, data);
 	else
-		sort_max_min_extraction(l_stack_a, &l_stack_b);
+		sort_big(l_stack_a, &l_stack_b, data);
+		//sort_max_min_extraction(l_stack_a, &l_stack_b);
 	list_clear(&l_stack_b);
 }

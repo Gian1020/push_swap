@@ -55,7 +55,8 @@ int	get_pos_idx_max(t_stack *l_stack, int target_to_ignore)
  * per decidere se utilizzare rotazioni dirette (ra) o inverse (rra). 
  * Una volta che il primo elemento è in posizione 0 
  * lo inserisce come primo elemento di B*/
-void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b)
+void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b,
+		t_data_bench *data)
 {
 	int	pos_min;
 	int	size;
@@ -68,7 +69,7 @@ void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b)
 	{
 		while (pos_min > 0)
 		{
-			ra(l_stack_a);
+			ra(l_stack_a, data);
 			pos_min--;
 		}
 	}
@@ -76,11 +77,11 @@ void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b)
 	{
 		while (pos_min < size)
 		{
-			rra(l_stack_a);
+			rra(l_stack_a, data);
 			pos_min++;
 		}
 	}
-	pb(l_stack_a, l_stack_b);
+	pb(l_stack_a, l_stack_b, data);
 }
 
 /* Individua il valore max in B inserendolo in A ottimizzando num di mosse.
@@ -88,7 +89,7 @@ void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b)
  * per decidere se utilizzare rotazioni dirette (rb) o inverse (rrb).
  * Una volta che il primo elemento è in posizione 0
  * lo inserisce come primo elemento di A*/
-void	bring_to_top_b(t_stack **l_stack, int target_pos)
+void	bring_to_top_b(t_stack **l_stack, int target_pos, t_data_bench *data)
 {
 	int	size;
 
@@ -99,7 +100,7 @@ void	bring_to_top_b(t_stack **l_stack, int target_pos)
 	{
 		while (target_pos > 0)
 		{
-			rb(l_stack);
+			rb(l_stack, data);
 			target_pos--;
 		}
 	}
@@ -107,7 +108,7 @@ void	bring_to_top_b(t_stack **l_stack, int target_pos)
 	{
 		while (target_pos < size)
 		{
-			rrb(l_stack);
+			rrb(l_stack, data);
 			target_pos++;
 		}
 	}

@@ -100,11 +100,12 @@ static void	fast_sort(t_stack *begin_list)
 
 int	main(int argc, char **argv)
 {
-	int		flag_err;
-	int		flag_algo;
-	int		flag_bench;
-	t_stack	*l_stack_a;
-	t_algo	*check_algo;
+	int				flag_err;
+	int				flag_algo;
+	int				flag_bench;
+	t_data_bench	*data;
+	t_stack			*l_stack_a;
+	t_algo			*check_algo;
 
 	if (argc < 2)
 		return (0);
@@ -125,11 +126,10 @@ int	main(int argc, char **argv)
 		handle_error(&l_stack_a, NULL);
 	fast_sort(l_stack_a);
 	//print_list(l_stack_a, "Prima");
-	// TODO creare la struct data_bench e assegnargli il disordine
-	// questa struct dobbiamo passarcela in tutte le funzioni di sorting
+	data = init_data_bench();
 	//disorder = compute_disorder(l_stack_a);
 	if (!is_sorted(l_stack_a))
-		sort_stack(&l_stack_a);
+		sort_stack(&l_stack_a, data);
 	//print_list(l_stack_a, "Dopo");
 	list_clear(&l_stack_a);
 	free(check_algo);
