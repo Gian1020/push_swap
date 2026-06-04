@@ -59,27 +59,37 @@ void	set_all_target(t_stack *l_stack_a, t_stack *l_stack_b)
 	}
 }
 
-// t_stack *get_target_in_a(t_stack *node_b, t_stack *l_stack_a)
-// {
-//     t_stack *target;
-//     t_stack *current_a;
+t_stack *find_min(t_stack *l_stack)
+{
+    t_stack *min;
 
-//     target = NULL;
-//     current_a = l_stack_a;
-//     while (current_a != NULL)
-//     {
-//         /* Cerchiamo i numeri in A che sono MAGGIORI del nodo in B */
-//         if (current_a->idx > node_b->idx) 
-//         {
-//             /* Vogliamo tenere in memoria il PIÙ PICCOLO tra questi maggiori */
-//             if (target == NULL || current_a->idx < target->idx)
-//                 target = current_a;
-//         }
-//         current_a = current_a->next;
-//     }
-//     /* Se non abbiamo trovato nulla, significa che B è il nuovo massimo (Caso Estremo) */
-//     if (target == NULL)
-//         target = find_min(l_stack_a); // Dobbiamo puntare al minimo assoluto di A
-        
-//     return (target);
-// }
+    min = l_stack;
+    while (l_stack != NULL)
+    {
+        if (l_stack->idx < min->idx)
+            min = l_stack;
+        l_stack = l_stack->next;
+    }
+    return (min);
+}
+
+t_stack *get_target_in_a(t_stack *node_b, t_stack *l_stack_a)
+{
+    t_stack *target;
+    t_stack *current_a;
+
+    target = NULL;
+    current_a = l_stack_a;
+    while (current_a != NULL)
+    {
+        if (current_a->idx > node_b->idx)
+        {
+            if (target == NULL || current_a->idx < target->idx)
+                target = current_a;
+        }
+        current_a = current_a->next;
+    }
+    if (target == NULL)
+        target = find_min(l_stack_a); // B è il nuovo massimo, punta al minimo di A
+    return (target);
+}

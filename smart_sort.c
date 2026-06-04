@@ -32,8 +32,10 @@ static void	do_ss_or_sa(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *
 }
 
 static void	second_choice(t_stack **l_stack_a, t_stack **l_stack_b,
-		int pos_max, int pos_max_1, t_data_bench *data)
+	int pos_max_1, t_data_bench *data)
 {
+	int	pos_max;
+
 	bring_to_top_b(l_stack_b, pos_max_1, data);
 	pa(l_stack_a, l_stack_b, data);
 	pos_max = get_pos_idx_max(*l_stack_b, -1);
@@ -68,5 +70,5 @@ void	push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 		pa(l_stack_a, l_stack_b, data);
 	}
 	else if (choice == 2)
-		second_choice(l_stack_a, l_stack_b, pos_max, pos_max_1, data);
+		second_choice(l_stack_a, l_stack_b, pos_max_1, data);
 }

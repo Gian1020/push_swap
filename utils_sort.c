@@ -113,3 +113,20 @@ void	bring_to_top_b(t_stack **l_stack, int target_pos, t_data_bench *data)
 		}
 	}
 }
+
+void	bring_target_to_top_a(t_stack **l_stack_a, t_stack *target,
+        	t_data_bench *data)
+{
+    int pos;
+    int size;
+
+    insert_curr_pos(*l_stack_a);
+    pos  = target->curr_pos;
+    size = list_size(*l_stack_a);
+    if (pos <= size / 2)
+        while (pos-- > 0)
+            ra(l_stack_a, data);
+    else
+        while (pos++ < size)
+            rra(l_stack_a, data);
+}

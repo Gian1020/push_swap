@@ -3,6 +3,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include "./libft/libft.h"
 # include "./libftprintf/ft_printf_bonus.h"
 
@@ -84,8 +85,9 @@ void 			set_cheapest(t_stack *l_stack);
 void			calculate_cost(t_stack *stack_a, t_stack *stack_b);
 void   			insert_curr_pos(t_stack *l_stack);
 t_stack 		*find_cheap(t_stack *l_stack);
-void	set_all_target(t_stack *l_stack_a, t_stack *l_stack_b);
-
+t_stack			*find_min(t_stack *l_stack);
+void			set_all_target(t_stack *l_stack_a, t_stack *l_stack_b);
+t_stack *		get_target_in_a(t_stack *node_b, t_stack *l_stack_a);
 float			compute_disorder(t_stack *a);
 void			print_disorder(float f);
 int				is_sorted(t_stack *l_stack);
@@ -100,7 +102,8 @@ void			bring_to_top_b(t_stack **l_stack, int target_pos,
 					t_data_bench *data);
 void			push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
-
+void			bring_target_to_top_a(t_stack **l_stack_a, t_stack *target,
+                    t_data_bench *data);
 int				sa(t_stack **l_stack_a, t_data_bench *data);
 int				sb(t_stack **l_stack_b, t_data_bench *data);
 int				ss(t_stack **l_stack_a, t_stack **l_stack_b,

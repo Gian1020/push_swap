@@ -29,14 +29,16 @@ void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
         else
             node_in_a->cost_a = -(len_a - node_in_a->curr_pos);
         target_node = node_in_a->target;
-        if (!target_node)
-        {
-            node_in_a = node_in_a->next;
-            continue;
-        }
-        if (target_node->curr_pos <= (len_b / 2))
+		if (!target_node)
+		{
+    		node_in_a->cost_b = 0;
+    		node_in_a->total_cost = INT_MAX;   // mai scelto come cheapest
+    		node_in_a = node_in_a->next;
+    		continue;
+		}        
+		if (target_node->curr_pos <= (len_b / 2))
             node_in_a->cost_b = target_node->curr_pos;
-        else
+		else
             node_in_a->cost_b = -(len_b - target_node->curr_pos);
         node_in_a->total_cost = ft_abs(node_in_a->cost_a) + ft_abs(node_in_a->cost_b);
         node_in_a = node_in_a->next;
@@ -66,9 +68,13 @@ void set_cheapest(t_stack *l_stack)
         return ;
     cheapest_node = l_stack;
     current = l_stack;
-    while (current != NULL)
+    while (current != NULL)          // passaggio 1: reset
     {
         current->is_cheap = 0;
+        current = current->next;
+    }
+    while (current != NULL)
+    {
         if (current->total_cost < cheapest_node->total_cost)
             cheapest_node = current;
         current = current->next;
