@@ -72,8 +72,8 @@ void			sort_two(t_stack **l_stack, t_data_bench *data);
 void			sort_three(t_stack **l_stack, t_data_bench *data);
 void			sort_five(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
 void			sort_big(t_stack **l_stack_a, t_stack **l_stack_b,  t_data_bench *data);
-void			sort_max_min_extraction(t_stack **l_stack_a,
-					t_stack **l_stack_b);
+void			sort_max_min_extraction(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
 void			sort_stack(t_stack **l_stack_a, t_data_bench *data);
 
 float			compute_disorder(t_stack *a);
