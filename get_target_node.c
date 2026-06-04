@@ -19,31 +19,42 @@ t_stack	*find_max(t_stack *l_stack)
 	max = l_stack;
 	while (l_stack != NULL)
 	{
-		if (l_stack->next->idx > max->idx)
-			max = l_stack->next;
+		if (l_stack->idx > max->idx)
+			max = l_stack;
 		l_stack = l_stack->next;
 	}
 	return (max);
 }
 
-int	get_target(t_stack *l_stack_a, t_stack *l_stack_b)
+t_stack	*get_target(t_stack *l_stack_a, t_stack *l_stack_b)
 {
-	t_stack *node_max_b;
 	t_stack	*target;
 	t_stack	*current_b;
 
 	target = NULL;
+	current_b = l_stack_b;
 	while (current_b != NULL)
 	{
-		if (l_stack_a->idx < current_b->idx 
-				&& (target == NULL || current_b->idx > target->idx))
-			target->idx = current_b;
+		if (current_b->idx < l_stack_a->idx)
+		{
+			if (target == NULL || current_b->idx > target->idx)
+				target = current_b;
+		}
 		current_b = current_b->next;
 	}
-	node_max_b = find_max(l_stack_b);
-	if (target->idx == NULL && get_pos_idx_max(node_max_b, -1) == 0) 
-		target->idx = node_max_b->idx;
+	if (target == NULL)
+		target = find_max(l_stack_b);
+	return (target);
+}
 
-	// TODO aggiungere il caso non troviamo il massim
-	return (target->idx);
+void	set_all_target(t_stack *l_stack_a, t_stack *l_stack_b)
+{
+	t_stack	*temp_a;
+
+	temp_a = l_stack_a;
+	while(temp_a != NULL)
+	{
+		temp_a->target = get_target(l_stack_a, l_stack_b);
+		temp_a = temp_a->next;
+	}
 }

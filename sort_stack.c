@@ -1,26 +1,9 @@
 #include "push_swap.h"
 
-int	ft_sqrt(int nb)
-{
-	int	i;
-
-	i = 0;
-	while ((i * i) < nb + 1)
-	{
-		if ((i * i) == nb)
-			return (i);
-		i++;
-	}
-	return (0);
-}
-
 /*Analizza la SIZE di A per scegliere un range adeguato.*/
 static int	select_range(int size_a)
 {
-	int	range;
-
-	range = ft_sqtr(size_a);
-	return (range);
+	return (ft_sqrt(size_a));
 }
 
 static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
@@ -42,7 +25,7 @@ static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
  *    - Altrimenti lo mettiamo in fondo ad A.
  * 3) Inseriamo il nodo più grande di B in A fino a che B non è vuoto.
  * */
-void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
+void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	int		i;
 	int		range;
@@ -74,7 +57,7 @@ void	sort_big(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 /* Coordina la strategia di ordinamento in base al numero di elementi.
  * Verifica se lo stack è già ordinato o troppo piccolo, quindi delega 
  * l'esecuzione ad algoritmi specializzati per gestire i vari casi. */
-void	sort_stack(t_stack **l_stack_a, t_data_bench *data)
+void	sort_stack(t_stack **l_stack_a, t_data_bench *data, t_algo *algo)
 {
 	int		size;
 	t_stack	*l_stack_b;
@@ -90,7 +73,6 @@ void	sort_stack(t_stack **l_stack_a, t_data_bench *data)
 	else if (size <= 5)
 		sort_five(l_stack_a, &l_stack_b, data);
 	else
-		sort_big(l_stack_a, &l_stack_b, data);
-		//sort_max_min_extraction(l_stack_a, &l_stack_b);
+		sort_big(l_stack_a, &l_stack_b, data, algo);
 	list_clear(&l_stack_b);
 }

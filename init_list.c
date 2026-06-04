@@ -22,12 +22,11 @@ t_stack	*new_node(int value)
 	node->idx = -1;
 	node->value = value;
 	node->curr_pos = 0;
-	node->target = 0;
-	node->cost_a = 0;
-	node->cost_b = 0;
+	node->total_cost = 0;
 	node->is_cheap = 0;
 	node->prev = NULL;
 	node->next = NULL;
+	node->target = NULL;
 	return (node);
 }
 

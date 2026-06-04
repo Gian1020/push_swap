@@ -105,17 +105,16 @@ int	main(int argc, char **argv)
 	int				flag_bench;
 	t_data_bench	*data;
 	t_stack			*l_stack_a;
-	t_algo			*check_algo;
+	t_algo			*algo;
 
 	if (argc < 2)
 		return (0);
 	flag_err = 0;
-	check_algo = init_struct_algo();
-	flag_algo = check_flag(argv[1], check_algo);
-	flag_bench = insert_in_algo(check_algo, &argv[2][2], "bench");
+	algo = init_struct_algo();
+	flag_algo = check_flag(argv[1], algo);
+	flag_bench = insert_in_algo(algo, &argv[2][2], "bench");
 	if (flag_algo || flag_bench)
 		flag_err = 1;
-	print_algo(check_algo);
 	if (!flag_algo && !flag_bench)
 		l_stack_a = argv_to_list(&argv[3], &flag_err);
 	else if (!flag_algo) 
@@ -125,16 +124,14 @@ int	main(int argc, char **argv)
 	if (!l_stack_a || flag_err || have_duplicate(l_stack_a))
 		handle_error(&l_stack_a, NULL);
 	fast_sort(l_stack_a);
-	//print_list(l_stack_a, "Prima");
+	print_list(l_stack_a, "Prima");
 	data = init_data_bench();
 	data->disorder = compute_disorder(l_stack_a);
 	if (!is_sorted(l_stack_a))
-		sort_stack(&l_stack_a, data);
-	if (check_algo->bench)
-		bench_writer(data);
-	//print_list(l_stack_a, "Dopo");
+		sort_stack(&l_stack_a, data, algo);
+	print_list(l_stack_a, "Dopo");
 	list_clear(&l_stack_a);
-	free(check_algo);
+	free(algo);
 	free(data);
 	return (0);
 }

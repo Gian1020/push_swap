@@ -11,12 +11,13 @@ typedef struct l_stack
 	int				value;
 	int				idx;
 	int				curr_pos;
-	int				target;
 	int				cost_a;
 	int				cost_b;
+	int				total_cost;
 	int				is_cheap;
 	struct l_stack	*prev;
 	struct l_stack	*next;
+	struct l_stack	*target;
 }	t_stack;
 
 typedef struct s_algo
@@ -72,10 +73,18 @@ void			print_list(t_stack *begin, char *label);
 void			sort_two(t_stack **l_stack, t_data_bench *data);
 void			sort_three(t_stack **l_stack, t_data_bench *data);
 void			sort_five(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
-void			sort_big(t_stack **l_stack_a, t_stack **l_stack_b,  t_data_bench *data);
+void			chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b,  t_data_bench *data);
 void			sort_max_min_extraction(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
-void			sort_stack(t_stack **l_stack_a, t_data_bench *data);
+void			sort_stack(t_stack **l_stack_a, t_data_bench *data, t_algo *algo);
+void    		sort_big(t_stack **l_stack_a, t_stack **t_stack_a, t_data_bench *data, t_algo *algo);
+void   			turk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+
+void 			set_cheapest(t_stack *l_stack);
+void			calculate_cost(t_stack *stack_a, t_stack *stack_b);
+void   			insert_curr_pos(t_stack *l_stack);
+t_stack 		*find_cheap(t_stack *l_stack);
+void	set_all_target(t_stack *l_stack_a, t_stack *l_stack_b);
 
 float			compute_disorder(t_stack *a);
 void			print_disorder(float f);
@@ -111,4 +120,7 @@ int				rra(t_stack **l_stack_a, t_data_bench *data);
 int				rrb(t_stack **l_stack_b, t_data_bench *data);
 int				rrr(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
+
+int ft_abs(int n);
+int	ft_sqrt(int nb);
 #endif

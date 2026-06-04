@@ -10,72 +10,85 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "push_swap.h"
+#include "push_swap.h"
 
-// // passed only the current node
+void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
+{
+    int len_a;
+    int len_b;
+    t_stack *node_in_a;
+    t_stack *target_node;
 
-// void	calculate_cost(t_stack *stack_a, t_stack *stack_b)
-// {
-// 	int	len_a;
-// 	int	len_b;
-// 	int	above_median;
-// 	t_stack	*node_in_a;
-// 	t_stack	*target_node;
+    len_a = list_size(stack_a);
+    len_b = list_size(stack_b);
+    node_in_a = stack_a;
+    while (node_in_a != NULL)
+    {
+        if (node_in_a->curr_pos <= (len_a / 2))
+            node_in_a->cost_a = node_in_a->curr_pos;
+        else
+            node_in_a->cost_a = -(len_a - node_in_a->curr_pos);
+        target_node = node_in_a->target;
+        if (!target_node)
+        {
+            node_in_a = node_in_a->next;
+            continue;
+        }
+        if (target_node->curr_pos <= (len_b / 2))
+            node_in_a->cost_b = target_node->curr_pos;
+        else
+            node_in_a->cost_b = -(len_b - target_node->curr_pos);
+        node_in_a->total_cost = ft_abs(node_in_a->cost_a) + ft_abs(node_in_a->cost_b);
+        node_in_a = node_in_a->next;
+    }
+}
 
-// 	above_median = 1;
-// 	len_a = list_size(stack_a);
-// 	len_b = list_size(stack_b);
-// 	node_in_a = stack_a;
-// 	while (node_in_a != NULL)
-// 	{
-// 		if (node_in_a->curr_pos < (len_a / 2))
-// 			node_in_a->cost_a = node_in_a->curr_pos;
-// 		else
-// 		{
-// 			above_median = -above_median;
-// 			node_in_a->cost_a = len_a - node_in_a->curr_pos;
-// 		}
-		
-// 		target_node = stack_a->target;
+t_stack *find_cheap(t_stack *l_stack)
+{
+    t_stack *temp;
 
-// 		if (target_node->curr_pos < (len_b / 2))
-// 		{
-// 			target_node->cost_b = target_node->curr_pos;
-// 		}
-// 		else
-// 		{
-// 			above_median = -above_median;
-// 			target_node->cost_b = len_b - target_node->curr_pos;
-// 		}
+    temp = l_stack;
+    while(temp != NULL)
+    {
+        if (temp->is_cheap)
+            return (temp);
+        temp = temp->next;
+    }
+    return (NULL);
+}
 
-// 		node_in_a->total_cost = node_in_a->cost_a + target_node->cost_b;
-// 		node_in_a = node_in_a->next;
-// 	}
-// }
+void set_cheapest(t_stack *l_stack)
+{
+    t_stack *cheapest_node;
+    t_stack *current;
 
-// void execute_and_push(t_stack **stack_a, t_stack **stack_b, t_stack *nodo_piu_economico)
-// {
-// 	// --- 1. PORTA IL NODO DI A IN CIMA ---
-// 	// Finché il nodo più economico non si trova in testa allo stack A
-// 	while (*stack_a != nodo_piu_economico)
-// 	{
-// 		if (nodo_piu_economico->above_median == true)
-// 			// Fai ruotare in avanti -> esegui ra()
-// 		else
-// 			// Fai ruotare all'indietro -> esegui rra()
-// 	}
+    if (l_stack == NULL)
+        return ;
+    cheapest_node = l_stack;
+    current = l_stack;
+    while (current != NULL)
+    {
+        current->is_cheap = 0;
+        if (current->total_cost < cheapest_node->total_cost)
+            cheapest_node = current;
+        current = current->next;
+    }
+    cheapest_node->is_cheap = 1;
+}
 
-// 	// --- 2. PORTA IL TARGET IN CIMA A B ---
-// 	// Finché il target di quel nodo non si trova in testa allo stack B
-// 	while (*stack_b != nodo_piu_economico->target_node)
-// 	{
-// 		if (nodo_piu_economico->target_node->above_median == true)
-// 			// Fai ruotare in avanti -> esegui rb()
-// 		else
-// 			// Fai ruotare all'indietro -> esegui rrb()
-// 	}
+void    insert_curr_pos(t_stack *l_stack)
+{
+    int     i;
+    t_stack *temp;
 
-// 	// --- 3. IL MOMENTO MAGICO ---
-// 	// Ora che entrambi sono in cima ai rispettivi stack:
-// 	// Esegui pb() per lanciare il nodo da A a B!
-// }
+    if (!l_stack)
+        return ;
+    i = 0;
+    temp = l_stack;
+    while (temp != NULL)
+    {
+        temp->curr_pos = i;
+        i++;
+        temp = temp->next;
+    }
+}
