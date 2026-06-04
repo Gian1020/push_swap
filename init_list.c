@@ -21,6 +21,7 @@ t_stack	*new_node(int value)
 		return (NULL);
 	node->idx = -1;
 	node->value = value;
+	node->curr_pos = 0;
 	node->target = 0;
 	node->cost_a = 0;
 	node->cost_b = 0;
@@ -52,7 +53,7 @@ t_data_bench	*init_data_bench(void)
 	data_bench = (t_data_bench *) malloc (sizeof(t_data_bench));
 	if (!data_bench)
 		return (NULL);
-	data_bench->total_ops = 0;
+	data_bench->total = 0;
 	data_bench->sa = 0;
 	data_bench->sb = 0;
 	data_bench->ss = 0;
