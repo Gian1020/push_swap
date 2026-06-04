@@ -30,6 +30,7 @@ typedef struct s_algo
 
 typedef struct s_data_bench
 {
+	float	disorder;
 	int		total;
 	int		sa;
 	int		sb;

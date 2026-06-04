@@ -127,11 +127,14 @@ int	main(int argc, char **argv)
 	fast_sort(l_stack_a);
 	//print_list(l_stack_a, "Prima");
 	data = init_data_bench();
-	//disorder = compute_disorder(l_stack_a);
+	data->disorder = compute_disorder(l_stack_a);
 	if (!is_sorted(l_stack_a))
 		sort_stack(&l_stack_a, data);
+	if (check_algo->bench)
+		bench_writer(data);
 	//print_list(l_stack_a, "Dopo");
 	list_clear(&l_stack_a);
 	free(check_algo);
+	free(data);
 	return (0);
 }

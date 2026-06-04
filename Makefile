@@ -36,7 +36,7 @@ INC_LIB	= -I./includes -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
 # Variabile che contiene tutti i file sorgente di push_swap
 SRCS	= check_list.c fnct_list.c error.c op_push.c op_shift_rotate.c\
-	  op_shift_rotate_reverse.c op_swap.c utils_sort.c init_list.c\
+	  op_shift_rotate_reverse.c op_swap.c utils_sort.c init_list.c bench.c\
 	  sort_three.c sort_five.c sort_stack.c smart_sort.c main.c disorder.c sort_max_min_extraction.c
 
 # Sostituzione di testo: cambia le estensioni della stringa da .c a .o

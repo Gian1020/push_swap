@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   disorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gipimpin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 15:37:33 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/05/30 11:49:11 by gipimpin         ###   ########.fr       */
+/*   Updated: 2026/06/04 15:42:45 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ void	print_disorder(float f)
 	int		i;
 
 	i = 0;
-	write(2, "\n", 1);
+	if (f == 1.0)
+	{
+		c = (int)f % 10 + '0';
+		write(2, &c, 1);
+	}
 	while (i < 4)
 	{
 		f *= 10;
@@ -29,7 +33,6 @@ void	print_disorder(float f)
 		i++;
 	}
 	write(2, "%", 1);
-	write(2, "\n", 1);
 }
 
 float	compute_disorder(t_stack *a)

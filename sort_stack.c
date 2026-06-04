@@ -1,17 +1,26 @@
 #include "push_swap.h"
 
+int	ft_sqrt(int nb)
+{
+	int	i;
+
+	i = 0;
+	while ((i * i) < nb + 1)
+	{
+		if ((i * i) == nb)
+			return (i);
+		i++;
+	}
+	return (0);
+}
+
 /*Analizza la SIZE di A per scegliere un range adeguato.*/
 static int	select_range(int size_a)
 {
-	if (size_a <= 20)
-		return (4);
-	if (size_a <= 100)
-		return (16);
-	if (size_a <= 200)
-		return (24);
-	if (size_a <= 500)
-		return (35);
-	return (45);
+	int	range;
+
+	range = ft_sqtr(size_a);
+	return (range);
 }
 
 static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
