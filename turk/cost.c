@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/05 16:30:51 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/05 16:30:51 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 static void	set_calculate_total_cost(t_stack *node_in_a)
@@ -5,18 +17,19 @@ static void	set_calculate_total_cost(t_stack *node_in_a)
 	int	abs_a;
 	int	abs_b;
 	
-	abs_a = ft_abs(node_in_a->cost_a);
-	abs_b = ft_abs(node_in_a->cost_b);
-	if ((abs_a > 0 && abs_b > 0)
-				|| (abs_a < 0 && abs_b < 0))
+	if ((node_in_a->cost_a > 0 && node_in_a->cost_b > 0)
+				|| (node_in_a->cost_a < 0 && node_in_a->cost_b < 0))
 	{
+		abs_a = ft_abs(node_in_a->cost_a);
+		abs_b = ft_abs(node_in_a->cost_b);
 		if (abs_a > abs_b)
 			node_in_a->total_cost = abs_a;
 		else
 			node_in_a->total_cost = abs_b;
 	}
 	else
-    	node_in_a->total_cost = abs_a + abs_b;
+    	node_in_a->total_cost = ft_abs(node_in_a->cost_a)
+			+ ft_abs(node_in_a->cost_b);
 }
 
 void    calculate_cost(t_stack *stack_a, t_stack *stack_b)

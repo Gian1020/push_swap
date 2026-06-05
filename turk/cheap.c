@@ -33,7 +33,7 @@ void	set_cheapest(t_stack *l_stack)
 	{
 		if (current->total_cost != INT_MAX)
 		{
-			if (current->total_cost < cheapest_node->total_cost)
+			if (cheapest_node == NULL || current->total_cost < cheapest_node->total_cost)
 				cheapest_node = current;
 		}
 		current = current->next;

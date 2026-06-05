@@ -4,6 +4,8 @@ t_stack *find_min(t_stack *l_stack)
 {
     t_stack *min;
 
+	if (!l_stack)
+		return (NULL);
     min = l_stack;
     while (l_stack != NULL)
     {
