@@ -12,7 +12,7 @@
 
 #include "../push_swap.h"
 
-void    no_combo_move_cost_a(t_stack **l_stack_a, t_stack *node_cheap)
+void	no_combo_move_cost_a(t_stack **l_stack_a, t_stack *node_cheap)
 {
 	if (node_cheap->cost_a > 0)
 	{
@@ -52,7 +52,8 @@ void	no_combo_move_cost_b(t_stack **l_stack_b, t_stack *node_cheap)
 	}
 }
 
-void	move_cheap_head_a(t_stack **l_stack_a, t_stack **l_stack_b, t_stack *node_cheap)
+void	move_cheap_head_a(t_stack **l_stack_a,
+		t_stack **l_stack_b, t_stack *node_cheap)
 {
 	if (node_cheap->cost_a > 0 && node_cheap->cost_b > 0)
 	{

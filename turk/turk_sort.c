@@ -12,9 +12,9 @@
 
 #include "../push_swap.h"
 
-void turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b)
+void	turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	t_stack *target;
+	t_stack	*target;
 
 	while (list_size(*l_stack_b) > 0)
 	{
@@ -27,12 +27,12 @@ void turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b)
 
 void	turk_sort(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	t_stack *cheap;
+	t_stack	*cheap;
 
 	pb(l_stack_a, l_stack_b);
 	pb(l_stack_a, l_stack_b);
 	while (list_size(*l_stack_a) > 3)
-	{    
+	{
 		insert_curr_pos(*l_stack_a);
 		insert_curr_pos(*l_stack_b);
 		set_all_target(*l_stack_a, *l_stack_b);
