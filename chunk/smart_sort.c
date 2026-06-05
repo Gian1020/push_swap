@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	smart_choice(int pos_first_max, int pos_sec_max, int size)
 {

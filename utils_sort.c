@@ -1,55 +1,5 @@
 #include "push_swap.h"
 
-/* Restituisce l'index attuale del nodo con il valore più piccolo della lista.*/
-int	get_pos_idx_min(t_stack *l_stack)
-{
-	int	i;
-	int	idx_stack_min;
-	int	idx_value_min;
-
-	if (!l_stack)
-		return (-1);
-	i = 0;
-	idx_stack_min = 0;
-	idx_value_min = l_stack->idx;
-	while (l_stack != NULL)
-	{
-		if (l_stack->idx < idx_value_min)
-		{
-			idx_value_min = l_stack->idx;
-			idx_stack_min = i;
-		}
-		i++;
-		l_stack = l_stack->next;
-	}
-	return (idx_stack_min);
-}
-
-/* Restituisce l'indice attuale del nodo con il valore più grande della lista.*/
-int	get_pos_idx_max(t_stack *l_stack, int target_to_ignore)
-{
-	int	i;
-	int	idx_stack_max;
-	int	idx_value_max;
-
-	if (!l_stack)
-		return (-1);
-	i = 0;
-	idx_stack_max = 0;
-	idx_value_max = -1;
-	while (l_stack != NULL)
-	{
-		if (l_stack->idx != target_to_ignore && l_stack->idx > idx_value_max)
-		{
-			idx_value_max = l_stack->idx;
-			idx_stack_max = i;
-		}
-		i++;
-		l_stack = l_stack->next;
-	}
-	return (idx_stack_max);
-}
-
 /* Individua il valore min in A inserendolo in B ottimizzando il num di mosse.
  * Calcola l'index del minimo rispetto alla mezzeria dello stack (size/2)
  * per decidere se utilizzare rotazioni dirette (ra) o inverse (rra). 
@@ -111,4 +61,27 @@ void	bring_to_top_b(t_stack **l_stack, int target_pos)
 			target_pos++;
 		}
 	}
+}
+
+void bring_target_to_top_a(t_stack **l_stack_a, t_stack *target)
+{
+    int pos;
+    int size;
+    int moves;
+
+    insert_curr_pos(*l_stack_a);
+    pos  = target->curr_pos;
+    size = list_size(*l_stack_a);
+    if (pos <= size / 2)
+    {
+        moves = pos;
+        while (moves-- > 0)
+            ra(l_stack_a);
+    }
+    else
+    {
+        moves = size - pos;
+        while (moves-- > 0)
+            rra(l_stack_a);
+    }
 }

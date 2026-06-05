@@ -12,8 +12,12 @@ t_stack	*new_node(int value)
 		return (NULL);
 	node->idx = -1;
 	node->value = value;
+	node->cost_a = 0;
+	node->cost_b = 0;
+	node->total_cost = 0;
 	node->prev = NULL;
 	node->next = NULL;
+	node->target = NULL;
 	return (node);
 }
 
@@ -75,7 +79,7 @@ int	list_size(t_stack *begin)
 	}
 	return (i);
 }
-/*
+
 //Stampa il valore e l'indice della lista, utile per il debug.
 void	print_list(t_stack *begin, char *label)
 {
@@ -92,7 +96,7 @@ void	print_list(t_stack *begin, char *label)
 		begin = begin->next;
 	}
 	ft_printf("------------------------\n");
-}*/
+}
 
 /* Restituisce l'ultimo nodo della lista.*/
 t_stack	*list_last(t_stack *begin)
@@ -100,4 +104,21 @@ t_stack	*list_last(t_stack *begin)
 	while ((begin)->next != NULL)
 		begin = begin->next;
 	return (begin);
+}
+
+void    insert_curr_pos(t_stack *l_stack)
+{
+    int     i;
+    t_stack *temp;
+
+    if (!l_stack)
+        return ;
+    i = 0;
+    temp = l_stack;
+    while (temp != NULL)
+    {
+        temp->curr_pos = i;
+        i++;
+        temp = temp->next;
+    }
 }

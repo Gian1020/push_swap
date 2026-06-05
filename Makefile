@@ -34,12 +34,23 @@ PRINTF_FLAG	= -L$(PRINTF_DIR) -lftprintf
 INC_LIB	= -I./includes -I$(LIBFT_DIR) -I$(PRINTF_DIR)
 
 # Variabile che contiene tutti i file sorgente di push_swap
-SRCS	= check_list.c fnct_list.c error.c op_push.c\
+SRCS	= check_list.c fnct_list.c error.c op_push.c sort_max_min_extraction.c\
 		  op_shift_rotate.c op_shift_rotate_reverse.c op_swap.c utils_sort.c\
-		  sort_three.c sort_five.c sort_stack.c smart_sort.c main.c
+		  sort_three.c sort_five.c sort_stack.c main.c utils_nbr.c find_max_min.c
+
+FILES_CHUNK = chunk_sort.c smart_sort.c
+
+FILES_TURK = cost.c move_turk.c target.c turk_sort.c cheap.c
+
+# Aggiunta dei prefissi per i percorsi
+SRC_CHUNK = $(addprefix chunk/, $(FILES_CHUNK))
+SRC_TURK = $(addprefix turk/, $(FILES_TURK))
+
+# Uniamo TUTTI i sorgenti in un'unica variabile
+ALL_SRCS = $(SRCS) $(SRC_CHUNK) $(SRC_TURK)
 
 # Sostituzione di testo: cambia le estensioni della stringa da .c a .o
-OBJS	= $(SRCS:.c=.o)
+OBJS	= $(ALL_SRCS:.c=.o)
 
 all: $(NAME)
 

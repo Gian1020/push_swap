@@ -39,6 +39,8 @@ int	pa(t_stack **l_stack_a, t_stack **l_stack_b)
 	flag = push(l_stack_b, l_stack_a);
 	if (flag)
 		write(1, "pa\n", 3);
+	//print_list(*l_stack_a, NULL);
+	//print_list(*l_stack_b, NULL);
 	return (flag);
 }
 
@@ -51,5 +53,7 @@ int	pb(t_stack **l_stack_a, t_stack **l_stack_b)
 	flag = push(l_stack_a, l_stack_b);
 	if (flag)
 		write(1, "pb\n", 3);
+	//print_list(*l_stack_a, NULL);
+	//print_list(*l_stack_b, NULL);
 	return (flag);
 }
