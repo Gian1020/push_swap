@@ -3,15 +3,7 @@
 /*Analizza la SIZE di A per scegliere un range adeguato.*/
 static int	select_range(int size_a)
 {
-	if (size_a <= 20)
-		return (4);
-	if (size_a <= 100)
-		return (16);
-	if (size_a <= 200)
-		return (24);
-	if (size_a <= 500)
-		return (35);
-	return (45);
+	return (ft_sqrt(size_a));
 }
 
 static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
