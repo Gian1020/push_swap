@@ -1,5 +1,19 @@
 #include "../push_swap.h"
 
+static void	set_calculate_total_cost(t_stack *node_in_a)
+{
+	if ((node_in_a->cost_a > 0 && node_in_a->cost_b > 0)
+				|| (node_in_a->cost_a < 0 && node_in_a->cost_b < 0))
+		{
+			if (node_in_a->cost_a > node_in_a->cost_b)
+				node_in_a->total_cost = node_in_a->cost_a;
+			else
+				node_in_a->total_cost = node_in_a->cost_b;
+		}
+		else
+        	node_in_a->total_cost = ft_abs(node_in_a->cost_a) + ft_abs(node_in_a->cost_b);
+}
+
 void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
 {
     int len_a;
@@ -31,18 +45,4 @@ void    calculate_cost(t_stack *stack_a, t_stack *stack_b)
         set_calculate_total_cost(node_in_a);
         node_in_a = node_in_a->next;
     }
-}
-
-static void	set_calculate_total_cost(t_stack *node_in_a)
-{
-	if (node_in_a->cost_a > 0 && node_in_a->cost_b > 0
-				|| node_in_a->cost_a < 0 && node_in_a->cost_b < 0)
-		{
-			if (node_in_a->cost_a > node_in_a->cost_b)
-				node_in_a->total_cost = node_in_a->cost_a;
-			else
-				node_in_a->total_cost = node_in_a->cost_b;
-		}
-		else
-        	node_in_a->total_cost = ft_abs(node_in_a->cost_a) + ft_abs(node_in_a->cost_b);
 }
