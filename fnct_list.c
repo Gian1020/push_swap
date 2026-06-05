@@ -1,26 +1,5 @@
 #include "push_swap.h"
 
-/* Crea un nuovo elemento della lista usando malloc,
- * setta tutti i valori di default.
- * idx -> -1 perché 0 rappresenta il primo nodo della lista.*/
-t_stack	*new_node(int value)
-{
-	t_stack	*node;
-
-	node = (t_stack *) malloc (sizeof(t_stack));
-	if (!node)
-		return (NULL);
-	node->idx = -1;
-	node->value = value;
-	node->cost_a = 0;
-	node->cost_b = 0;
-	node->total_cost = 0;
-	node->prev = NULL;
-	node->next = NULL;
-	node->target = NULL;
-	return (node);
-}
-
 /* Inserisce un nuovo nodo alla fine della lista rispettando l'ordine.
  * Gestisce l'inizializzazione se la lista è vuota.*/
 int	list_push_back(t_stack **begin, int value)
@@ -79,7 +58,7 @@ int	list_size(t_stack *begin)
 	}
 	return (i);
 }
-
+/*
 //Stampa il valore e l'indice della lista, utile per il debug.
 void	print_list(t_stack *begin, char *label)
 {
@@ -96,7 +75,7 @@ void	print_list(t_stack *begin, char *label)
 		begin = begin->next;
 	}
 	ft_printf("------------------------\n");
-}
+}*/
 
 /* Restituisce l'ultimo nodo della lista.*/
 t_stack	*list_last(t_stack *begin)

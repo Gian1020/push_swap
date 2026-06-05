@@ -6,13 +6,19 @@ static int	select_range(int size_a)
 	return (ft_sqrt(size_a));
 }
 
-static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
+static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
 		int range, int i)
 {
 	if (*l_stack_a && (*l_stack_a)->idx > (range + i))
-		rr(l_stack_a, l_stack_b);
+	{
+		rr(l_stack_a, l_stack_b, NULL);
+		return (0);
+	}
 	else
-		rb(l_stack_b);
+	{
+		rb(l_stack_b, NULL);
+		return (1);
+	}
 }
 
 /* Funzione che gestisce l ordinamento di A se SIZE > 5.
@@ -25,10 +31,11 @@ static void	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
  *    - Altrimenti lo mettiamo in fondo ad A.
  * 3) Inseriamo il nodo più grande di B in A fino a che B non è vuoto.
  * */
-void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b)
+void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	int		i;
 	int		range;
+	int		flag;
 
 	if (!l_stack_a || !*l_stack_a || !l_stack_b)
 		return ;
@@ -38,18 +45,23 @@ void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b)
 	{
 		if ((*l_stack_a)->idx <= i)
 		{
-			pb(l_stack_a, l_stack_b);
+			pb(l_stack_a, l_stack_b, data);
 			i++;
 		}
 		else if ((*l_stack_a)->idx <= (range + i))
 		{
-			pb(l_stack_a, l_stack_b);
-			do_rr_or_rb(l_stack_a, l_stack_b, range, i);
+			pb(l_stack_a, l_stack_b, data);
+			flag = do_rr_or_rb(l_stack_a, l_stack_b, range, i);
+			if (flag)
+				data->rb += 1;
+			else
+				data->rr += 1;
+			data->total += 1;
 			i++;
 		}
 		else
-			ra(l_stack_a);
+			ra(l_stack_a, data);
 	}
 	while (*l_stack_b)
-		push_smart_to_a(l_stack_a, l_stack_b);
+		push_smart_to_a(l_stack_a, l_stack_b, data);
 }
