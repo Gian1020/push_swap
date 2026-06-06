@@ -46,6 +46,9 @@ typedef struct s_data_bench
 	int		rrr;		
 }	t_data_bench;
 
+void			check_flag(int argc, char **argv, t_algo *algo, int *flag_err);
+void			find_start_idx(char **argv, int *start_idx);
+
 void			handle_error(t_stack **l_stack_a, t_stack **l_stack_b);
 
 int				have_duplicate(t_stack *begin_list);
@@ -61,7 +64,7 @@ t_stack	*		list_last(t_stack *begin);
 void			sort_three(t_stack **l_stack, t_data_bench *data);
 void			sort_five(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
 void			chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
-void			sort_stack(t_stack **l_stack_a);
+void			sort_stack(t_stack **l_stack_a, t_algo *algo);
 
 int				is_sorted(t_stack *l_stack);
 int				get_pos_idx_max(t_stack *l_stack, int target_to_ignore);

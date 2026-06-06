@@ -1,27 +1,68 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/06 19:33:29 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/06 19:33:29 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-/* Coordina la strategia di ordinamento in base al numero di elementi.
- * Verifica se lo stack è già ordinato o troppo piccolo, quindi delega 
- * l'esecuzione ad algoritmi specializzati per gestire i vari casi. */
-void	sort_stack(t_stack **l_stack_a)
+void	sort_by_size(t_stack **l_stack_a, t_stack **l_stack_b,
+		int size, t_data_bench *data)
 {
-	int				size;
-	//t_algo			*algo;
-	t_data_bench	*data;
-	t_stack			*l_stack_b;
-
-	size = list_size(*l_stack_a);
 	if (!l_stack_a || size < 2 || is_sorted(*l_stack_a))
 		return ;
-	l_stack_b = NULL;
-	data = init_bench(compute_disorder(*l_stack_a));
 	if (size == 2)
 		sa(l_stack_a, data);
 	else if (size == 3)
 		sort_three(l_stack_a, data);
 	else if (size <= 5)
-		sort_five(l_stack_a, &l_stack_b, data);
-	else
+		sort_five(l_stack_a, l_stack_b, data);
+	list_clear(l_stack_b);
+}
+
+/* Coordina la strategia di ordinamento in base al numero di elementi.
+ * Verifica se lo stack è già ordinato o troppo piccolo, quindi delega 
+ * l'esecuzione ad algoritmi specializzati per gestire i vari casi. */
+void	sort_stack(t_stack **l_stack_a, t_algo *algo)
+{
+	t_data_bench	*data;
+	t_stack			*l_stack_b;
+	int				size;
+	
+	l_stack_b = NULL;
+	size = list_size(*l_stack_a);
+	data = init_bench(compute_disorder(*l_stack_a));
+	if (size <= 5)
+	{
+		sort_by_size(l_stack_a, &l_stack_b, size, data);
+		if (algo->bench == 1)
+			bench_writer(data);
+		free(data);
+		return ;
+	}
+	if (algo->adaptive == 1)
+	{
+		if (data->disorder < 0.2)
+			sort_max_min_extraction(l_stack_a, &l_stack_b, data);
+		else if (data->disorder >= 0.2 && data->disorder < 0.5)
+			chunk_sort(l_stack_a, &l_stack_b, data);
+		else if (data->disorder >= 0.5)
+			turk_sort(l_stack_a, &l_stack_b, data);
+	}
+	else if (algo->simple == 1)
+		sort_max_min_extraction(l_stack_a, &l_stack_b, data);
+	else if (algo->medium == 1)
 		chunk_sort(l_stack_a, &l_stack_b, data);
+	else if (algo->complex == 1)
+		turk_sort(l_stack_a, &l_stack_b, data);
+	if (algo->bench == 1)
+		bench_writer(data);
+	free(data);
 	list_clear(&l_stack_b);
 }

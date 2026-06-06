@@ -30,6 +30,7 @@ INC_LIB	= -I./includes -I$(LIBFT_DIR)
 SRCS	= check_list.c fnct_list.c error.c op_push.c sort_max_min_extraction.c bench_writer.c\
 		  op_shift_rotate.c op_shift_rotate_reverse.c op_swap.c utils_sort.c init_list.c\
 		  sort_three.c sort_five.c sort_stack.c main.c utils_nbr.c find_max_min.c disorder.c\
+		  check_flag.c
 
 FILES_CHUNK = chunk_sort.c smart_sort.c
 
