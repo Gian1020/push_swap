@@ -5,7 +5,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
-# include "./libftprintf/ft_printf.h"
 
 typedef struct l_stack
 {

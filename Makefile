@@ -22,16 +22,9 @@ LIBFT_A		= $(LIBFT_DIR)/libft.a
 # -l : Indica il nome della libreria da cercare (aggiunge in automatico 'lib' e '.a').
 LIBFT_FLAG	= -L$(LIBFT_DIR) -lft
 
-# --------------------------------------------------------------
-# 					 LIBFTPRINTF
-# --------------------------------------------------------------
-PRINTF_DIR	= ./libftprintf
-PRINTF_A	= $(PRINTF_DIR)/libftprintf.a
-PRINTF_FLAG	= -L$(PRINTF_DIR) -lftprintf
-
 # Flag per includere gli header (.h):
 # -I (Include) : Dice al compilatore in quali cartelle cercare i file .h usati nel codice.
-INC_LIB	= -I./includes -I$(LIBFT_DIR) -I$(PRINTF_DIR)
+INC_LIB	= -I./includes -I$(LIBFT_DIR)
 
 # Variabile che contiene tutti i file sorgente di push_swap
 SRCS	= check_list.c fnct_list.c error.c op_push.c sort_max_min_extraction.c bench_writer.c\
@@ -69,25 +62,19 @@ all: $(NAME)
 $(LIBFT_A):
 	$(MAKE) -C $(LIBFT_DIR)
 
-# Regola per entrare nella cartella di libftprintf ed eseguire il suo Makefile
-$(PRINTF_A): 
-	$(MAKE) -C $(PRINTF_DIR)
-
 # Regola principale per creare l'eseguibile push_swap.
 # Dipende dalla creazione di libft.a, libftprintf.a e di tutti i file .o
 # Se manca qualcosa, le regole precedenti verranno eseguite in automatico.
-$(NAME): $(LIBFT_A) $(PRINTF_A) $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAG) $(PRINTF_FLAG) -o $(NAME)
+$(NAME): $(LIBFT_A) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_FLAG) -o $(NAME)
 
 clean: 
 	$(RM) $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR) clean
-	$(MAKE) -C $(PRINTF_DIR) clean
 
 fclean: clean
 	$(RM) $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) fclean
-	$(MAKE) -C $(PRINTF_DIR) fclean
 
 re: fclean all
 
