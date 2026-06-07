@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gipimpin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/07 19:57:45 by gipimpin          #+#    #+#             */
+/*   Updated: 2026/06/07 19:58:19 by gipimpin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 /* Itera sulla stringa 's' applicando la funzione 'f()' a ogni carattere
  * direttamente in memoria (in-place). Passa alla funzione di callbacki
  * sia l'indice corrente che l'indirizzo del carattere ( '&s[i]' ),
