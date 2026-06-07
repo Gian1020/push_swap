@@ -61,9 +61,5 @@ int	find_start_idx(char **argv, t_algo *algo)
 		if (argv[2] && is_a_flag(argv[2]))
 			start_idx = 3;
 	}
-	/*if (start_idx == 1)
-		algo->adaptive += 1;
-	else if (start_idx == 2 && algo->bench == 1)
-		algo->adaptive += 1;*/
 	return (start_idx);
 }
