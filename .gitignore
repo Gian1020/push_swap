@@ -2,3 +2,6 @@
 *.o
 checker_linux
 /Push-Swap-Tester
+/ft_ps_tester
+push_swap
+*.pdf
