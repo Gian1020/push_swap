@@ -31,7 +31,7 @@ static void	fill_stack(t_stack **first, char **temp_split, int *flag_err)
 	{
 		val = atoi_check(temp_split[j], flag_err);
 		if (!*flag_err)
-			list_push_back(first, val);
+			*flag_err = list_push_back(first, val);
 		j++;
 	}
 }
@@ -100,36 +100,23 @@ static void	fast_sort(t_stack *begin_list)
 int	main(int argc, char **argv)
 {
 	int		flag_err;
-	int		start_idx;
+	int		idx;
 	t_stack	*l_stack_a;
-	t_algo	*algo;
-	float	disorder;
+	t_algo	*algo_flag;
 
 	if (argc < 2)
 		return (0);
-	algo = init_algo();
-	if (!algo)
-		handle_error(NULL, NULL);
 	flag_err = 0;
-	check_flag(argc, argv, algo, &flag_err);
-	if (!flag_err)
-	{
-		free(algo);
-		handle_error(NULL, NULL);
-	}
-	find_start_idx(argv, &start_idx);
-	l_stack_a = argv_to_list(&argv[start_idx], &flag_err); // remove the intialization of flag_err (it delete the work from )
+	algo_flag = init_algo();
+	set_flag_algo(argv[1], algo_flag);
+	set_flag_algo(argv[2], algo_flag);
+	idx = find_start_idx(argv);
+	l_stack_a = argv_to_list(&argv[idx], &flag_err);
 	if (!l_stack_a || flag_err || have_duplicate(l_stack_a))
-	{
-		free(algo);
-		handle_error(&l_stack_a, NULL);
-	}
+		handle_error(&l_stack_a, NULL, algo_flag);
 	fast_sort(l_stack_a);
 	if (!is_sorted(l_stack_a))
-		// based on disorder calculation - or flag - choose the right process and algorithm
-		sort_stack(&l_stack_a, algo);
-	free(algo);
-	list_clear(&l_stack_a);
+		sort_stack(&l_stack_a, algo_flag);
 	return (0);
 }
 

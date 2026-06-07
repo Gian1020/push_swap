@@ -31,7 +31,7 @@ t_algo    *init_algo()
     algo->simple = 0;
     algo->medium = 0;
     algo->complex = 0;
-    algo->adaptive = 1;
+    algo->adaptive = 0;
     algo->bench = 0;
     return (algo);
 }

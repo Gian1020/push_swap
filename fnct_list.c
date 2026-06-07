@@ -12,18 +12,18 @@ int	list_push_back(t_stack **begin, int value)
 	new = new_node(value);
 	if (!new)
 	{
-		handle_error(begin, NULL);
-		return (0);
+		handle_error(begin, NULL, NULL);
+		return (1);
 	}
 	if (!*begin)
 	{
 		*begin = new;
-		return (1);
+		return (0);
 	}
 	last = list_last(*begin);
 	new->prev = last;
 	last->next = new;
-	return (1);
+	return (0);
 }
 
 /* Si posiziona sulla testa e dealloca ogni nodo iterativamente. 

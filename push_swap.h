@@ -47,9 +47,10 @@ typedef struct s_data_bench
 }	t_data_bench;
 
 void			check_flag(int argc, char **argv, t_algo *algo, int *flag_err);
-void			find_start_idx(char **argv, int *start_idx);
+int			find_start_idx(char **argv);
 
-void			handle_error(t_stack **l_stack_a, t_stack **l_stack_b);
+void			handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo);
+void			finish_prog(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data, t_algo *algo);
 
 int				have_duplicate(t_stack *begin_list);
 int				atoi_check(char *str, int *flag_err);
@@ -119,6 +120,9 @@ t_stack			*find_max(t_stack *l_stack);
 t_stack			*find_min(t_stack *l_stack);
 
 t_algo			*init_algo();
+int				algo_is_valid(t_algo *algo);
+void			set_flag_algo(char *argv, t_algo *algo);
+int				is_a_flag(char *s);
 
 void			bench_writer(t_data_bench *data_bench);
 float			compute_disorder(t_stack *a);

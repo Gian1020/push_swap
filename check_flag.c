@@ -12,95 +12,54 @@
 
 #include "push_swap.h"
 
-static int	is_number(char *str)
+int	is_a_flag(char *s)
 {
-	int	i;
+	if (ft_strcmp(s, "--simple") == 0 ||
+		ft_strcmp(s, "--medium") == 0 ||
+		ft_strcmp(s, "--complex") == 0 ||
+		ft_strcmp(s, "--bench") == 0 ||
+		ft_strcmp(s, "--adaptive") == 0)
+		return (1);
+	return (0);
+}
 
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	if (str[i] == '\0')
+
+int	algo_is_valid(t_algo *algo)
+{
+	int	s_flag;
+
+	s_flag = algo->simple + algo->medium + algo->complex + algo->adaptive;
+	if (s_flag == 1)
 		return (0);
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
-	}
 	return (1);
 }
 
-static void	parse_number(int argc, char **argv, int *flag_err)
+void	set_flag_algo(char *argv, t_algo *algo)
 {
-	if (is_number(argv[1]))
-	{
-		if (argc >= 3 && !is_number(argv[2]))
-			*flag_err = 1;
-		return ;
-	}
+	if (!argv)
+		return;
+	if (ft_strcmp(argv, "--simple") == 0)
+		algo->simple += 1;
+	else if (ft_strcmp(argv, "--medium") == 0)
+		algo->medium += 1;
+	else if (ft_strcmp(argv, "--complex") == 0)
+		algo->complex += 1;
+	else if (ft_strcmp(argv, "--adaptive") == 0)
+		algo->adaptive += 1;
+	if (ft_strcmp(argv, "--bench") == 0)
+		algo->bench = 1;
 }
 
-static void	parse_flag(int argc, char **argv, t_algo *algo, int *flag_err)
+int	find_start_idx(char **argv)
 {
-	if (argc < 3)
-		return ;
-	if (ft_strncmp(argv[2], "--simple", 9) == 0
-		|| ft_strncmp(argv[2], "--medium", 9) == 0
-		|| ft_strncmp(argv[2], "--complex", 10) == 0
-		|| ft_strncmp(argv[2], "--bench", 8) == 0)
-	{
-		if (ft_strncmp(argv[2], "--simple", 9) == 0)
-			*flag_err = 1;
-		if (ft_strncmp(argv[2], "--medium", 9) == 0)
-			*flag_err = 1;
-		if (ft_strncmp(argv[2], "--complex", 10) == 0)
-			*flag_err = 1;
-		if (ft_strncmp(argv[2], "--bench", 8) == 0
-			&& ft_strncmp(argv[1], "--bench", 8) != 0)
-			algo->bench = 1;
-	}
-	else
-	{
-		if (!is_number(argv[2]))
-		{
-			*flag_err = 1;
-			return ;
-		}
-	}
-}
+	int	start_idx;
 
-void	check_flag(int argc, char **argv, t_algo *algo, int *flag_err)
-{
-	if (argc < 2 || !argv || !argv[1])
-		return ;
-	if (ft_strncmp(argv[1], "--simple", 9) == 0
-		|| ft_strncmp(argv[1], "--medium", 9) == 0
-		|| ft_strncmp(argv[1], "--complex", 10) == 0
-		|| ft_strncmp(argv[1], "--bench", 8) == 0)
-	{
-		if (ft_strncmp(argv[1], "--simple", 9) == 0)
-			algo->simple = 1;
-		if (ft_strncmp(argv[1], "--medium", 9) == 0)
-			algo->medium = 1;
-		if (ft_strncmp(argv[1], "--complex", 10) == 0)
-			algo->complex = 1;
-		if (ft_strncmp(argv[1], "--bench", 8) == 0)
-			algo->bench = 1;
-		algo->adaptive = 0;
-		if (ft_strncmp(argv[1], "--bench", 8) == 0)
-			algo->adaptive = 1;
-	}
-	parse_flag(argc, argv, algo, flag_err);
-	parse_number(argc, argv, flag_err);
-}
-
-void	find_start_idx(char **argv, int *start_idx)
-{
 	start_idx = 1;
-	if (argv[1] && ft_strncmp(argv[1], "--", 2) == 0)
+	if (argv[1] && is_a_flag(argv[1]))
 	{
 		start_idx = 2;
-		if (argv[2] && ft_strncmp(argv[2], "--", 2) == 0)
+		if (argv[2] && is_a_flag(argv[2]))
 			start_idx = 3;
 	}
+	return (start_idx);
 }

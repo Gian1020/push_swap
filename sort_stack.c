@@ -43,10 +43,15 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 		sort_by_size(l_stack_a, &l_stack_b, size, data);
 		if (algo->bench == 1)
 			bench_writer(data);
-		free(data);
-		return ;
+		finish_prog(l_stack_a, &l_stack_b, data, algo);
 	}
-	if (algo->adaptive == 1)
+	if (algo->simple == 1)
+		sort_max_min_extraction(l_stack_a, &l_stack_b, data);
+	else if (algo->medium == 1)
+		chunk_sort(l_stack_a, &l_stack_b, data);
+	else if(algo->complex == 1)
+		turk_sort(l_stack_a, &l_stack_b, data);
+	else
 	{
 		if (data->disorder < 0.2)
 			sort_max_min_extraction(l_stack_a, &l_stack_b, data);
@@ -55,14 +60,7 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 		else if (data->disorder >= 0.5)
 			turk_sort(l_stack_a, &l_stack_b, data);
 	}
-	else if (algo->simple == 1)
-		sort_max_min_extraction(l_stack_a, &l_stack_b, data);
-	else if (algo->medium == 1)
-		chunk_sort(l_stack_a, &l_stack_b, data);
-	else if (algo->complex == 1)
-		turk_sort(l_stack_a, &l_stack_b, data);
 	if (algo->bench == 1)
 		bench_writer(data);
-	free(data);
-	list_clear(&l_stack_b);
+	finish_prog(l_stack_a, &l_stack_b, data, algo);
 }
