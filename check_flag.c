@@ -49,7 +49,7 @@ void	set_flag_algo(char *argv, t_algo *algo)
 		algo->bench += 1;
 }
 
-int	find_start_idx(char **argv)
+int	find_start_idx(char **argv, t_algo *algo)
 {
 	int	start_idx;
 

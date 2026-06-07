@@ -47,7 +47,7 @@ typedef struct s_data_bench
 }	t_data_bench;
 
 void			check_flag(int argc, char **argv, t_algo *algo, int *flag_err);
-int				find_start_idx(char **argv);
+int				find_start_idx(char **argv, t_algo *algo);
 
 void			handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo);
 void			finish_prog(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data, t_algo *algo);
