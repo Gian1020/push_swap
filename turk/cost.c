@@ -29,17 +29,26 @@ static void	set_calculate_total_cost(t_stack *node_in_a)
 	}
 	else
 	{
-		node_in_a->total_cost = ft_abs(node_in_a->cost_a);
-		node_in_a->total_cost = ft_abs(node_in_a->cost_b);
+		abs_a = ft_abs(node_in_a->cost_a);
+		abs_b = ft_abs(node_in_a->cost_b);
+		node_in_a->total_cost = abs_a + abs_b;
 	}
 }
 
-static void	enter_cost(t_stack *node, int len)
+static void	enter_cost_a(t_stack *node, int len)
 {
-	if (node->curr_pos <= len)
+	if (node->curr_pos <= len / 2)
 		node->cost_a = node->curr_pos;
 	else
 		node->cost_a = -(len - node->curr_pos);
+}
+
+static void	enter_cost_b(t_stack *node, int len, t_stack *target)
+{
+	if (target->curr_pos <= len / 2)
+		node->cost_b = target->curr_pos;
+	else
+		node->cost_b = -(len - target->curr_pos);
 }
 
 void	calculate_cost(t_stack *l_stack_a, t_stack *l_stack_b)
@@ -54,7 +63,7 @@ void	calculate_cost(t_stack *l_stack_a, t_stack *l_stack_b)
 	node_in_a = l_stack_a;
 	while (node_in_a != NULL)
 	{
-		enter_cost(node_in_a, len_a);
+		enter_cost_a(node_in_a, len_a);
 		target_node = node_in_a->target;
 		if (!target_node)
 		{
@@ -63,7 +72,7 @@ void	calculate_cost(t_stack *l_stack_a, t_stack *l_stack_b)
 			node_in_a = node_in_a->next;
 			continue ;
 		}
-		enter_cost(node_in_a, len_b);
+		enter_cost_b(node_in_a, len_b, target_node);
 		set_calculate_total_cost(node_in_a);
 		node_in_a = node_in_a->next;
 	}
