@@ -53,9 +53,11 @@ t_stack	*argv_to_list(char **argv, int *flag_err)
 	while (argv[i] && !*flag_err)
 	{
 		temp_split = ft_split(argv[i], ' ');
-		if (!temp_split)
+		if (!temp_split || !temp_split[0])
 		{
 			*flag_err = 1;
+			if (temp_split)
+				free_mtrx(temp_split);
 			break ;
 		}
 		fill_stack(&first, temp_split, flag_err);
@@ -119,30 +121,7 @@ int	main(int argc, char **argv)
 	fast_sort(l_stack_a);
 	if (!is_sorted(l_stack_a))
 		sort_stack(&l_stack_a, algo);
+	else
+		finish_prog(&l_stack_a, NULL, NULL, algo);
 	return (0);
 }
-
-//  #### A. Gestione dei Flag di avvio nel  main.c  (Parsing)
-
-//  Al momento, se provi ad avviare il programma passando le flag richieste (es.  ./push_swap --simple 3 2 1 ),
-//il programma andrà in errore ( Error\n ) perché  argv_to_list  cercherà di convertire  --simple  in
-//  un   
-//  numero.  
-
-//  • Cosa fare: Devi modificare il  main.c  per:  
-//  1. Riconoscere ed estrarre i parametri flag:  --simple ,  --medium ,  --complex ,  --adaptive ,  --bench .  
-//  2. Inizializzare la struct  t_algo  (tramite  init_algo() ) impostando a  1  la flag passata (altrimenti, di default,  --adaptive  è attiva). 
-//  3. Separare le flag dai veri numeri da ordinare, in modo che solo i numeri vengano passati a  argv_to_list .
-
-
-//  #### B. Scegliere l'algoritmo in base alla Struct Algo e all'Indice di Disordine 
-
-//  Nella funzione  sort_stack  (in sort_stack.c):   
-
-//  • Se la flag è  --simple  (o se siamo in  --adaptive  e il disordine è  < 0.2 ): usa l'algoritmo semplice (es.  sort_max_min_extraction  o simile).   
-//  • Se la flag è  --medium  (o se siamo in  --adaptive  e il disordine è  0.2 <= d < 0.5 ): usa  chunk_sort . 
-//  • Se la flag è  --complex  (o se siamo in  --adaptive  e il disordine è  >= 0.5 ): usa il  turk_sort  (il Turkish algorithm).  
-
-//  #### C. Gestione del Benchmark ( --bench )                                 
-                                                                                                                                                                                                                 
-//  • Mostrare l'output del benchmark (disordine, strategia, numero totale di mosse e conteggio mosse per tipo) inviandolo a  stderr  solo se la flag  --bench  è attiva.
