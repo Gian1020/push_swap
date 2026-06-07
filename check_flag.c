@@ -28,7 +28,7 @@ int	algo_is_valid(t_algo *algo)
 	int	s_flag;
 
 	s_flag = algo->simple + algo->medium + algo->complex + algo->adaptive;
-	if ((s_flag == 1 && algo->bench == 0) || (s_flag == 1 && algo->bench == 1) || (s_flag == 0 && algo->bench == 1))
+	if (s_flag < 2 && algo->bench < 2)
 		return (0);
 	return (1);
 }
@@ -49,16 +49,21 @@ void	set_flag_algo(char *argv, t_algo *algo)
 		algo->bench += 1;
 }
 
-int	find_start_idx(char **argv)
+int	find_start_idx(char **argv, t_algo *algo)
 {
 	int	start_idx;
 
 	start_idx = 1;
+	(void)algo;
 	if (argv[1] && is_a_flag(argv[1]))
 	{
 		start_idx = 2;
 		if (argv[2] && is_a_flag(argv[2]))
 			start_idx = 3;
 	}
+	/*if (start_idx == 1)
+		algo->adaptive += 1;
+	else if (start_idx == 2 && algo->bench == 1)
+		algo->adaptive += 1;*/
 	return (start_idx);
 }

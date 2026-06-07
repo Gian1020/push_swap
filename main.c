@@ -111,9 +111,12 @@ int	main(int argc, char **argv)
 	algo = init_algo();
 	set_flag_algo(argv[1], algo);
 	set_flag_algo(argv[2], algo);
-	algo_is_valid(algo);
-	idx = find_start_idx(argv);
-	printf("s = %d\nm = %d\nc = %d\na = %d\nb = %d", algo->simple, algo->medium, algo->complex, algo->adaptive, algo->bench);
+	//printf("s = %d\nm = %d\nc = %d\na = %d\nb = %d", algo->simple, algo->medium, algo->complex, algo->adaptive, algo->bench);
+	//fflush(stdout);
+	flag_err = algo_is_valid(algo);
+	idx = find_start_idx(argv, algo);
+	printf("%d, f = %d", idx, flag_err);
+	fflush(stdout);
 	l_stack_a = argv_to_list(&argv[idx], &flag_err);
 	if (!l_stack_a || flag_err || have_duplicate(l_stack_a))
 		handle_error(&l_stack_a, NULL, algo);
