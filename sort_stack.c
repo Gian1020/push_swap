@@ -45,22 +45,13 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 		if (algo->bench == 1)
 			bench_writer(data, algo);
 		finish_prog(l_stack_a, &l_stack_b, data, algo);
-	}
-	else if (algo->simple == 1 && size > 5)
-	{
-		sort_max_min_extraction(l_stack_a, &l_stack_b, data);
-		printf("simple");
-	}
-	else if (algo->medium == 1 && size > 5 )
-	{
-		chunk_sort(l_stack_a, &l_stack_b, data);
-		printf("medium");
 	}	
+	else if (algo->simple == 1 && size > 5)
+		sort_max_min_extraction(l_stack_a, &l_stack_b, data);
+	else if (algo->medium == 1 && size > 5 )
+		chunk_sort(l_stack_a, &l_stack_b, data);
 	else if(algo->complex == 1 && size > 5)
-	{
 		turk_sort(l_stack_a, &l_stack_b, data);
-		printf("complex");
-	}
 		
 	else
 	{
