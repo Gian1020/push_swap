@@ -110,7 +110,7 @@ int	main(int argc, char **argv)
 	algo_flag = init_algo();
 	set_flag_algo(argv[1], algo_flag);
 	set_flag_algo(argv[2], algo_flag);
-	idx = find_start_idx(argv);
+	idx = find_start_idx(argv, algo_flag);
 	l_stack_a = argv_to_list(&argv[idx], &flag_err);
 	if (!l_stack_a || flag_err || have_duplicate(l_stack_a))
 		handle_error(&l_stack_a, NULL, algo_flag);

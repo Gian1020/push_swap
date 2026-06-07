@@ -26,10 +26,8 @@ int	is_a_flag(char *s)
 int	algo_is_valid(t_algo *algo)
 {
 	int	s_flag;
-	
 
 	s_flag = algo->simple + algo->medium + algo->complex + algo->adaptive;
-
 	if (s_flag == 1)
 		return (0);
 	return (1);
@@ -62,5 +60,9 @@ int	find_start_idx(char **argv)
 		if (argv[2] && is_a_flag(argv[2]))
 			start_idx = 3;
 	}
+	if (start_idx == 1)
+		algo->adaptive += 1;
+	else if (start_idx == 2 && algo->bench == 1)
+		algo->adaptive += 1;
 	return (start_idx);
 }

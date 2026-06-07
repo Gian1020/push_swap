@@ -61,7 +61,6 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 			chunk_sort(l_stack_a, &l_stack_b, data);
 		else if (data->disorder >= 0.5)
 			turk_sort(l_stack_a, &l_stack_b, data);
-		printf("adaptive");
 	}
 	if (algo->bench == 1)
 		bench_writer(data, algo);
