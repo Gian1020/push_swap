@@ -1,19 +1,19 @@
 #include "push_swap.h"
 
-t_stack *find_min(t_stack *l_stack)
+t_stack	*find_min(t_stack *l_stack)
 {
-    t_stack *min;
+	t_stack	*min;
 
 	if (!l_stack)
 		return (NULL);
-    min = l_stack;
-    while (l_stack != NULL)
-    {
-        if (l_stack->idx < min->idx)
-            min = l_stack;
-        l_stack = l_stack->next;
-    }
-    return (min);
+	min = l_stack;
+	while (l_stack != NULL)
+	{
+		if (l_stack->idx < min->idx)
+			min = l_stack;
+		l_stack = l_stack->next;
+	}
+	return (min);
 }
 
 t_stack	*find_max(t_stack *l_stack)

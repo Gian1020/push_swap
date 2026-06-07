@@ -30,7 +30,7 @@ static void	bench_writer_row5(t_data_bench *data_bench)
 	ft_putnbr_fd(data_bench->rrr, 2);
 }
 
-static void print_complex(t_data_bench *data_bench, t_algo *algo)
+static void	print_complex(t_data_bench *data_bench, t_algo *algo)
 {
 	if (algo->simple)
 		ft_putstr_fd("Simple O(n^2)", 2);

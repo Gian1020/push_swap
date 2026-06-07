@@ -12,7 +12,8 @@
 
 #include "../push_swap.h"
 
-void	turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
+void	turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b,
+			t_data_bench *data)
 {
 	t_stack	*target;
 
