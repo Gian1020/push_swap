@@ -30,7 +30,7 @@ static void	bench_writer_row5(t_data_bench *data_bench)
 	ft_putnbr_fd(data_bench->rrr, 2);
 }
 
-static void print_complex(t_data_bench data, t_algo algo)
+static void print_complex(t_data_bench *data_bench, t_algo *algo)
 {
 	if (algo->simple)
 		ft_putstr_fd("Simple O(n^2)", 2);
@@ -46,7 +46,7 @@ static void print_complex(t_data_bench data, t_algo algo)
 		ft_putstr_fd("Complex O(n log n)", 2);
 }
 
-void	bench_writer(t_data_bench *data_bench, t_algo algo)
+void	bench_writer(t_data_bench *data_bench, t_algo *algo)
 {
 	ft_putstr_fd("[bench] disorder: ", 2);
 	print_disorder(data_bench->disorder);

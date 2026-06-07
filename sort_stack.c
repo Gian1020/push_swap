@@ -43,7 +43,7 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 	{
 		sort_by_size(l_stack_a, &l_stack_b, size, data);
 		if (algo->bench == 1)
-			bench_writer(data);
+			bench_writer(data, algo);
 		finish_prog(l_stack_a, &l_stack_b, data, algo);
 	}
 	else if (algo->simple == 1 && size > 5)
@@ -73,6 +73,6 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 		printf("adaptive");
 	}
 	if (algo->bench == 1)
-		bench_writer(data);
+		bench_writer(data, algo);
 	finish_prog(l_stack_a, &l_stack_b, data, algo);
 }

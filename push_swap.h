@@ -47,7 +47,7 @@ typedef struct s_data_bench
 }	t_data_bench;
 
 void			check_flag(int argc, char **argv, t_algo *algo, int *flag_err);
-int			find_start_idx(char **argv);
+int				find_start_idx(char **argv);
 
 void			handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo);
 void			finish_prog(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data, t_algo *algo);
@@ -124,7 +124,7 @@ int				algo_is_valid(t_algo *algo);
 void			set_flag_algo(char *argv, t_algo *algo);
 int				is_a_flag(char *s);
 
-void			bench_writer(t_data_bench *data_bench);
+void			bench_writer(t_data_bench *data_bench, t_algo *algo);
 float			compute_disorder(t_stack *a);
 void			print_disorder(float f);
 
