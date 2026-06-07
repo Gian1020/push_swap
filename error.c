@@ -15,7 +15,8 @@ void	handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo)
 	exit(1);
 }
 
-void	finish_prog(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data, t_algo *algo)
+void	finish_prog(t_stack **l_stack_a, t_stack **l_stack_b,
+			t_data_bench *data, t_algo *algo)
 {
 	if (l_stack_a && *l_stack_a)
 		list_clear(l_stack_a);

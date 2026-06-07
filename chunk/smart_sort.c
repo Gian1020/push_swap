@@ -22,7 +22,8 @@ int	smart_choice(int pos_first_max, int pos_sec_max, int size)
 	return (1);
 }
 
-static void	do_ss_or_sa(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
+static void	do_ss_or_sa(t_stack **l_stack_a, t_stack **l_stack_b,
+			t_data_bench *data)
 {
 	if (*l_stack_b && (*l_stack_b)->next
 		&& (*l_stack_b)->idx < (*l_stack_b)->next->idx)
@@ -32,9 +33,9 @@ static void	do_ss_or_sa(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *
 }
 
 static void	second_choice(t_stack **l_stack_a, t_stack **l_stack_b,
-		int pos_max, int pos_max_1, t_data_bench *data)
+			int *pos_max, t_data_bench *data)
 {
-	bring_to_top_b(l_stack_b, pos_max_1, data);
+	bring_to_top_b(l_stack_b, pos_max[1], data);
 	pa(l_stack_a, l_stack_b, data);
 	pos_max = get_pos_idx_max(*l_stack_b, -1);
 	bring_to_top_b(l_stack_b, pos_max, data);
@@ -42,30 +43,30 @@ static void	second_choice(t_stack **l_stack_a, t_stack **l_stack_b,
 	do_ss_or_sa(l_stack_a, l_stack_b, data);
 }
 
-void	push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
+void	push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
+			t_data_bench *data)
 {
 	int	size;
-	int	pos_max;
-	int	pos_max_1;
+	int	pos_max[2];
 	int	choice;
 
 	size = list_size(*l_stack_b);
 	if (!size)
 		return ;
-	pos_max = get_pos_idx_max(*l_stack_b, -1);
-	pos_max_1 = get_pos_idx_max(*l_stack_b, size - 1);
-	if (size >= 2 && pos_max_1 == 0 && pos_max == 1)
+	pos_max[0] = get_pos_idx_max(*l_stack_b, -1);
+	pos_max[1] = get_pos_idx_max(*l_stack_b, size - 1);
+	if (size >= 2 && pos_max[1] == 0 && pos_max[0] == 1)
 	{
 		sb(l_stack_b, data);
-		pos_max = 0;
-		pos_max_1 = 1;
+		pos_max[0] = 0;
+		pos_max[1] = 1;
 	}
-	choice = smart_choice(pos_max, pos_max_1, size);
+	choice = smart_choice(pos_max, pos_max[1], size);
 	if (choice == 1)
 	{
 		bring_to_top_b(l_stack_b, pos_max, data);
 		pa(l_stack_a, l_stack_b, data);
 	}
 	else if (choice == 2)
-		second_choice(l_stack_a, l_stack_b, pos_max, pos_max_1, data);
+		second_choice(l_stack_a, l_stack_b, pos_max, data);
 }

@@ -21,6 +21,15 @@ static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
 	}
 }
 
+void	increment_data(t_data_bench *data, int flag)
+{
+	if (flag)
+		data->rb += 1;
+	else
+		data->rr += 1;
+	data->total += 1;
+}
+
 /* Funzione che gestisce l ordinamento di A se SIZE > 5.
  * 1) Analizzo SIZE scegliere per un range adeguato tramite selection_range.
  * 2) Inseriamo tutti gli elementi di a in B con una pre-selezione.
@@ -37,8 +46,6 @@ void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 	int		range;
 	int		flag;
 
-	if (!l_stack_a || !*l_stack_a || !l_stack_b)
-		return ;
 	i = 0;
 	range = select_range(list_size(*l_stack_a));
 	while (*l_stack_a)
@@ -52,11 +59,7 @@ void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 		{
 			pb(l_stack_a, l_stack_b, data);
 			flag = do_rr_or_rb(l_stack_a, l_stack_b, range, i);
-			if (flag)
-				data->rb += 1;
-			else
-				data->rr += 1;
-			data->total += 1;
+			increment_data(data, flag);
 			i++;
 		}
 		else
