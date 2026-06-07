@@ -37,8 +37,8 @@ static void	second_choice(t_stack **l_stack_a, t_stack **l_stack_b,
 {
 	bring_to_top_b(l_stack_b, pos_max[1], data);
 	pa(l_stack_a, l_stack_b, data);
-	pos_max = get_pos_idx_max(*l_stack_b, -1);
-	bring_to_top_b(l_stack_b, pos_max, data);
+	pos_max[0] = get_pos_idx_max(*l_stack_b, -1);
+	bring_to_top_b(l_stack_b, pos_max[0], data);
 	pa(l_stack_a, l_stack_b, data);
 	do_ss_or_sa(l_stack_a, l_stack_b, data);
 }
@@ -61,10 +61,10 @@ void	push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 		pos_max[0] = 0;
 		pos_max[1] = 1;
 	}
-	choice = smart_choice(pos_max, pos_max[1], size);
+	choice = smart_choice(pos_max[0], pos_max[1], size);
 	if (choice == 1)
 	{
-		bring_to_top_b(l_stack_b, pos_max, data);
+		bring_to_top_b(l_stack_b, pos_max[0], data);
 		pa(l_stack_a, l_stack_b, data);
 	}
 	else if (choice == 2)

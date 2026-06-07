@@ -36,10 +36,10 @@ static void	set_calculate_total_cost(t_stack *node_in_a)
 
 static void	enter_cost(t_stack *node, int len)
 {
-	if (node->curr_pos <= size)
+	if (node->curr_pos <= len)
 		node->cost_a = node->curr_pos;
 	else
-		node->cost_a = -(size - node->curr_pos);
+		node->cost_a = -(len - node->curr_pos);
 }
 
 void	calculate_cost(t_stack *l_stack_a, t_stack *l_stack_b)
@@ -49,9 +49,9 @@ void	calculate_cost(t_stack *l_stack_a, t_stack *l_stack_b)
 	t_stack	*node_in_a;
 	t_stack	*target_node;
 
-	len_a = list_size(stack_a);
-	len_b = list_size(stack_b);
-	node_in_a = stack_a;
+	len_a = list_size(l_stack_a);
+	len_b = list_size(l_stack_b);
+	node_in_a = l_stack_a;
 	while (node_in_a != NULL)
 	{
 		enter_cost(node_in_a, len_a);
@@ -63,7 +63,7 @@ void	calculate_cost(t_stack *l_stack_a, t_stack *l_stack_b)
 			node_in_a = node_in_a->next;
 			continue ;
 		}
-		enter_cost(node_in_b, len_b);
+		enter_cost(node_in_a, len_b);
 		set_calculate_total_cost(node_in_a);
 		node_in_a = node_in_a->next;
 	}
