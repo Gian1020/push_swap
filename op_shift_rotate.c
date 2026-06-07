@@ -57,7 +57,6 @@ int	rb(t_stack **l_stack_b, t_data_bench *data)
 	return (r);
 }
 
-
 /* Rotate simultaneamente sia lo stack A che lo stack B.
  * Stampa "rr\n" nel terminale se entrambe vanno a buon fine.*/
 int	rr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)

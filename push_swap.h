@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/07 18:54:49 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/07 18:54:49 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <limits.h>
+# include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include "./libft/libft.h"
@@ -49,8 +61,10 @@ typedef struct s_data_bench
 void			check_flag(int argc, char **argv, t_algo *algo, int *flag_err);
 int				find_start_idx(char **argv, t_algo *algo);
 
-void			handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo);
-void			finish_prog(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data, t_algo *algo);
+void			handle_error(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_algo *algo);
+void			finish_prog(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data, t_algo *algo);
 
 int				have_duplicate(t_stack *begin_list);
 int				atoi_check(char *str, int *flag_err);
@@ -59,12 +73,14 @@ t_stack			*new_node(int value);
 int				list_push_back(t_stack **begin_list, int value);
 void			list_clear(t_stack **node);
 int				list_size(t_stack *begin);
-t_stack	*		init_list(char **argv, int *flag_err);
-t_stack	*		list_last(t_stack *begin);
+t_stack			*init_list(char **argv, int *flag_err);
+t_stack			*list_last(t_stack *begin);
 
 void			sort_three(t_stack **l_stack, t_data_bench *data);
-void			sort_five(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
-void			chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+void			sort_five(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
+void			chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
 void			sort_stack(t_stack **l_stack_a, t_algo *algo);
 
 int				is_sorted(t_stack *l_stack);
@@ -75,43 +91,57 @@ void			push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b,
 void			push_back_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
 int				smart_choice(int pos_first_max, int pos_sec_max, int size);
-void			bring_to_top_b(t_stack **l_stack, int target_pos, t_data_bench *data);
-void			bring_target_to_top_a(t_stack **l_stack_a, t_stack *target, t_data_bench *data);
-void			push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+void			bring_to_top_b(t_stack **l_stack, int target_pos,
+					t_data_bench *data);
+void			bring_target_to_top_a(t_stack **l_stack_a, t_stack *target,
+					t_data_bench *data);
+void			push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
 
-void			sort_max_min_extraction(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+void			sort_max_min_extraction(t_stack **l_stack_a,
+					t_stack **l_stack_b, t_data_bench *data);
 
 t_stack			*get_target_in_b(t_stack *l_stack_a, t_stack *l_stack_b);
-t_stack 		*get_target_in_a(t_stack *node_b, t_stack *l_stack_a);
+t_stack			*get_target_in_a(t_stack *node_b, t_stack *l_stack_a);
 void			set_all_target(t_stack *l_stack_a, t_stack *l_stack_b);
-void    		no_combo_move_cost_a(t_stack **l_stack_a, t_stack *node_cheap, t_data_bench *data);
-void    		no_combo_move_cost_b(t_stack **l_stack_b, t_stack *node_cheap, t_data_bench *data);
-void    		calculate_cost(t_stack *stack_a, t_stack *stack_b);
-
-void    		move_cheap_head_a(t_stack **l_stack_a, t_stack **l_stack_b, t_stack *node_cheap,
+void			no_combo_move_cost_a(t_stack **l_stack_a, t_stack *node_cheap,
 					t_data_bench *data);
-void			turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
-void    		turk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
-void    		insert_curr_pos(t_stack *l_stack);
+void			no_combo_move_cost_b(t_stack **l_stack_b, t_stack *node_cheap,
+					t_data_bench *data);
+void			calculate_cost(t_stack *stack_a, t_stack *stack_b);
+
+void			move_cheap_head_a(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_stack *node_cheap,
+					t_data_bench *data);
+void			turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
+void			turk_sort(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
+void			insert_curr_pos(t_stack *l_stack);
 void			print_list(t_stack *l_stack_a, char *s);
 
 void			set_cheapest(t_stack *l_stack);
-t_stack 		*find_cheap(t_stack *l_stack);
+t_stack			*find_cheap(t_stack *l_stack);
 
 int				sa(t_stack **l_stack_a, t_data_bench *data);
 int				sb(t_stack **l_stack_b, t_data_bench *data);
-int				ss(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+int				ss(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
 
-int				pa(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
-int				pb(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+int				pa(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
+int				pb(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
 
 int				ra(t_stack **l_stack_a, t_data_bench *data);
 int				rb(t_stack **l_stack_b, t_data_bench *data);
-int				rr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+int				rr(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
 
 int				rra(t_stack **l_stack_a, t_data_bench *data);
 int				rrb(t_stack **l_stack_b, t_data_bench *data);
-int				rrr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data);
+int				rrr(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
 
 int				ft_abs(int n);
 int				ft_sqrt(int nb);
@@ -119,7 +149,7 @@ int				ft_sqrt(int nb);
 t_stack			*find_max(t_stack *l_stack);
 t_stack			*find_min(t_stack *l_stack);
 
-t_algo			*init_algo();
+t_algo			*init_algo(void);
 int				algo_is_valid(t_algo *algo);
 void			set_flag_algo(char *argv, t_algo *algo);
 int				is_a_flag(char *s);

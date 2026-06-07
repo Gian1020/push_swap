@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/07 19:07:49 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/07 19:07:49 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* Individua il valore min in A inserendolo in B ottimizzando il num di mosse.
@@ -5,7 +17,8 @@
  * per decidere se utilizzare rotazioni dirette (ra) o inverse (rra). 
  * Una volta che il primo elemento è in posizione 0 
  * lo inserisce come primo elemento di B*/
-void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
+void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b,
+			t_data_bench *data)
 {
 	int	pos_min;
 	int	size;
@@ -63,25 +76,26 @@ void	bring_to_top_b(t_stack **l_stack, int target_pos, t_data_bench *data)
 	}
 }
 
-void bring_target_to_top_a(t_stack **l_stack_a, t_stack *target, t_data_bench *data)
+void	bring_target_to_top_a(t_stack **l_stack_a,
+			t_stack *target, t_data_bench *data)
 {
-    int pos;
-    int size;
-    int moves;
+	int	pos;
+	int	size;
+	int	moves;
 
-    insert_curr_pos(*l_stack_a);
-    pos  = target->curr_pos;
-    size = list_size(*l_stack_a);
-    if (pos <= size / 2)
-    {
-        moves = pos;
-        while (moves-- > 0)
-            ra(l_stack_a, data);
-    }
-    else
-    {
-        moves = size - pos;
-        while (moves-- > 0)
-            rra(l_stack_a, data);
-    }
+	insert_curr_pos(*l_stack_a);
+	pos = target->curr_pos;
+	size = list_size(*l_stack_a);
+	if (pos <= size / 2)
+	{
+		moves = pos;
+		while (moves-- > 0)
+			ra(l_stack_a, data);
+	}
+	else
+	{
+		moves = size - pos;
+		while (moves-- > 0)
+			rra(l_stack_a, data);
+	}
 }

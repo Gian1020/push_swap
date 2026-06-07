@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_list.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/07 18:29:43 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/07 18:29:43 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* Verifica se la lista è ordinata in ordine crescente.
@@ -50,6 +62,20 @@ static int	is_space(char *str)
 	return (i);
 }
 
+static int	check_sign(char *str, int *i)
+{
+	int	sign;
+
+	sign = 1;
+	if ((str[*i] == '-' || str[*i] == '+'))
+	{
+		if (str[*i] == '-')
+			sign *= -1;
+		(*i)++;
+	}
+	return (sign);
+}
+
 /* Converte le stringa passata in INT gestendo segni e spazi.
  * Controlla se il valore calcolato supera i limiti degli interi.
  * In caso  non li rispetti setta la flag a 1.*/
@@ -63,12 +89,7 @@ int	atoi_check(char *str, int *flag_err)
 	i = is_space(str);
 	n = 0;
 	sign = 1;
-	if ((str[i] == '-' || str[i] == '+'))
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
+	sign = check_sign(str, &i);
 	j = i;
 	while (ft_isdigit(str[i]))
 	{
@@ -76,11 +97,11 @@ int	atoi_check(char *str, int *flag_err)
 		if ((n > 2147483648 && sign == -1) || (n > 2147483647 && sign == 1))
 		{
 			*flag_err = 1;
-			break;
+			break ;
 		}
 		i++;
 	}
 	if (j == i || str[i] != '\0')
 		*flag_err = 1;
-	return ((int)n * sign);
+	return ((int)(n * sign));
 }

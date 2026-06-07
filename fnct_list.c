@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fnct_list.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/07 18:42:03 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/07 18:42:03 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* Inserisce un nuovo nodo alla fine della lista rispettando l'ordine.
@@ -85,19 +97,19 @@ t_stack	*list_last(t_stack *begin)
 	return (begin);
 }
 
-void    insert_curr_pos(t_stack *l_stack)
+void	insert_curr_pos(t_stack *l_stack)
 {
-    int     i;
-    t_stack *temp;
+	int		i;
+	t_stack	*temp;
 
-    if (!l_stack)
-        return ;
-    i = 0;
-    temp = l_stack;
-    while (temp != NULL)
-    {
-        temp->curr_pos = i;
-        i++;
-        temp = temp->next;
-    }
+	if (!l_stack)
+		return ;
+	i = 0;
+	temp = l_stack;
+	while (temp != NULL)
+	{
+		temp->curr_pos = i;
+		i++;
+		temp = temp->next;
+	}
 }

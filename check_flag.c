@@ -14,11 +14,11 @@
 
 int	is_a_flag(char *s)
 {
-	if (ft_strcmp(s, "--simple") == 0 ||
-		ft_strcmp(s, "--medium") == 0 ||
-		ft_strcmp(s, "--complex") == 0 ||
-		ft_strcmp(s, "--bench") == 0 ||
-		ft_strcmp(s, "--adaptive") == 0)
+	if (ft_strcmp(s, "--simple") == 0
+		|| ft_strcmp(s, "--medium") == 0
+		|| ft_strcmp(s, "--complex") == 0
+		|| ft_strcmp(s, "--bench") == 0
+		||ft_strcmp(s, "--adaptive") == 0)
 		return (1);
 	return (0);
 }
@@ -36,7 +36,7 @@ int	algo_is_valid(t_algo *algo)
 void	set_flag_algo(char *argv, t_algo *algo)
 {
 	if (!argv)
-		return;
+		return ;
 	if (ft_strcmp(argv, "--simple") == 0)
 		algo->simple += 1;
 	else if (ft_strcmp(argv, "--medium") == 0)
