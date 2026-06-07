@@ -30,18 +30,29 @@ static void	bench_writer_row5(t_data_bench *data_bench)
 	ft_putnbr_fd(data_bench->rrr, 2);
 }
 
-void	bench_writer(t_data_bench *data_bench)
+static void print_complex(t_data_bench data, t_algo algo)
 {
-	ft_putstr_fd("[bench] disorder: ", 2);
-	print_disorder(data_bench->disorder);
-	ft_putchar_fd('\n', 2);
-	ft_putstr_fd("[bench] strategy: ", 2);
-	if (data_bench->disorder < 0.2)
+	if (algo->simple)
+		ft_putstr_fd("Simple O(n^2)", 2);
+	else if (algo->medium)
+		ft_putstr_fd("Medium O(n sqrt(n))", 2);
+	else if (algo->complex)
+		ft_putstr_fd("Complex O(n log n)", 2);
+	else if (data_bench->disorder < 0.2)
 		ft_putstr_fd("Simple O(n^2)", 2);
 	else if (data_bench->disorder >= 0.2 && data_bench->disorder <= 0.5)
 		ft_putstr_fd("Medium O(n sqrt(n))", 2);
 	else
 		ft_putstr_fd("Complex O(n log n)", 2);
+}
+
+void	bench_writer(t_data_bench *data_bench, t_algo algo)
+{
+	ft_putstr_fd("[bench] disorder: ", 2);
+	print_disorder(data_bench->disorder);
+	ft_putchar_fd('\n', 2);
+	ft_putstr_fd("[bench] strategy: ", 2);
+	print_complex(data_bench, algo);
 	ft_putchar_fd('\n', 2);
 	ft_putstr_fd("[bench] total_ops: ", 2);
 	ft_putnbr_fd(data_bench->total, 2);

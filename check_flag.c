@@ -23,7 +23,6 @@ int	is_a_flag(char *s)
 	return (0);
 }
 
-
 int	algo_is_valid(t_algo *algo)
 {
 	int	s_flag;

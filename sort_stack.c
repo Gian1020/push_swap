@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	sort_by_size(t_stack **l_stack_a, t_stack **l_stack_b,
 		int size, t_data_bench *data)
@@ -46,11 +47,21 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 		finish_prog(l_stack_a, &l_stack_b, data, algo);
 	}
 	else if (algo->simple == 1 && size > 5)
+	{
 		sort_max_min_extraction(l_stack_a, &l_stack_b, data);
+		printf("simple");
+	}
 	else if (algo->medium == 1 && size > 5 )
+	{
 		chunk_sort(l_stack_a, &l_stack_b, data);
+		printf("medium");
+	}	
 	else if(algo->complex == 1 && size > 5)
+	{
 		turk_sort(l_stack_a, &l_stack_b, data);
+		printf("complex");
+	}
+		
 	else
 	{
 		if (data->disorder < 0.2)
@@ -59,6 +70,7 @@ void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 			chunk_sort(l_stack_a, &l_stack_b, data);
 		else if (data->disorder >= 0.5)
 			turk_sort(l_stack_a, &l_stack_b, data);
+		printf("adaptive");
 	}
 	if (algo->bench == 1)
 		bench_writer(data);
