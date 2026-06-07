@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 /* Libera una matrice allocata dinamicamente (char **).
  * Scorre ogni elemento fino al terminatore NULL, libera la memoria
@@ -102,21 +103,23 @@ int	main(int argc, char **argv)
 	int		flag_err;
 	int		idx;
 	t_stack	*l_stack_a;
-	t_algo	*algo_flag;
+	t_algo	*algo;
 
 	if (argc < 2)
 		return (0);
 	flag_err = 0;
-	algo_flag = init_algo();
-	set_flag_algo(argv[1], algo_flag);
-	set_flag_algo(argv[2], algo_flag);
-	idx = find_start_idx(argv, algo_flag);
+	algo = init_algo();
+	set_flag_algo(argv[1], algo);
+	set_flag_algo(argv[2], algo);
+	algo_is_valid(algo);
+	idx = find_start_idx(argv);
+	printf("s = %d\nm = %d\nc = %d\na = %d\nb = %d", algo->simple, algo->medium, algo->complex, algo->adaptive, algo->bench);
 	l_stack_a = argv_to_list(&argv[idx], &flag_err);
 	if (!l_stack_a || flag_err || have_duplicate(l_stack_a))
-		handle_error(&l_stack_a, NULL, algo_flag);
+		handle_error(&l_stack_a, NULL, algo);
 	fast_sort(l_stack_a);
 	if (!is_sorted(l_stack_a))
-		sort_stack(&l_stack_a, algo_flag);
+		sort_stack(&l_stack_a, algo);
 	return (0);
 }
 
