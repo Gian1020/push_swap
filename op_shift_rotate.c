@@ -14,8 +14,9 @@
 
 /* Rotazione verso l'alto
  * Sposta il primo elemento dello stack in ultima posizione 
- * Aggiorna i puntatori 'first' e 'last' per mantenere la circolarità della lista
- * doppiamente concatenata e scrive l'operazione se 'op_name' è fornito.
+ * Aggiorna i puntatori 'first' e 'last' per mantenere la circolarità
+ * della lista doppiamente concatenata e scrive l'operazione se
+ * 'op_name' è fornito.
  * Ritorna 1 in caso di successo, 0 se lo stack ha meno di 2 elementi.*/
 static int	shift_rotate(t_stack **l_stack, char *op_name)
 {

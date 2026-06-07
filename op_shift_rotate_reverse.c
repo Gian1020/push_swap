@@ -14,9 +14,11 @@
 
 /* Rotazione verso il basso.
  * Sposta l'ultimo elemento dello stack in prima posizione 
- * Aggiorna i puntatori 'first' e 'last' per mantenere la circolarità della lista
- * doppiamente concatenata e scrive l'operazione se 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di 2 elementi.*/
+ * Aggiorna i puntatori 'first' e 'last' per mantenere la
+ * circolarità della lista doppiamente concatenata e scrive
+ * l'operazione se 'op_name' è fornito.
+ * Ritorna 1 in caso di successo, 0 se lo stack ha meno di
+ * 2 elementi.*/
 static int	shift_rotate_reverse(t_stack **l_stack, char *op_name)
 {
 	t_stack	*first;

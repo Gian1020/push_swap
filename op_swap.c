@@ -13,9 +13,11 @@
 #include "push_swap.h"
 
 /* Sposta il primo elemento dello stack e il secondo elemento.
- * Aggiorna i puntatori 'first' e 'last' per mantenere la circolarità della lista
- * doppiamente concatenata e scrive l'operazione se 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di 2 elementi. */
+ * Aggiorna i puntatori 'first' e 'last' per mantenere
+ * la circolarità della lista doppiamente concatenata e
+ * scrive l'operazione se 'op_name' è fornito.
+ * Ritorna 1 in caso di successo, 0 se lo stack ha meno di
+ * 2 elementi. */
 static int	swap(t_stack **l_stack, char *op_name)
 {
 	t_stack	*first;
