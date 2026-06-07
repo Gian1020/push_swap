@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/07 19:18:03 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/07 19:18:03 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 /* Dealloca la lista come passata come parametro.
@@ -15,7 +27,8 @@ void	handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo)
 	exit(1);
 }
 
-void	finish_prog(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data, t_algo *algo)
+void	finish_prog(t_stack **l_stack_a, t_stack **l_stack_b,
+			t_data_bench *data, t_algo *algo)
 {
 	if (l_stack_a && *l_stack_a)
 		list_clear(l_stack_a);

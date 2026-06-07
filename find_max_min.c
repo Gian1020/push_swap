@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_max_min.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/06/07 19:17:23 by marvin            #+#    #+#             */
+/*   Updated: 2026/06/07 19:17:23 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*find_min(t_stack *l_stack)
@@ -30,7 +42,8 @@ t_stack	*find_max(t_stack *l_stack)
 	return (max);
 }
 
-/* Restituisce l'index attuale del nodo con il valore più piccolo della lista.*/
+/* Restituisce l'index attuale del nodo 
+con il valore più piccolo della lista.*/
 int	get_pos_idx_min(t_stack *l_stack)
 {
 	int	i;
@@ -55,7 +68,8 @@ int	get_pos_idx_min(t_stack *l_stack)
 	return (idx_stack_min);
 }
 
-/* Restituisce l'indice attuale del nodo con il valore più grande della lista.*/
+/* Restituisce l'indice attuale del nodo
+con il valore più grande della lista.*/
 int	get_pos_idx_max(t_stack *l_stack, int target_to_ignore)
 {
 	int	i;
