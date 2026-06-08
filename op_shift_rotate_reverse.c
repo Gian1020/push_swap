@@ -45,7 +45,7 @@ static int	shift_rotate_reverse(t_stack **l_stack, char *op_name)
 
 /* Reverse Rotate A: Sposta l'ultimo elemento di A in cima.
  * Stampa "rra\n" nel terminale in caso di successo. */
-int	rra(t_stack **l_stack_a, t_data_bench *data)
+void	rra(t_stack **l_stack_a, t_data_bench *data)
 {
 	int	r;
 
@@ -55,12 +55,11 @@ int	rra(t_stack **l_stack_a, t_data_bench *data)
 		data->total += 1;
 		data->rra += 1;
 	}
-	return (r);
 }
 
 /* Reverse Rotate A: Sposta l'ultimo elemento di B in cima.
  * Stampa "rrb\n" nel terminale in caso di successo.*/
-int	rrb(t_stack **l_stack_b, t_data_bench *data)
+void	rrb(t_stack **l_stack_b, t_data_bench *data)
 {
 	int	r;
 
@@ -70,16 +69,15 @@ int	rrb(t_stack **l_stack_b, t_data_bench *data)
 		data->total += 1;
 		data->rrb += 1;
 	}
-	return (r);
 }
 
 /* Reverse Rotate r: Esegue la rotazione inversa su entrambi gli stack.
  * Stampa "rrr\n" se entrambi hanno avuto successo. */
-int	rrr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
+void	rrr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	if (!*l_stack_a || !*l_stack_b
 		|| !(*l_stack_a)->next || !(*l_stack_b)->next)
-		return (0);
+		return ;
 	shift_rotate_reverse(l_stack_a, NULL);
 	shift_rotate_reverse(l_stack_b, NULL);
 	write(1, "rrr\n", 4);
@@ -88,5 +86,4 @@ int	rrr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 		data->total += 1;
 		data->rr += 1;
 	}
-	return (1);
 }

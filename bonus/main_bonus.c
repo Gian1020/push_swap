@@ -77,10 +77,7 @@ int	main(int argc, char **argv)
 	l_stack_a = argv_to_list(&argv[1], &flag_err);
 	fast_sort(l_stack_a);
 	if (!l_stack_a || flag_err == 1 || have_duplicate(l_stack_a))
-	{
-		result(&l_stack_a, NULL, NULL, "Error\n");
-		return (1);
-	}
+		return (result(&l_stack_a, NULL, NULL, "Error\n"), 1);
 	l_stack_b = NULL;
 	line = get_next_line(0);
 	while (line != NULL)
@@ -88,13 +85,9 @@ int	main(int argc, char **argv)
 		if (is_move(line))
 			select_move(&l_stack_a, &l_stack_b, line);
 		else
-		{
-			result(&l_stack_a, &l_stack_b, line, "Error\n");
-			return (1);
-		}
+			return (result(&l_stack_a, &l_stack_b, line, "Error\n"), 1);
 		free(line);
 		line = get_next_line(0);
 	}
 	is_ok_or_ko(&l_stack_a, &l_stack_b, line);
 }
-

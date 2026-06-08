@@ -139,24 +139,24 @@ void			insert_curr_pos(t_stack *l_stack);
 void			set_cheapest(t_stack *l_stack);
 t_stack			*find_cheap(t_stack *l_stack);
 
-int				sa(t_stack **l_stack_a, t_data_bench *data);
-int				sb(t_stack **l_stack_b, t_data_bench *data);
-int				ss(t_stack **l_stack_a, t_stack **l_stack_b,
+void			sa(t_stack **l_stack_a, t_data_bench *data);
+void			sb(t_stack **l_stack_b, t_data_bench *data);
+void			ss(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
 
-int				pa(t_stack **l_stack_a, t_stack **l_stack_b,
+void			pa(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
-int				pb(t_stack **l_stack_a, t_stack **l_stack_b,
-					t_data_bench *data);
-
-int				ra(t_stack **l_stack_a, t_data_bench *data);
-int				rb(t_stack **l_stack_b, t_data_bench *data);
-int				rr(t_stack **l_stack_a, t_stack **l_stack_b,
+void			pb(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
 
-int				rra(t_stack **l_stack_a, t_data_bench *data);
-int				rrb(t_stack **l_stack_b, t_data_bench *data);
-int				rrr(t_stack **l_stack_a, t_stack **l_stack_b,
+void			ra(t_stack **l_stack_a, t_data_bench *data);
+void			rb(t_stack **l_stack_b, t_data_bench *data);
+void			rr(t_stack **l_stack_a, t_stack **l_stack_b,
+					t_data_bench *data);
+
+void			rra(t_stack **l_stack_a, t_data_bench *data);
+void			rrb(t_stack **l_stack_b, t_data_bench *data);
+void			rrr(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
 
 int				ft_abs(int n);

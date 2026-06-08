@@ -44,7 +44,7 @@ static int	push(t_stack **l_stack_take, t_stack **l_stack_push)
 
 /* Push A: Preleva il primo elemento da B e lo inserisce in cima ad A.
  * Scrive "pa\n" nel terminale in caso di successo. */
-int	pa(t_stack **l_stack_a, t_stack **l_stack_b,
+void	pa(t_stack **l_stack_a, t_stack **l_stack_b,
 		t_data_bench *data)
 {
 	int	flag;
@@ -57,12 +57,11 @@ int	pa(t_stack **l_stack_a, t_stack **l_stack_b,
 		data->pa += 1;
 		data->total += 1;
 	}
-	return (flag);
 }
 
 /* Push B: Preleva il primo elemento da A e lo inserisce in cima ad B.
  * Scrive "pb\n" nel terminale in caso di successo.*/
-int	pb(t_stack **l_stack_a, t_stack **l_stack_b,
+void	pb(t_stack **l_stack_a, t_stack **l_stack_b,
 		t_data_bench *data)
 {
 	int	flag;
@@ -75,5 +74,4 @@ int	pb(t_stack **l_stack_a, t_stack **l_stack_b,
 		data->pb += 1;
 		data->total += 1;
 	}
-	return (flag);
 }
