@@ -42,16 +42,20 @@ ALL_SRCS	= $(SRCS) $(SRC_CHUNK) $(SRC_TURK)
 OBJS		= $(ALL_SRCS:.c=.o)
 
 # --------------------------------------------------------------
-#							CHECKER (BONUS)
+#                           CHECKER (BONUS)
 # --------------------------------------------------------------
-BONUS_SHARED	= op_shift_rotate_bonus.c op_shift_rotate_reverse_bonus.c op_swap_bonus.c \
-				  op_push_bonus.c check_list.c check_flag.c create_stack.c \
-				  error.c fnct_list.c utils_nbr.c find_max_min.c \
-				  init_list.c disorder.c
+FILES_BONUS     = main_bonus.c op_shift_rotate_bonus.c \
+                  op_shift_rotate_reverse_bonus.c op_swap_bonus.c \
+                  op_push_bonus.c utils_bonus.c
 
-SRCS_BONUS	= bonus/main_bonus.c $(BONUS_SHARED) $(GET_NEXT_LINE_DIR)
-OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
+SRC_BONUS_DIR   = $(addprefix bonus/, $(FILES_BONUS))
 
+BONUS_SHARED    = check_list.c check_flag.c create_stack.c \
+                  error.c fnct_list.c utils_nbr.c find_max_min.c \
+                  init_list.c disorder.c
+
+SRCS_BONUS      = $(SRC_BONUS_DIR) $(BONUS_SHARED) $(GET_NEXT_LINE_DIR)
+OBJS_BONUS      = $(SRCS_BONUS:.c=.o)
 # --------------------------------------------------------------
 #							RULES
 # --------------------------------------------------------------

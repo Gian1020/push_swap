@@ -52,7 +52,7 @@ int	pa(t_stack **l_stack_a, t_stack **l_stack_b,
 	flag = push(l_stack_b, l_stack_a);
 	if (flag)
 		write(1, "pa\n", 3);
-	if(data)
+	if (data)
 	{
 		data->pa += 1;
 		data->total += 1;

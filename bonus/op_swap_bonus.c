@@ -18,13 +18,13 @@
  * scrive l'operazione se 'op_name' è fornito.
  * Ritorna 1 in caso di successo, 0 se lo stack ha meno di
  * 2 elementi. */
-static int	swap(t_stack **l_stack)
+static void	swap(t_stack **l_stack)
 {
 	t_stack	*first;
 	t_stack	*second;
 
 	if (!l_stack || !*l_stack || !(*l_stack)->next)
-		return (0);
+		return ;
 	first = *l_stack;
 	second = first->next;
 	if (second->next)
@@ -34,37 +34,30 @@ static int	swap(t_stack **l_stack)
 	second->next = first;
 	second->prev = NULL;
 	*l_stack = second;
-	return (1);
 }
 
 /* Swap A: sposta il primo elemento di a con il secondo.
  * Stampa "sa\n" nel terminale in caso di successo. */
-int	sa_b(t_stack **l_stack_a)
+void	sa_b(t_stack **l_stack_a)
 {
-	int	r;
-
-	r = swap(l_stack_a);
-	return (r);
+	swap(l_stack_a);
 }
 
 /* Swap B: sposta il primo elemento di a con il secondo.
  * Stampa "sb\n" nel terminale in caso di successo. */
-int	sb_b(t_stack **l_stack_b)
+void	sb_b(t_stack **l_stack_b)
 {
-	int	r;
-
-	r = swap(l_stack_b);
-	return (r);
+	swap(l_stack_b);
 }
 
 /* Swap simultaneo sia dello stack A che lo stack B. .
  * Stampa "ss\n" nel terminale se entrambe vanno a buon fine*/
-int	ss_b(t_stack **l_stack_a, t_stack **l_stack_b)
+void	ss_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
 	if (!*l_stack_a || !*l_stack_b
 		|| !(*l_stack_a)->next || !(*l_stack_b)->next)
-		return (0);
+		return ;
 	swap(l_stack_a);
 	swap(l_stack_b);
-	return (1);
+	return ;
 }

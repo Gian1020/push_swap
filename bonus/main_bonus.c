@@ -11,59 +11,62 @@
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
-#include <stdio.h>
 
-void	select_move(t_stack **l_stack_a, t_stack **l_stack_b, char *line)
+void	result(t_stack **l_stack_a, t_stack **l_stack_b, char *line, char *msg)
 {
-	if (ft_strcmp(line, "pa\n"))
-		pa_b(l_stack_a, l_stack_b);
-	else if (ft_strcmp(line, "pb\n"))
-		pb_b(l_stack_a, l_stack_b);
-	else if (ft_strcmp(line, "sa\n"))
-		sa_b(l_stack_a);
-	else if (ft_strcmp(line, "sb\n"))
-		sb_b(l_stack_b);
-	else if (ft_strcmp(line, "ss\n"))
-		ss_b(l_stack_a, l_stack_b);
-	else if (ft_strcmp(line, "ra\n"))
-		ra_b(l_stack_a);
-	else if (ft_strcmp(line, "rb\n"))
-		rb_b(l_stack_b);
-	else if (ft_strcmp(line, "rr\n"))
-		rr_b(l_stack_a, l_stack_b);
-	else if (ft_strcmp(line, "rra\n"))
-		rra_b(l_stack_a);
-	else if (ft_strcmp(line, "rrb\n"))
-		rrb_b(l_stack_a);
-	else if (ft_strcmp(line, "rrr\n"))
-		rrr_b(l_stack_a, l_stack_b);
+	if (l_stack_a)
+		list_clear(l_stack_a);
+	if (l_stack_b)
+		list_clear(l_stack_b);
+	if (line)
+		free(line);
+	ft_putstr_fd(msg, 1);
 }
 
 int	is_move(char *line)
 {
-	if (ft_strcmp(line, "pa\n") || ft_strcmp(line, "pb\n")
-		|| ft_strcmp(line, "sa\n") || ft_strcmp(line, "sb\n")
-		|| ft_strcmp(line, "ra\n") || ft_strcmp(line, "rb\n")
-		|| ft_strcmp(line, "rra\n") || ft_strcmp(line, "rrb\n")
-		|| ft_strcmp(line, "rrr\n") || ft_strcmp(line, "rr\n")
-		|| ft_strcmp(line, "ss\n"))
+	if (!line)
+		return (0);
+	if (ft_strcmp(line, "pa\n") == 0 || ft_strcmp(line, "pb\n") == 0
+		|| ft_strcmp(line, "sa\n") == 0 || ft_strcmp(line, "sb\n") == 0
+		|| ft_strcmp(line, "ra\n") == 0 || ft_strcmp(line, "rb\n") == 0
+		|| ft_strcmp(line, "rra\n") == 0 || ft_strcmp(line, "rrb\n") == 0
+		|| ft_strcmp(line, "rrr\n") == 0 || ft_strcmp(line, "rr\n") == 0
+		|| ft_strcmp(line, "ss\n") == 0)
 		return (1);
 	else
 		return (0);
 }
 
-int	ft_what_in_line(t_stack **l_stack_a, t_stack **l_stack_b,char *line)
-{	
-	if (is_move(line) != 1)
-		return (0);
-	select_move(l_stack_a, l_stack_b, line);
-	return (1);
+void	select_move(t_stack **l_stack_a, t_stack **l_stack_b, char *line)
+{
+	if (ft_strcmp(line, "pa\n") == 0)
+		pa_b(l_stack_a, l_stack_b);
+	else if (ft_strcmp(line, "pb\n") == 0)
+		pb_b(l_stack_a, l_stack_b);
+	else if (ft_strcmp(line, "sa\n") == 0)
+		sa_b(l_stack_a);
+	else if (ft_strcmp(line, "sb\n") == 0)
+		sb_b(l_stack_b);
+	else if (ft_strcmp(line, "ss\n") == 0)
+		ss_b(l_stack_a, l_stack_b);
+	else if (ft_strcmp(line, "ra\n") == 0)
+		ra_b(l_stack_a);
+	else if (ft_strcmp(line, "rb\n") == 0)
+		rb_b(l_stack_b);
+	else if (ft_strcmp(line, "rr\n") == 0)
+		rr_b(l_stack_a, l_stack_b);
+	else if (ft_strcmp(line, "rra\n") == 0)
+		rra_b(l_stack_a);
+	else if (ft_strcmp(line, "rrb\n") == 0)
+		rrb_b(l_stack_b);
+	else if (ft_strcmp(line, "rrr\n") == 0)
+		rrr_b(l_stack_a, l_stack_b);
 }
 
 int	main(int argc, char **argv)
 {
 	int		flag_err;
-	int		flag_is_move;
 	t_stack	*l_stack_a;
 	t_stack	*l_stack_b;
 	char	*line;
@@ -72,36 +75,26 @@ int	main(int argc, char **argv)
 		return (0);
 	flag_err = 0;
 	l_stack_a = argv_to_list(&argv[1], &flag_err);
-	l_stack_b = (t_stack *) malloc (sizeof(t_stack));
-	if (!l_stack_a || flag_err == 1)
+	fast_sort(l_stack_a);
+	if (!l_stack_a || flag_err == 1 || have_duplicate(l_stack_a))
 	{
-		ft_putstr_fd("Error\n", 2);
+		result(&l_stack_a, NULL, NULL, "Error\n");
 		return (1);
 	}
-	while (1)
+	l_stack_b = NULL;
+	line = get_next_line(0);
+	while (line != NULL)
 	{
-		line = get_next_line(0);
-		//printf("%s", line);
-		if(!line)
-			break;
-		if (line)
-			flag_is_move = ft_what_in_line(&l_stack_a, &l_stack_b, line);
+		if (is_move(line))
+			select_move(&l_stack_a, &l_stack_b, line);
 		else
 		{
-			if(is_sorted(l_stack_a) && l_stack_b == NULL)
-			{
-				free(l_stack_a);
-				free(l_stack_b);
-				ft_putstr_fd("OK", 1);
-				return (0);
-			}
-			else
-			{
-				free(l_stack_a);
-				free(l_stack_b);
-				ft_putstr_fd("KO", 1);
-				return (1);
-			}
+			result(&l_stack_a, &l_stack_b, line, "Error\n");
+			return (1);
 		}
+		free(line);
+		line = get_next_line(0);
 	}
+	is_ok_or_ko(&l_stack_a, &l_stack_b, line);
 }
+

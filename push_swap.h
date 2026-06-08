@@ -18,6 +18,18 @@
 # include <stdlib.h>
 # include "./libft/libft.h"
 
+typedef struct s_pos_max
+{
+	int	pos_max;
+	int	pos_max_1;
+}	t_pos_max;
+
+typedef struct s_i_range
+{
+	int	i;
+	int	range;
+}	t_i_range;
+
 typedef struct l_stack
 {
 	int				value;
@@ -69,10 +81,10 @@ void			finish_prog(t_stack **l_stack_a, t_stack **l_stack_b,
 int				have_duplicate(t_stack *begin_list);
 int				atoi_check(char *str, int *flag_err);
 
-void	free_mtrx(char **mtrx);
-void	fill_stack(t_stack **first, char **temp_split, int *flag_err);
-t_stack	*argv_to_list(char **argv, int *flag_err);
-void	fast_sort(t_stack *begin_list);
+void			free_mtrx(char **mtrx);
+void			fill_stack(t_stack **first, char **temp_split, int *flag_err);
+t_stack			*argv_to_list(char **argv, int *flag_err);
+void			fast_sort(t_stack *begin_list);
 
 t_stack			*new_node(int value);
 int				list_push_back(t_stack **begin_list, int value);
@@ -123,7 +135,6 @@ void			turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b,
 void			turk_sort(t_stack **l_stack_a, t_stack **l_stack_b,
 					t_data_bench *data);
 void			insert_curr_pos(t_stack *l_stack);
-void			print_list(t_stack *l_stack_a, char *s);
 
 void			set_cheapest(t_stack *l_stack);
 t_stack			*find_cheap(t_stack *l_stack);
@@ -164,4 +175,5 @@ float			compute_disorder(t_stack *a);
 void			print_disorder(float f);
 
 t_data_bench	*init_bench(float disorder);
+t_pos_max		*init_pos_max(void);
 #endif

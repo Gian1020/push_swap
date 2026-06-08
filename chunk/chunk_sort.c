@@ -12,6 +12,16 @@
 
 #include "../push_swap.h"
 
+static t_i_range	*init_i_range(void)
+{
+	t_i_range	*s_i_range;
+
+	s_i_range = (t_i_range *) malloc (sizeof(t_i_range));
+	s_i_range->i = 0;
+	s_i_range->range = 0;
+	return (s_i_range);
+}
+
 /*Analizza la SIZE di A per scegliere un range adeguato.*/
 static int	select_range(int size_a)
 {
@@ -19,9 +29,9 @@ static int	select_range(int size_a)
 }
 
 static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
-		int *i_and_range, t_data_bench *data)
+		t_i_range	*s_i_range, t_data_bench *data)
 {
-	if (*l_stack_a && (*l_stack_a)->idx > (i_and_range[0] + i_and_range[1]))
+	if (*l_stack_a && (*l_stack_a)->idx > (s_i_range->i + s_i_range->range))
 	{
 		rr(l_stack_a, l_stack_b, data);
 		return (0);
@@ -45,23 +55,24 @@ static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
  * */
 void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
-	int		i_and_range[2];
-	int		flag;
+	int			flag;
+	t_i_range	*s_i_range;
 
-	i_and_range[0] = 0;
-	i_and_range[1] = select_range(list_size(*l_stack_a));
+	s_i_range = init_i_range();
+	s_i_range->i = 0;
+	s_i_range->range = select_range(list_size(*l_stack_a));
 	while (*l_stack_a)
 	{
-		if ((*l_stack_a)->idx <= i_and_range[0])
+		if ((*l_stack_a)->idx <= s_i_range->i)
 		{
 			pb(l_stack_a, l_stack_b, data);
-			i_and_range[0]++;
+			s_i_range->i++;
 		}
-		else if ((*l_stack_a)->idx <= (i_and_range[1] + i_and_range[0]))
+		else if ((*l_stack_a)->idx <= (s_i_range->range + s_i_range->i))
 		{
 			pb(l_stack_a, l_stack_b, data);
-			flag = do_rr_or_rb(l_stack_a, l_stack_b, i_and_range, data);
-			i_and_range[1]++;
+			flag = do_rr_or_rb(l_stack_a, l_stack_b, s_i_range, data);
+			s_i_range->range++;
 		}
 		else
 			ra(l_stack_a, data);

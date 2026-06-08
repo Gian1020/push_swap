@@ -68,3 +68,13 @@ t_data_bench	*init_bench(float disorder)
 	bench->rrr = 0;
 	return (bench);
 }
+
+t_pos_max	*init_pos_max(void)
+{
+	t_pos_max	*s_pos_max;
+
+	s_pos_max = (t_pos_max *) malloc (sizeof(t_pos_max));
+	s_pos_max->pos_max = 0;
+	s_pos_max->pos_max_1 = 0;
+	return (s_pos_max);
+}

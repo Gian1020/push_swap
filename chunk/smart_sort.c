@@ -45,12 +45,12 @@ static void	do_ss_or_sa(t_stack **l_stack_a, t_stack **l_stack_b,
 }
 
 static void	second_choice(t_stack **l_stack_a, t_stack **l_stack_b,
-			int *pos_max, t_data_bench *data)
+			t_pos_max	*pos_max, t_data_bench *data)
 {
-	bring_to_top_b(l_stack_b, pos_max[1], data);
+	bring_to_top_b(l_stack_b, pos_max->pos_max_1, data);
 	pa(l_stack_a, l_stack_b, data);
-	pos_max[0] = get_pos_idx_max(*l_stack_b, -1);
-	bring_to_top_b(l_stack_b, pos_max[0], data);
+	pos_max->pos_max = get_pos_idx_max(*l_stack_b, -1);
+	bring_to_top_b(l_stack_b, pos_max->pos_max, data);
 	pa(l_stack_a, l_stack_b, data);
 	do_ss_or_sa(l_stack_a, l_stack_b, data);
 }
@@ -58,25 +58,26 @@ static void	second_choice(t_stack **l_stack_a, t_stack **l_stack_b,
 void	push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_data_bench *data)
 {
-	int	size;
-	int	pos_max[2];
-	int	choice;
+	int			size;
+	t_pos_max	*pos_max;
+	int			choice;
 
 	size = list_size(*l_stack_b);
 	if (!size)
 		return ;
-	pos_max[0] = get_pos_idx_max(*l_stack_b, -1);
-	pos_max[1] = get_pos_idx_max(*l_stack_b, size - 1);
-	if (size >= 2 && pos_max[1] == 0 && pos_max[0] == 1)
+	pos_max = init_pos_max();
+	pos_max->pos_max = get_pos_idx_max(*l_stack_b, -1);
+	pos_max->pos_max_1 = get_pos_idx_max(*l_stack_b, size - 1);
+	if (size >= 2 && pos_max->pos_max_1 == 0 && pos_max->pos_max == 1)
 	{
 		sb(l_stack_b, data);
-		pos_max[0] = 0;
-		pos_max[1] = 1;
+		pos_max->pos_max = 0;
+		pos_max->pos_max_1 = 1;
 	}
-	choice = smart_choice(pos_max[0], pos_max[1], size);
+	choice = smart_choice(pos_max->pos_max, pos_max->pos_max_1, size);
 	if (choice == 1)
 	{
-		bring_to_top_b(l_stack_b, pos_max[0], data);
+		bring_to_top_b(l_stack_b, pos_max->pos_max, data);
 		pa(l_stack_a, l_stack_b, data);
 	}
 	else if (choice == 2)

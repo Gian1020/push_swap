@@ -16,12 +16,12 @@
  * Gestisce l'aggiornamento dei puntatori 'next' e 'prev' per mantenere
  * l'integrità della lista doppiamente concatenata. 
  * Ritorna 1 in caso di successo, 0 se lo stack sorgente è vuoto.*/
-static int	push(t_stack **l_stack_take, t_stack **l_stack_push)
+static void	push(t_stack **l_stack_take, t_stack **l_stack_push)
 {
 	t_stack	*stack_to_push;
 
 	if (!l_stack_take || !*l_stack_take || !l_stack_push)
-		return (0);
+		return ;
 	stack_to_push = *l_stack_take;
 	if (stack_to_push->next)
 	{
@@ -39,25 +39,17 @@ static int	push(t_stack **l_stack_take, t_stack **l_stack_push)
 		stack_to_push->next = *l_stack_push;
 		*l_stack_push = stack_to_push;
 	}
-	return (1);
+	return ;
 }
 
-/* Push A: Preleva il primo elemento da B e lo inserisce in cima ad A.
- * Scrive "pa\n" nel terminale in caso di successo. */
-int	pa_b(t_stack **l_stack_a, t_stack **l_stack_b)
+/* Push A: Preleva il primo elemento da B e lo inserisce in cima ad A.*/
+void	pa_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	int	flag;
-
-	flag = push(l_stack_b, l_stack_a);
-	return (flag);
+	push(l_stack_b, l_stack_a);
 }
 
-/* Push B: Preleva il primo elemento da A e lo inserisce in cima ad B.
- * Scrive "pb\n" nel terminale in caso di successo.*/
-int	pb_b(t_stack **l_stack_a, t_stack **l_stack_b)
+/* Push B: Preleva il primo elemento da A e lo inserisce in cima ad B.*/
+void	pb_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
-	int	flag;
-
-	flag = push(l_stack_a, l_stack_b);
-	return (flag);
+	push(l_stack_a, l_stack_b);
 }

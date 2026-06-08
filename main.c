@@ -12,6 +12,18 @@
 
 #include "push_swap.h"
 
+static void	stack_already_sorted(t_stack *l_stack_a, t_algo *algo)
+{
+	t_data_bench	*data;
+
+	if (algo->bench == 1)
+	{
+		data = init_bench(compute_disorder(l_stack_a));
+		bench_writer(data, algo);
+	}
+	finish_prog(&l_stack_a, NULL, NULL, algo);
+}
+
 int	main(int argc, char **argv)
 {
 	int		flag_err;
@@ -34,14 +46,6 @@ int	main(int argc, char **argv)
 	if (!is_sorted(l_stack_a))
 		sort_stack(&l_stack_a, algo);
 	else
-	{
-		t_data_bench	*data;
-		if (algo->bench == 1)
-		{
-			data = init_bench(compute_disorder(l_stack_a));
-			bench_writer(data, algo);
-		}
-		finish_prog(&l_stack_a, NULL, NULL, algo);
-	}
+		stack_already_sorted(l_stack_a, algo);
 	return (0);
 }

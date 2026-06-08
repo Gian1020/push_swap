@@ -111,4 +111,3 @@ void	fast_sort(t_stack *begin_list)
 		i++;
 	}
 }
-

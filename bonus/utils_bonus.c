@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gipimpin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/07 19:57:46 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/06/08 16:41:24 by gpecelli         ###   ########.fr       */
+/*   Created: 2026/06/08 20:04:00 by gipimpin          #+#    #+#             */
+/*   Updated: 2026/06/08 20:04:04 by gipimpin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap_bonus.h"
 
-/* Returns length of 'str' (no '\0'). */
-size_t	ft_strlen(const char *str)
+void	is_ok_or_ko(t_stack **l_stack_a, t_stack **l_stack_b, char *line)
 {
-	size_t	i;
-
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	if (is_sorted(*l_stack_a))
+		result(l_stack_a, l_stack_b, line, "OK\n");
+	else
+		result(l_stack_a, l_stack_b, line, "KO\n");
 }
