@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   chunk_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gipimpin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 19:57:38 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/06/07 19:58:04 by gipimpin         ###   ########.fr       */
+/*   Updated: 2026/06/08 11:22:11 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,18 @@ static int	select_range(int size_a)
 }
 
 static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
-		int range, int i)
+		int *i_and_range, t_data_bench *data)
 {
-	if (*l_stack_a && (*l_stack_a)->idx > (range + i))
+	if (*l_stack_a && (*l_stack_a)->idx > (i_and_range[0] + i_and_range[1]))
 	{
-		rr(l_stack_a, l_stack_b, NULL);
+		rr(l_stack_a, l_stack_b, data);
 		return (0);
 	}
 	else
 	{
-		rb(l_stack_b, NULL);
+		rb(l_stack_b, data);
 		return (1);
 	}
-}
-
-void	increment_data(t_data_bench *data, int flag)
-{
-	if (flag)
-		data->rb += 1;
-	else
-		data->rr += 1;
-	data->total += 1;
 }
 
 /* Funzione che gestisce l ordinamento di A se SIZE > 5.
@@ -54,25 +45,23 @@ void	increment_data(t_data_bench *data, int flag)
  * */
 void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
-	int		i;
-	int		range;
+	int		i_and_range[2];
 	int		flag;
 
-	i = 0;
-	range = select_range(list_size(*l_stack_a));
+	i_and_range[0] = 0;
+	i_and_range[1] = select_range(list_size(*l_stack_a));
 	while (*l_stack_a)
 	{
-		if ((*l_stack_a)->idx <= i)
+		if ((*l_stack_a)->idx <= i_and_range[0])
 		{
 			pb(l_stack_a, l_stack_b, data);
-			i++;
+			i_and_range[0]++;
 		}
-		else if ((*l_stack_a)->idx <= (range + i))
+		else if ((*l_stack_a)->idx <= (i_and_range[1] + i_and_range[0]))
 		{
 			pb(l_stack_a, l_stack_b, data);
-			flag = do_rr_or_rb(l_stack_a, l_stack_b, range, i);
-			increment_data(data, flag);
-			i++;
+			flag = do_rr_or_rb(l_stack_a, l_stack_b, i_and_range, data);
+			i_and_range[1]++;
 		}
 		else
 			ra(l_stack_a, data);

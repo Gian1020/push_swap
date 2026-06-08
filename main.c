@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gipimpin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 19:57:54 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/06/07 19:57:54 by gipimpin         ###   ########.fr       */
+/*   Updated: 2026/06/08 11:39:56 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,14 @@ int	main(int argc, char **argv)
 	if (!is_sorted(l_stack_a))
 		sort_stack(&l_stack_a, algo);
 	else
+	{
+		t_data_bench	*data;
+		if (algo->bench == 1)
+		{
+			data = init_bench(compute_disorder(l_stack_a));
+			bench_writer(data, algo);
+		}
 		finish_prog(&l_stack_a, NULL, NULL, algo);
+	}
 	return (0);
 }
