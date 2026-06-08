@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 18:54:49 by marvin            #+#    #+#             */
-/*   Updated: 2026/06/07 18:54:49 by marvin           ###   ########.fr       */
+/*   Updated: 2026/06/08 14:08:56 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ void			finish_prog(t_stack **l_stack_a, t_stack **l_stack_b,
 
 int				have_duplicate(t_stack *begin_list);
 int				atoi_check(char *str, int *flag_err);
+
+void	free_mtrx(char **mtrx);
+void	fill_stack(t_stack **first, char **temp_split, int *flag_err);
+t_stack	*argv_to_list(char **argv, int *flag_err);
+void	fast_sort(t_stack *begin_list);
 
 t_stack			*new_node(int value);
 int				list_push_back(t_stack **begin_list, int value);

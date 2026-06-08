@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gipimpin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:59:14 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/05/25 16:59:13 by gipimpin         ###   ########.fr       */
+/*   Updated: 2026/06/08 14:26:08 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,3 @@ char	*get_next_line(int fd)
 		stash = ft_clean_stash(stash, 0);
 	return (line);
 }
-
-/*
-int	main(void)
-{
-	int		i;
-	int		fd2;
-	char	*str2;
-
-	fd2 = open("limits.txt", O_RDONLY);
-	while (1)
-	{
-		str2 = get_next_line(fd2);
-		if (!str2)
-			break;
-		i = ft_strlen(str2);
-		write(1, str2, i);
-		free(str2);
-	}
-	close(fd2);
-	return (0);
-}*/
