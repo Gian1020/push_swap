@@ -6,36 +6,37 @@
 /*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 13:58:39 by gpecelli          #+#    #+#             */
-/*   Updated: 2026/06/08 15:56:21 by gpecelli         ###   ########.fr       */
+/*   Updated: 2026/06/08 17:02:37 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_bonus.h"
+#include <stdio.h>
 
 void	select_move(t_stack **l_stack_a, t_stack **l_stack_b, char *line)
 {
 	if (ft_strcmp(line, "pa\n"))
-		pa(l_stack_a, l_stack_b, NULL);
+		pa_b(l_stack_a, l_stack_b);
 	else if (ft_strcmp(line, "pb\n"))
-		pb(l_stack_a, l_stack_b, NULL);
+		pb_b(l_stack_a, l_stack_b);
 	else if (ft_strcmp(line, "sa\n"))
-		sa(l_stack_a, NULL);
+		sa_b(l_stack_a);
 	else if (ft_strcmp(line, "sb\n"))
-		sb(l_stack_b, NULL);
+		sb_b(l_stack_b);
 	else if (ft_strcmp(line, "ss\n"))
-		ss(l_stack_a, l_stack_b, NULL);
+		ss_b(l_stack_a, l_stack_b);
 	else if (ft_strcmp(line, "ra\n"))
-		ra(l_stack_a, NULL);
+		ra_b(l_stack_a);
 	else if (ft_strcmp(line, "rb\n"))
-		rb(l_stack_b, NULL);
+		rb_b(l_stack_b);
 	else if (ft_strcmp(line, "rr\n"))
-		rr(l_stack_a, l_stack_b, NULL);
+		rr_b(l_stack_a, l_stack_b);
 	else if (ft_strcmp(line, "rra\n"))
-		rra(l_stack_a, NULL);
+		rra_b(l_stack_a);
 	else if (ft_strcmp(line, "rrb\n"))
-		rrb(l_stack_a, NULL);
+		rrb_b(l_stack_a);
 	else if (ft_strcmp(line, "rrr\n"))
-		rrr(l_stack_a, l_stack_b, NULL);
+		rrr_b(l_stack_a, l_stack_b);
 }
 
 int	is_move(char *line)
@@ -80,8 +81,12 @@ int	main(int argc, char **argv)
 	while (1)
 	{
 		line = get_next_line(0);
-		flag_is_move = ft_what_in_line(&l_stack_a, &l_stack_b, line);
-		if (!line)
+		//printf("%s", line);
+		if(!line)
+			break;
+		if (line)
+			flag_is_move = ft_what_in_line(&l_stack_a, &l_stack_b, line);
+		else
 		{
 			if(is_sorted(l_stack_a) && l_stack_b == NULL)
 			{

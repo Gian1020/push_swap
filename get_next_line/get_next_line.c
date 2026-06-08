@@ -6,47 +6,47 @@
 /*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/22 16:59:14 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/06/08 14:26:08 by gpecelli         ###   ########.fr       */
+/*   Updated: 2026/06/08 16:39:00 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-/* Calculates the length of "str", excluding '\0'.
- * Returns 0 if "str" is NULL. */
-size_t	ft_strlen(char *str)
-{
-	size_t	i;
+// /* Calculates the length of "str", excluding '\0'.
+//  * Returns 0 if "str" is NULL. */
+// size_t	ft_strlen2(char *str)
+// {
+// 	size_t	i;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
+// 	if (!str)
+// 		return (0);
+// 	i = 0;
+// 	while (str[i])
+// 		i++;
+// 	return (i);
+// }
 
-/* Locates the first occurrence of 'c' in 's'. 
- * The terminating '\0' character is considered part of the string.
- * Returns a pointer to the located character, 
- * or NULL if the character is not found. */
-char	*ft_strchr(const char *s, int c)
-{
-	size_t	i;
+// /* Locates the first occurrence of 'c' in 's'. 
+//  * The terminating '\0' character is considered part of the string.
+//  * Returns a pointer to the located character, 
+//  * or NULL if the character is not found. */
+// char	*ft_strchr2(const char *s, int c)
+// {
+// 	size_t	i;
 
-	if (!s)
-		return (NULL);
-	i = 0;
-	while (s[i])
-	{
-		if ((unsigned char)s[i] == (unsigned char)c)
-			return ((char *)&s[i]);
-		i++;
-	}
-	if ((unsigned char) c == '\0')
-		return ((char *)&s[i]);
-	return (NULL);
-}
+// 	if (!s)
+// 		return (NULL);
+// 	i = 0;
+// 	while (s[i])
+// 	{
+// 		if ((unsigned char)s[i] == (unsigned char)c)
+// 			return ((char *)&s[i]);
+// 		i++;
+// 	}
+// 	if ((unsigned char) c == '\0')
+// 		return ((char *)&s[i]);
+// 	return (NULL);
+// }
 
 /* Reads a line from 'fd', managing leftovers via a static stash.
  * Supports multiple calls across different FDs thanks to array indexing.

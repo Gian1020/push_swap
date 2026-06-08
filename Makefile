@@ -44,8 +44,8 @@ OBJS		= $(ALL_SRCS:.c=.o)
 # --------------------------------------------------------------
 #							CHECKER (BONUS)
 # --------------------------------------------------------------
-BONUS_SHARED	= op_shift_rotate.c op_shift_rotate_reverse.c op_swap.c \
-				  op_push.c check_list.c check_flag.c create_stack.c \
+BONUS_SHARED	= op_shift_rotate_bonus.c op_shift_rotate_reverse_bonus.c op_swap_bonus.c \
+				  op_push_bonus.c check_list.c check_flag.c create_stack.c \
 				  error.c fnct_list.c utils_nbr.c find_max_min.c \
 				  init_list.c disorder.c
 
