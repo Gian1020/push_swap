@@ -6,7 +6,7 @@
 /*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 19:57:52 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/06/08 11:36:47 by gpecelli         ###   ########.fr       */
+/*   Updated: 2026/06/08 12:39:56 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ static void	print_complex(t_data_bench *data_bench, t_algo *algo)
 	else if (algo->complex)
 		ft_putstr_fd("Complex O(n log n)", 2);
 	else if (data_bench->disorder < 0.2)
-		ft_putstr_fd("Simple O(n^2)", 2);
+		ft_putstr_fd("Adaptive / O(n^2)", 2);
 	else if (data_bench->disorder >= 0.2 && data_bench->disorder <= 0.5)
-		ft_putstr_fd("Medium O(n sqrt(n))", 2);
+		ft_putstr_fd("Adaptive / O(n sqrt(n))", 2);
 	else
-		ft_putstr_fd("Complex O(n log n)", 2);
+		ft_putstr_fd("Adaptive / O(n log n)", 2);
 }
 
 void	bench_writer(t_data_bench *data_bench, t_algo *algo)
