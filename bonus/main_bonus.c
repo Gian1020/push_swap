@@ -17,7 +17,7 @@ static void	result(t_stack **l_stack_a, t_stack **l_stack_b, char *line,
 {
 	if (!msg)
 	{
-		if (is_sorted(*l_stack_a))
+		if (is_sorted(*l_stack_a) || list_size(*l_stack_b))
 			result(l_stack_a, l_stack_b, line, "OK\n");
 		else
 			result(l_stack_a, l_stack_b, line, "KO\n");

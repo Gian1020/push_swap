@@ -46,7 +46,7 @@ OBJS		= $(ALL_SRCS:.c=.o)
 # --------------------------------------------------------------
 FILES_BONUS     = main_bonus.c op_shift_rotate_bonus.c \
                   op_shift_rotate_reverse_bonus.c op_swap_bonus.c \
-                  op_push_bonus.c utils_bonus.c
+		  op_push_bonus.c
 
 SRC_BONUS_DIR   = $(addprefix bonus/, $(FILES_BONUS))
 
