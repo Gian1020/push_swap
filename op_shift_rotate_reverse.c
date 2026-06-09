@@ -12,13 +12,15 @@
 
 #include "push_swap.h"
 
-/* Rotazione verso il basso.
- * Sposta l'ultimo elemento dello stack in prima posizione 
- * Aggiorna i puntatori 'first' e 'last' per mantenere la
- * circolarità della lista doppiamente concatenata e scrive
- * l'operazione se 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di
- * 2 elementi.*/
+/*
+** Downward rotation: Moves the last stack element to the first position.
+** Updates 'first' and 'last' pointers to maintain doubly linked list
+** circularity and prints the operation if 'op_name' is provided.
+**
+** @param l_stack Double pointer to the stack to rotate.
+** @param op_name String literal of the operation name to print (e.g. "rra").
+** @return 1 on success, 0 if the stack has fewer than 2 elements.
+*/
 static int	shift_rotate_reverse(t_stack **l_stack, char *op_name)
 {
 	t_stack	*first;
@@ -43,8 +45,13 @@ static int	shift_rotate_reverse(t_stack **l_stack, char *op_name)
 	return (1);
 }
 
-/* Reverse Rotate A: Sposta l'ultimo elemento di A in cima.
- * Stampa "rra\n" nel terminale in caso di successo. */
+/*
+** Reverse Rotate A: Moves the last element of A to the top.
+** Prints "rra\n" to the terminal on success.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	rra(t_stack **l_stack_a, t_data_bench *data)
 {
 	int	r;
@@ -57,8 +64,13 @@ void	rra(t_stack **l_stack_a, t_data_bench *data)
 	}
 }
 
-/* Reverse Rotate A: Sposta l'ultimo elemento di B in cima.
- * Stampa "rrb\n" nel terminale in caso di successo.*/
+/*
+** Reverse Rotate B: Moves the last element of B to the top.
+** Prints "rrb\n" to the terminal on success.
+**
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	rrb(t_stack **l_stack_b, t_data_bench *data)
 {
 	int	r;
@@ -71,8 +83,14 @@ void	rrb(t_stack **l_stack_b, t_data_bench *data)
 	}
 }
 
-/* Reverse Rotate r: Esegue la rotazione inversa su entrambi gli stack.
- * Stampa "rrr\n" se entrambi hanno avuto successo. */
+/*
+** Reverse Rotate r: Executes reverse rotation on both stacks simultaneously.
+** Prints "rrr\n" to the terminal if both succeed.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	rrr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	if (!*l_stack_a || !*l_stack_b

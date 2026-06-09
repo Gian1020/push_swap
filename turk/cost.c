@@ -12,6 +12,12 @@
 
 #include "../push_swap.h"
 
+/*
+** Calculates the total cost for moving a node based on A and B costs,
+** considering if simultaneous rotations (combos) can reduce the total.
+**
+** @param node_in_a Pointer to the specific node in stack A being evaluated.
+*/
 static void	set_calculate_total_cost(t_stack *node_in_a)
 {
 	int	abs_a;
@@ -35,6 +41,13 @@ static void	set_calculate_total_cost(t_stack *node_in_a)
 	}
 }
 
+/*
+** Calculates the cost to bring a node to the top of stack A.
+** Positive values for direct rotation, negative for reverse rotation.
+**
+** @param node Pointer to the node being evaluated.
+** @param len The total number of elements in stack A.
+*/
 static void	enter_cost_a(t_stack *node, int len)
 {
 	if (node->curr_pos <= len / 2)
@@ -43,6 +56,14 @@ static void	enter_cost_a(t_stack *node, int len)
 		node->cost_a = -(len - node->curr_pos);
 }
 
+/*
+** Calculates the cost to bring the target node to the top of stack B.
+** Positive values for direct rotation, negative for reverse rotation.
+**
+** @param node Pointer to the node in A whose cost_b is being set.
+** @param len The total number of elements in stack B.
+** @param target Pointer to the target node in stack B.
+*/
 static void	enter_cost_b(t_stack *node, int len, t_stack *target)
 {
 	if (target->curr_pos <= len / 2)
@@ -51,6 +72,12 @@ static void	enter_cost_b(t_stack *node, int len, t_stack *target)
 		node->cost_b = -(len - target->curr_pos);
 }
 
+/*
+** Computes the move costs for all nodes in stack A and their targets in B.
+**
+** @param l_stack_a Pointer to stack A.
+** @param l_stack_b Pointer to stack B.
+*/
 void	calculate_cost(t_stack *l_stack_a, t_stack *l_stack_b)
 {
 	int		len_a;

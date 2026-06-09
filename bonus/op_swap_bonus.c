@@ -12,12 +12,13 @@
 
 #include "push_swap_bonus.h"
 
-/* Sposta il primo elemento dello stack e il secondo elemento.
- * Aggiorna i puntatori 'first' e 'last' per mantenere
- * la circolarità della lista doppiamente concatenata e
- * scrive l'operazione se 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di
- * 2 elementi. */
+/*
+** Swaps the first and second elements of the stack.
+** Updates 'first' and 'last' pointers to maintain doubly linked list
+** circularity. Does nothing if the stack has fewer than 2 elements.
+**
+** @param l_stack Double pointer to the stack to modify.
+*/
 static void	swap(t_stack **l_stack)
 {
 	t_stack	*first;
@@ -36,22 +37,32 @@ static void	swap(t_stack **l_stack)
 	*l_stack = second;
 }
 
-/* Swap A: sposta il primo elemento di a con il secondo.
- * Stampa "sa\n" nel terminale in caso di successo. */
+/*
+** Swap A: Swaps the first and second elements of stack A.
+**
+** @param l_stack_a Double pointer to stack A.
+*/
 void	sa_b(t_stack **l_stack_a)
 {
 	swap(l_stack_a);
 }
 
-/* Swap B: sposta il primo elemento di a con il secondo.
- * Stampa "sb\n" nel terminale in caso di successo. */
+/*
+** Swap B: Swaps the first and second elements of stack B.
+**
+** @param l_stack_b Double pointer to stack B.
+*/
 void	sb_b(t_stack **l_stack_b)
 {
 	swap(l_stack_b);
 }
 
-/* Swap simultaneo sia dello stack A che lo stack B. .
- * Stampa "ss\n" nel terminale se entrambe vanno a buon fine*/
+/*
+** Simultaneous swap of both stack A and stack B.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+*/
 void	ss_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
 	if (!*l_stack_a || !*l_stack_b

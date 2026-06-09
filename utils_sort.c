@@ -12,11 +12,16 @@
 
 #include "push_swap.h"
 
-/* Individua il valore min in A inserendolo in B ottimizzando il num di mosse.
- * Calcola l'index del minimo rispetto alla mezzeria dello stack (size/2)
- * per decidere se utilizzare rotazioni dirette (ra) o inverse (rra). 
- * Una volta che il primo elemento è in posizione 0 
- * lo inserisce come primo elemento di B*/
+/*
+** Locates the min value in A and pushes it to B with minimum moves.
+** Computes the index relative to the stack median (size/2) to choose
+** direct (ra) or reverse (rra) rotations. Once the element is at
+** position 0, it pushes it to B.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark struct for move tracking.
+*/
 void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_data_bench *data)
 {
@@ -46,11 +51,15 @@ void	push_min_to_b(t_stack **l_stack_a, t_stack **l_stack_b,
 	pb(l_stack_a, l_stack_b, data);
 }
 
-/* Individua il valore max in B inserendolo in A ottimizzando num di mosse.
- * Calcola l'index del minimo rispetto alla mezzeria dello stack (size/2)
- * per decidere se utilizzare rotazioni dirette (rb) o inverse (rrb).
- * Una volta che il primo elemento è in posizione 0
- * lo inserisce come primo elemento di A*/
+/*
+** Brings the target position element in B to the top with minimum moves.
+** Computes the index relative to the stack median (size/2) to choose
+** direct (rb) or reverse (rrb) rotations.
+**
+** @param l_stack Double pointer to stack B.
+** @param target_pos The index position of the element to bring to top.
+** @param data Pointer to benchmark struct for move tracking.
+*/
 void	bring_to_top_b(t_stack **l_stack, int target_pos, t_data_bench *data)
 {
 	int	size;
@@ -76,6 +85,15 @@ void	bring_to_top_b(t_stack **l_stack, int target_pos, t_data_bench *data)
 	}
 }
 
+/*
+** Brings a specified target node to the top of stack A using optimal moves.
+** Computes whether to use 'ra' or 'rra' based on current position relative
+** to the median stack size.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param target Pointer to the specific node intended to reach the top.
+** @param data Pointer to benchmark struct for move tracking.
+*/
 void	bring_target_to_top_a(t_stack **l_stack_a,
 			t_stack *target, t_data_bench *data)
 {

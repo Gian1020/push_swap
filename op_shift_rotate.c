@@ -12,12 +12,15 @@
 
 #include "push_swap.h"
 
-/* Rotazione verso l'alto
- * Sposta il primo elemento dello stack in ultima posizione 
- * Aggiorna i puntatori 'first' e 'last' per mantenere la circolarità
- * della lista doppiamente concatenata e scrive l'operazione se
- * 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di 2 elementi.*/
+/*
+** Upward rotation: Moves the first stack element to the last position.
+** Updates 'first' and 'last' pointers to maintain doubly linked list
+** circularity and prints the operation if 'op_name' is provided.
+**
+** @param l_stack Double pointer to the stack to rotate.
+** @param op_name String literal of the operation name to print (e.g. "ra").
+** @return 1 on success, 0 if the stack has fewer than 2 elements.
+*/
 static int	shift_rotate(t_stack **l_stack, char *op_name)
 {
 	t_stack	*first;
@@ -40,8 +43,13 @@ static int	shift_rotate(t_stack **l_stack, char *op_name)
 	return (1);
 }
 
-/* Rotate A: Prende il primo elemento di A e lo sposta all'ultima posizione.
- * Stampa "ra\n" nel terminale in caso di successo.*/
+/*
+** Rotate A: Takes the first element of A and moves it to the last position.
+** Prints "ra\n" to the terminal on success.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	ra(t_stack **l_stack_a, t_data_bench *data)
 {
 	int	r;
@@ -54,8 +62,13 @@ void	ra(t_stack **l_stack_a, t_data_bench *data)
 	}
 }
 
-/* Rotate B: Prende il primo elemento di B e lo sposta all'ultima posizione.
- * Stampa "rb\n" nel terminale in caso di successo.*/
+/*
+** Rotate B: Takes the first element of B and moves it to the last position.
+** Prints "rb\n" to the terminal on success.
+**
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	rb(t_stack **l_stack_b, t_data_bench *data)
 {
 	int	r;
@@ -68,8 +81,14 @@ void	rb(t_stack **l_stack_b, t_data_bench *data)
 	}
 }
 
-/* Rotate simultaneamente sia lo stack A che lo stack B.
- * Stampa "rr\n" nel terminale se entrambe vanno a buon fine.*/
+/*
+** Rotates both stack A and stack B simultaneously.
+** Prints "rr\n" to the terminal if both succeed.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	rr(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	if (!*l_stack_a || !*l_stack_b

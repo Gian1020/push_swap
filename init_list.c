@@ -12,9 +12,13 @@
 
 #include "push_swap.h"
 
-/* Crea un nuovo elemento della lista usando malloc,
- * setta tutti i valori di default.
- * idx -> -1 perché 0 rappresenta il primo nodo della lista.*/
+/*
+** Creates a new list element using malloc and sets all default values.
+** The idx is initialized to -1 because 0 represents the first node.
+**
+** @param value The integer value to store in the newly created node.
+** @return A pointer to the newly allocated node, or NULL on failure.
+*/
 t_stack	*new_node(int value)
 {
 	t_stack	*node;
@@ -33,6 +37,12 @@ t_stack	*new_node(int value)
 	return (node);
 }
 
+/*
+** Initializes the algorithm settings structure with default values (0).
+** Used to track which sorting strategies and benchmarks are active.
+**
+** @return A pointer to the newly allocated t_algo struct, or NULL on failure.
+*/
 t_algo	*init_algo(void)
 {
 	t_algo	*algo;
@@ -48,6 +58,12 @@ t_algo	*init_algo(void)
 	return (algo);
 }
 
+/*
+** Initializes the benchmark structure to track sorting statistics and disorder.
+**
+** @param disorder The initial calculated disorder ratio of the stack.
+** @return A pointer to the allocated t_data_bench struct, or NULL on failure.
+*/
 t_data_bench	*init_bench(float disorder)
 {
 	t_data_bench	*bench;
@@ -69,6 +85,12 @@ t_data_bench	*init_bench(float disorder)
 	return (bench);
 }
 
+/*
+** Initializes a structure to track the positions of maximum values.
+** Used by specific sorting strategies to optimize move operations.
+**
+** @return A pointer to the allocated t_pos_max struct, or NULL on failure.
+*/
 t_pos_max	*init_pos_max(void)
 {
 	t_pos_max	*s_pos_max;

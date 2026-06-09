@@ -12,6 +12,12 @@
 
 #include "push_swap.h"
 
+/*
+** Returns the absolute value of a given integer.
+**
+** @param n The integer to convert.
+** @return The positive absolute value of n.
+*/
 int	ft_abs(int n)
 {
 	if (n < 0)
@@ -19,6 +25,13 @@ int	ft_abs(int n)
 	return (n);
 }
 
+/*
+** Returns the integer square root of a given number.
+** Used primarily for chunk sizing in algorithms.
+**
+** @param nb The integer to find the square root of.
+** @return The truncated integer square root of nb.
+*/
 int	ft_sqrt(int nb)
 {
 	int	i;

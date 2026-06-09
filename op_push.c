@@ -12,10 +12,15 @@
 
 #include "push_swap.h"
 
-/* Trasferisce il nodo in cima a 'l_stack_take' in cima a 'l_stack_push'.
- * Gestisce l'aggiornamento dei puntatori 'next' e 'prev' per mantenere
- * l'integrità della lista doppiamente concatenata. 
- * Ritorna 1 in caso di successo, 0 se lo stack sorgente è vuoto.*/
+/*
+** Transfers the top node of 'l_stack_take' to the top of 'l_stack_push'.
+** Handles updating the 'next' and 'prev' pointers to maintain
+** the integrity of the doubly linked lists.
+**
+** @param l_stack_take Double pointer to the source stack.
+** @param l_stack_push Double pointer to the destination stack.
+** @return 1 on success, 0 if the source stack is empty.
+*/
 static int	push(t_stack **l_stack_take, t_stack **l_stack_push)
 {
 	t_stack	*stack_to_push;
@@ -42,8 +47,14 @@ static int	push(t_stack **l_stack_take, t_stack **l_stack_push)
 	return (1);
 }
 
-/* Push A: Preleva il primo elemento da B e lo inserisce in cima ad A.
- * Scrive "pa\n" nel terminale in caso di successo. */
+/*
+** Push A: Takes the first element from B and inserts it at the top of A.
+** Prints "pa\n" to the terminal on success.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	pa(t_stack **l_stack_a, t_stack **l_stack_b,
 		t_data_bench *data)
 {
@@ -59,8 +70,14 @@ void	pa(t_stack **l_stack_a, t_stack **l_stack_b,
 	}
 }
 
-/* Push B: Preleva il primo elemento da A e lo inserisce in cima ad B.
- * Scrive "pb\n" nel terminale in caso di successo.*/
+/*
+** Push B: Takes the first element from A and inserts it at the top of B.
+** Prints "pb\n" to the terminal on success.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	pb(t_stack **l_stack_a, t_stack **l_stack_b,
 		t_data_bench *data)
 {

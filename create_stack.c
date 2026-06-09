@@ -13,9 +13,13 @@
 #include "push_swap.h"
 #include <stdio.h>
 
-/* Libera una matrice allocata dinamicamente (char **).
- * Scorre ogni elemento fino al terminatore NULL, libera la memoria
- * di ogni stringa e infine libera l'array di puntatori.*/
+/*
+** Frees a dynamically allocated matrix of strings.
+** Iterates through each element until NULL, freeing each string's memory,
+** and finally frees the array of pointers itself.
+**
+** @param mtrx The null-terminated array of strings to free.
+*/
 void	free_mtrx(char **mtrx)
 {
 	int	i;
@@ -31,9 +35,15 @@ void	free_mtrx(char **mtrx)
 	free(mtrx);
 }
 
-/* Popola lo stack convertendo i token di temp_split tramite atoi_check.
- * Interrompe l'inserimento al primo errore di validazione o overflow,
- * segnalando lo stato tramite flag_err. */
+/*
+** Populates the stack by converting tokens from temp_split via atoi_check.
+** Stops insertion on the first validation or overflow error,
+** reporting the status using the flag_err pointer.
+**
+** @param first Pointer to the first node pointer of the list.
+** @param temp_split Array of string tokens to be converted and pushed.
+** @param flag_err Pointer to an error flag set to 1 on failure.
+*/
 void	fill_stack(t_stack **first, char **temp_split, int *flag_err)
 {
 	int	val;
@@ -49,11 +59,17 @@ void	fill_stack(t_stack **first, char **temp_split, int *flag_err)
 	}
 }
 
-/* Converte gli argomenti della riga di comando in una lista concatenata.
- *  1. Divide ogni stringa di argv in singoli token (gestione input misto).
- *  2. Valida e converte ogni token in intero (controllo overflow/formato).
- *  3. Inserisce i valori validi in fondo alla lista (fill_stack).
- *  4. Gestisce la liberazione della memoria temporanea e i flag di errore.*/
+/*
+** Converts command line arguments into a linked list.
+** 1. Splits each argv string into tokens to handle mixed inputs.
+** 2. Validates and converts each token to an integer, checking overflows.
+** 3. Pushes valid values to the back of the list using fill_stack.
+** 4. Manages the liberation of temporary memory and error flags.
+**
+** @param argv Array of strings representing the arguments.
+** @param flag_err Pointer to an error flag set to 1 on failure.
+** @return Pointer to the first node of the populated stack, or NULL on error.
+*/
 t_stack	*argv_to_list(char **argv, int *flag_err)
 {
 	int		i;
@@ -79,11 +95,15 @@ t_stack	*argv_to_list(char **argv, int *flag_err)
 	return (first);
 }
 
-/* Assegna un indice relativo (0 a size-1) a ogni nodo dello stack.
- * Semplifica l'ordinamento trasformando i valori reali (anche grandi o negativi)
- * in una sequenza continua di interi.
- * Esegue una ricerca iterativa del valore minimo non ancora indicizzato
- * (quelli con idx == -1) e gli assegna il valore 'i' corrente.*/
+/*
+** Assigns a relative index (0 to size-1) to each node in the stack.
+** Simplifies sorting by transforming real values (even large or negative ones)
+** into a continuous sequence of integers.
+** Iteratively finds the minimum value not yet indexed (idx == -1)
+** and assigns it the current value 'i'.
+**
+** @param begin_list Pointer to the first node of the stack.
+*/
 void	fast_sort(t_stack *begin_list)
 {
 	int		i;

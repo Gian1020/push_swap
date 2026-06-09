@@ -12,6 +12,14 @@
 
 #include "push_swap.h"
 
+/*
+** Pushes all elements from stack B back to stack A.
+** Iterates until stack B is completely empty.
+**
+** @param l_stack_a Double pointer to the destination stack A.
+** @param l_stack_b Double pointer to the source stack B.
+** @param data Pointer to benchmark tracking.
+*/
 void	push_back_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_data_bench *data)
 {
@@ -21,6 +29,15 @@ void	push_back_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 		pa(l_stack_a, l_stack_b, data);
 }
 
+/*
+** Iteratively pushes the minimum value of A to B, then pushes everything
+** back to A to achieve a fully sorted stack.
+** This functions acts as a very basic Selection Sort algorithm variant.
+**
+** @param l_stack_a Double pointer to stack A to sort.
+** @param l_stack_b Double pointer to stack B used as a buffer.
+** @param data Pointer to benchmark struct to record the actions taken.
+*/
 void	sort_max_min_extraction(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_data_bench *data)
 {

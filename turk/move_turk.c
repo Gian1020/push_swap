@@ -12,6 +12,13 @@
 
 #include "../push_swap.h"
 
+/*
+** Executes individual rotations for stack A when no combo moves are possible.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param node_cheap Pointer to the node flagged as the cheapest.
+** @param data Pointer to benchmark tracking structure.
+*/
 void	no_combo_move_cost_a(t_stack **l_stack_a,
 			t_stack *node_cheap, t_data_bench *data)
 {
@@ -33,6 +40,13 @@ void	no_combo_move_cost_a(t_stack **l_stack_a,
 	}
 }
 
+/*
+** Executes individual rotations for stack B when no combo moves are possible.
+**
+** @param l_stack_b Double pointer to stack B.
+** @param node_cheap Pointer to the node flagged as the cheapest.
+** @param data Pointer to benchmark tracking structure.
+*/
 void	no_combo_move_cost_b(t_stack **l_stack_b,
 			t_stack *node_cheap, t_data_bench *data)
 {
@@ -54,6 +68,15 @@ void	no_combo_move_cost_b(t_stack **l_stack_b,
 	}
 }
 
+/*
+** Applies optimal combo rotations first, then individual rotations,
+** and finally pushes the cheapest node from A to B.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param node_cheap Pointer to the cheapest node to push.
+** @param data Pointer to benchmark tracking structure.
+*/
 void	move_cheap_head_a(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_stack *node_cheap, t_data_bench *data)
 {

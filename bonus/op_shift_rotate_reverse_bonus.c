@@ -12,13 +12,13 @@
 
 #include "push_swap_bonus.h"
 
-/* Rotazione verso il basso.
- * Sposta l'ultimo elemento dello stack in prima posizione 
- * Aggiorna i puntatori 'first' e 'last' per mantenere la
- * circolarità della lista doppiamente concatenata e scrive
- * l'operazione se 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di
- * 2 elementi.*/
+/*
+** Downward rotation: Moves the last stack element to the first position.
+** Updates 'first' and 'last' pointers to maintain doubly linked list
+** circularity. Does nothing if stack has fewer than 2 elements.
+**
+** @param l_stack Double pointer to the stack to rotate.
+*/
 static void	shift_rotate_reverse(t_stack **l_stack)
 {
 	t_stack	*first;
@@ -37,22 +37,32 @@ static void	shift_rotate_reverse(t_stack **l_stack)
 	*l_stack = last;
 }
 
-/* Reverse Rotate A: Sposta l'ultimo elemento di A in cima.
- * Stampa "rra\n" nel terminale in caso di successo. */
+/*
+** Reverse Rotate A: Moves the last element of A to the top.
+**
+** @param l_stack_a Double pointer to stack A.
+*/
 void	rra_b(t_stack **l_stack_a)
 {
 	shift_rotate_reverse(l_stack_a);
 }
 
-/* Reverse Rotate A: Sposta l'ultimo elemento di B in cima.
- * Stampa "rrb\n" nel terminale in caso di successo.*/
+/*
+** Reverse Rotate B: Moves the last element of B to the top.
+**
+** @param l_stack_b Double pointer to stack B.
+*/
 void	rrb_b(t_stack **l_stack_b)
 {
 	shift_rotate_reverse(l_stack_b);
 }
 
-/* Reverse Rotate r: Esegue la rotazione inversa su entrambi gli stack.
- * Stampa "rrr\n" se entrambi hanno avuto successo. */
+/*
+** Reverse Rotate r: Executes reverse rotation on both stacks simultaneously.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+*/
 void	rrr_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
 	if (!*l_stack_a || !*l_stack_b

@@ -12,6 +12,15 @@
 
 #include "push_swap.h"
 
+/*
+** Sorts the stack based on its size, picking the correct specific sort.
+** Evaluates simple base cases (2, 3, or up to 5 elements).
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param size Integer representing the number of elements in A.
+** @param data Pointer to benchmark tracking.
+*/
 void	sort_by_size(t_stack **l_stack_a, t_stack **l_stack_b,
 		int size, t_data_bench *data)
 {
@@ -26,6 +35,15 @@ void	sort_by_size(t_stack **l_stack_a, t_stack **l_stack_b,
 	list_clear(l_stack_b);
 }
 
+/*
+** Chooses an adaptive sorting strategy based on stack size and disorder.
+** Switches between basic extraction, chunk sort, and Turk algorithm.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data containing the disorder ratio.
+** @param size Integer representing the number of elements in A.
+*/
 static void	sort_by_adaptive(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_data_bench *data, int size)
 {
@@ -37,9 +55,14 @@ static void	sort_by_adaptive(t_stack **l_stack_a, t_stack **l_stack_b,
 		turk_sort(l_stack_a, l_stack_b, data);
 }
 
-/* Coordina la strategia di ordinamento in base al numero di elementi.
- * Verifica se lo stack è già ordinato o troppo piccolo, quindi delega 
- * l'esecuzione ad algoritmi specializzati per gestire i vari casi. */
+/*
+** Coordinates the sorting strategy based on element count and flags.
+** Checks if the stack is already sorted or small, then delegates
+** execution to specialized algorithms for various edge cases.
+**
+** @param l_stack_a Double pointer to stack A to sort.
+** @param algo Pointer to the algorithm settings struct defining the strategy.
+*/
 void	sort_stack(t_stack **l_stack_a, t_algo *algo)
 {
 	t_data_bench	*data;

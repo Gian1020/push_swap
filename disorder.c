@@ -12,6 +12,12 @@
 
 #include "push_swap.h"
 
+/*
+** Prints the computed disorder percentage to the standard error output.
+** Multiplies the float to correctly format the decimal output.
+**
+** @param f The disorder ratio represented as a float.
+*/
 void	print_disorder(float f)
 {
 	char	c;
@@ -35,6 +41,13 @@ void	print_disorder(float f)
 	write(2, "%", 1);
 }
 
+/*
+** Computes the disorder ratio of the stack based on misplaced pairs.
+** Iterates through the stack comparing each node's index to subsequent ones.
+**
+** @param a Pointer to the first node of the stack.
+** @return A float representing the ratio of misplaced pairs to total pairs.
+*/
 float	compute_disorder(t_stack *a)
 {
 	float	mistakes;

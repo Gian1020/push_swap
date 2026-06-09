@@ -12,12 +12,13 @@
 
 #include "push_swap_bonus.h"
 
-/* Rotazione verso l'alto
- * Sposta il primo elemento dello stack in ultima posizione 
- * Aggiorna i puntatori 'first' e 'last' per mantenere la circolarità
- * della lista doppiamente concatenata e scrive l'operazione se
- * 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di 2 elementi.*/
+/*
+** Upward rotation: Moves the first stack element to the last position.
+** Updates 'first' and 'last' pointers to maintain doubly linked list
+** circularity. Does nothing if stack has fewer than 2 elements.
+**
+** @param l_stack Double pointer to the stack to rotate.
+*/
 static void	shift_rotate(t_stack **l_stack)
 {
 	t_stack	*first;
@@ -34,22 +35,32 @@ static void	shift_rotate(t_stack **l_stack)
 	last->next = first;
 }
 
-/* Rotate A: Prende il primo elemento di A e lo sposta all'ultima posizione.
- * Stampa "ra\n" nel terminale in caso di successo.*/
+/*
+** Rotate A: Takes the first element of A and moves it to the last position.
+**
+** @param l_stack_a Double pointer to stack A.
+*/
 void	ra_b(t_stack **l_stack_a)
 {
 	shift_rotate(l_stack_a);
 }
 
-/* Rotate B: Prende il primo elemento di B e lo sposta all'ultima posizione.
- * Stampa "rb\n" nel terminale in caso di successo.*/
+/*
+** Rotate B: Takes the first element of B and moves it to the last position.
+**
+** @param l_stack_b Double pointer to stack B.
+*/
 void	rb_b(t_stack **l_stack_b)
 {
 	shift_rotate(l_stack_b);
 }
 
-/* Rotate simultaneamente sia lo stack A che lo stack B.
- * Stampa "rr\n" nel terminale se entrambe vanno a buon fine.*/
+/*
+** Rotates both stack A and stack B simultaneously.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+*/
 void	rr_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
 	if (!*l_stack_a || !*l_stack_b

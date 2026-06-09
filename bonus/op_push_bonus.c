@@ -12,10 +12,14 @@
 
 #include "push_swap_bonus.h"
 
-/* Trasferisce il nodo in cima a 'l_stack_take' in cima a 'l_stack_push'.
- * Gestisce l'aggiornamento dei puntatori 'next' e 'prev' per mantenere
- * l'integrità della lista doppiamente concatenata. 
- * Ritorna 1 in caso di successo, 0 se lo stack sorgente è vuoto.*/
+/*
+** Transfers the top node of 'l_stack_take' to the top of 'l_stack_push'.
+** Handles updating the 'next' and 'prev' pointers to maintain
+** the integrity of the doubly linked lists.
+**
+** @param l_stack_take Double pointer to the source stack.
+** @param l_stack_push Double pointer to the destination stack.
+*/
 static void	push(t_stack **l_stack_take, t_stack **l_stack_push)
 {
 	t_stack	*stack_to_push;
@@ -42,13 +46,23 @@ static void	push(t_stack **l_stack_take, t_stack **l_stack_push)
 	return ;
 }
 
-/* Push A: Preleva il primo elemento da B e lo inserisce in cima ad A.*/
+/*
+** Push A: Takes the first element from B and inserts it at the top of A.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+*/
 void	pa_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
 	push(l_stack_b, l_stack_a);
 }
 
-/* Push B: Preleva il primo elemento da A e lo inserisce in cima ad B.*/
+/*
+** Push B: Takes the first element from A and inserts it at the top of B.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+*/
 void	pb_b(t_stack **l_stack_a, t_stack **l_stack_b)
 {
 	push(l_stack_a, l_stack_b);

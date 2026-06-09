@@ -12,15 +12,29 @@
 
 #include "push_swap_bonus.h"
 
+/*
+** Prints the result of the sorting operations ("OK" or "KO"),
+** deallocates the stacks and lines, and prints any additional message.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param line Current line read from GNL, to be freed.
+** @param msg Status message to print (e.g., "OK\n", "KO\n", "Error\n").
+*/
 static void	result(t_stack **l_stack_a, t_stack **l_stack_b, char *line,
 		char *msg)
 {
 	if (!msg)
 	{
+<<<<<<< HEAD
 		if (is_sorted(*l_stack_a) || list_size(*l_stack_b))
 			result(l_stack_a, l_stack_b, line, "OK\n");
+=======
+		if (is_sorted(*l_stack_a))
+			ft_putstr_fd("OK\n", 1);
+>>>>>>> d2cbc56 (finito)
 		else
-			result(l_stack_a, l_stack_b, line, "KO\n");
+			ft_putstr_fd("KO\n", 1);
 	}
 	if (l_stack_a)
 		list_clear(l_stack_a);
@@ -29,9 +43,15 @@ static void	result(t_stack **l_stack_a, t_stack **l_stack_b, char *line,
 	if (line)
 		free(line);
 	if (msg)
-		ft_putstr_fd(msg, 1);
+		ft_putstr_fd(msg, 2);
 }
 
+/*
+** Validates whether the read line matches a valid push_swap instruction.
+**
+** @param line The string instruction read from standard input.
+** @return 1 if it is a valid operation, 0 otherwise.
+*/
 int	is_move(char *line)
 {
 	if (!line)
@@ -47,6 +67,13 @@ int	is_move(char *line)
 		return (0);
 }
 
+/*
+** Executes the appropriate push_swap operation based on the string read.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param line The valid string instruction to execute.
+*/
 void	select_move(t_stack **l_stack_a, t_stack **l_stack_b, char *line)
 {
 	if (ft_strcmp(line, "pa\n") == 0)
@@ -73,6 +100,14 @@ void	select_move(t_stack **l_stack_a, t_stack **l_stack_b, char *line)
 		rrr_b(l_stack_a, l_stack_b);
 }
 
+/*
+** Main entry point for the checker program.
+** Reads input, processes instructions using get_next_line, and checks sorting.
+**
+** @param argc Argument count.
+** @param argv Argument vector (list of numbers to be sorted).
+** @return 0 on successful exit, 1 on error.
+*/
 int	main(int argc, char **argv)
 {
 	int		flag_err;

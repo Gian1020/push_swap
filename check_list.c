@@ -12,8 +12,12 @@
 
 #include "push_swap.h"
 
-/* Verifica se la lista è ordinata in ordine crescente.
- * Se lo è torna 1 altrimenti 0.*/
+/*
+** Checks if the list is sorted in ascending order.
+**
+** @param l_stack Pointer to the first node of the stack to evaluate.
+** @return 1 if sorted, otherwise 0.
+*/
 int	is_sorted(t_stack *l_stack)
 {
 	if (!l_stack)
@@ -27,8 +31,12 @@ int	is_sorted(t_stack *l_stack)
 	return (1);
 }
 
-/* Verifica la presenza di valori duplicati nella lista.
- * Se ci sono fa tornare 1 altrimenti 0.*/
+/*
+** Checks for duplicate values in the list.
+**
+** @param begin_list Pointer to the first node of the list.
+** @return 1 if duplicates exist, otherwise 0.
+*/
 int	have_duplicate(t_stack *begin_list)
 {
 	t_stack	*next_node;
@@ -49,7 +57,12 @@ int	have_duplicate(t_stack *begin_list)
 	return (0);
 }
 
-/* Salta tab e spazi davanti a una stringa e fa tornare i*/
+/*
+** Skips leading tabs and spaces in a string and returns the index.
+**
+** @param str The string to parse.
+** @return The index of the first non-whitespace character.
+*/
 static int	is_space(char *str)
 {
 	int	i;
@@ -62,6 +75,13 @@ static int	is_space(char *str)
 	return (i);
 }
 
+/*
+** Checks the sign of the number, updates the index, and returns the sign.
+**
+** @param str The string containing the number.
+** @param i Pointer to the current parsing index in the string.
+** @return 1 for positive, -1 for negative.
+*/
 static int	check_sign(char *str, int *i)
 {
 	int	sign;
@@ -76,9 +96,15 @@ static int	check_sign(char *str, int *i)
 	return (sign);
 }
 
-/* Converte le stringa passata in INT gestendo segni e spazi.
- * Controlla se il valore calcolato supera i limiti degli interi.
- * In caso  non li rispetti setta la flag a 1.*/
+/*
+** Converts the given string to an int, handling signs and spaces.
+** Checks if the calculated value exceeds integer limits.
+** Sets the error flag to 1 if limits are exceeded or formatting is bad.
+**
+** @param str The string representation of the integer.
+** @param flag_err Pointer to an integer flag set to 1 upon an error.
+** @return The converted integer value.
+*/
 int	atoi_check(char *str, int *flag_err)
 {
 	int				i;

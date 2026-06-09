@@ -12,8 +12,14 @@
 
 #include "push_swap.h"
 
-/* Inserisce un nuovo nodo alla fine della lista rispettando l'ordine.
- * Gestisce l'inizializzazione se la lista è vuota.*/
+/*
+** Inserts a new node at the end of the list, maintaining the order.
+** Handles list initialization if it's currently empty.
+**
+** @param begin Double pointer to the first node of the list.
+** @param value The integer value to be assigned to the new node.
+** @return 0 on success, 1 on allocation failure.
+*/
 int	list_push_back(t_stack **begin, int value)
 {
 	t_stack	*new;
@@ -38,8 +44,12 @@ int	list_push_back(t_stack **begin, int value)
 	return (0);
 }
 
-/* Si posiziona sulla testa e dealloca ogni nodo iterativamente. 
- * Facendo attenzione a non rompere la sequenza.*/
+/*
+** Positions at the head and iteratively deallocates each node,
+** taking care not to break the sequence during traversal.
+**
+** @param node Double pointer to any node in the list.
+*/
 void	list_clear(t_stack **node)
 {
 	t_stack	*temp;
@@ -57,7 +67,12 @@ void	list_clear(t_stack **node)
 	*node = NULL;
 }
 
-/* Restituisce il numero nodi della lista.*/
+/*
+** Returns the total number of nodes currently in the list.
+**
+** @param begin Pointer to the first node of the list.
+** @return The integer count of nodes in the list.
+*/
 int	list_size(t_stack *begin)
 {
 	int	i;
@@ -71,7 +86,7 @@ int	list_size(t_stack *begin)
 	return (i);
 }
 /*
-//Stampa il valore e l'indice della lista, utile per il debug.
+** Prints the value and index of the list elements, useful for debugging.
 void	print_list(t_stack *begin, char *label)
 {
 	ft_printf("----------%s----------\n", label);
@@ -89,7 +104,12 @@ void	print_list(t_stack *begin, char *label)
 	ft_printf("------------------------\n");
 }*/
 
-/* Restituisce l'ultimo nodo della lista.*/
+/*
+** Returns a pointer to the last node of the list.
+**
+** @param begin Pointer to the first node of the list.
+** @return A pointer to the last node, or NULL if the list is empty.
+*/
 t_stack	*list_last(t_stack *begin)
 {
 	while ((begin)->next != NULL)
@@ -97,6 +117,11 @@ t_stack	*list_last(t_stack *begin)
 	return (begin);
 }
 
+/*
+** Iterates through the list and assigns each node its current position index.
+**
+** @param l_stack Pointer to the first node of the stack.
+*/
 void	insert_curr_pos(t_stack *l_stack)
 {
 	int		i;

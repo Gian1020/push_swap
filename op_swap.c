@@ -12,12 +12,15 @@
 
 #include "push_swap.h"
 
-/* Sposta il primo elemento dello stack e il secondo elemento.
- * Aggiorna i puntatori 'first' e 'last' per mantenere
- * la circolarità della lista doppiamente concatenata e
- * scrive l'operazione se 'op_name' è fornito.
- * Ritorna 1 in caso di successo, 0 se lo stack ha meno di
- * 2 elementi. */
+/*
+** Swaps the first and second elements of the stack.
+** Updates 'first' and 'last' pointers to maintain doubly linked list
+** circularity and prints the operation if 'op_name' is provided.
+**
+** @param l_stack Double pointer to the stack to modify.
+** @param op_name String literal of the operation name to print (e.g. "sa").
+** @return 1 on success, 0 if the stack has fewer than 2 elements.
+*/
 static int	swap(t_stack **l_stack, char *op_name)
 {
 	t_stack	*first;
@@ -42,8 +45,13 @@ static int	swap(t_stack **l_stack, char *op_name)
 	return (1);
 }
 
-/* Swap A: sposta il primo elemento di a con il secondo.
- * Stampa "sa\n" nel terminale in caso di successo. */
+/*
+** Swap A: Swaps the first and second elements of stack A.
+** Prints "sa\n" to the terminal on success.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	sa(t_stack **l_stack_a, t_data_bench *data)
 {
 	int	r;
@@ -56,8 +64,13 @@ void	sa(t_stack **l_stack_a, t_data_bench *data)
 	}
 }
 
-/* Swap B: sposta il primo elemento di a con il secondo.
- * Stampa "sb\n" nel terminale in caso di successo. */
+/*
+** Swap B: Swaps the first and second elements of stack B.
+** Prints "sb\n" to the terminal on success.
+**
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	sb(t_stack **l_stack_b, t_data_bench *data)
 {
 	int	r;
@@ -70,8 +83,14 @@ void	sb(t_stack **l_stack_b, t_data_bench *data)
 	}
 }
 
-/* Swap simultaneo sia dello stack A che lo stack B. .
- * Stampa "ss\n" nel terminale se entrambe vanno a buon fine*/
+/*
+** Simultaneous swap of both stack A and stack B.
+** Prints "ss\n" to the terminal if both succeed.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data to increment instruction counts.
+*/
 void	ss(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	if (!*l_stack_a || !*l_stack_b

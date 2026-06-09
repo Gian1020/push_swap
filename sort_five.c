@@ -12,9 +12,15 @@
 
 #include "push_swap.h"
 
-/* Ordina stack di 4 o 5 elementi riducendo il problema a un caso base di 3.
- * Estrae i valori minimi da A e li sposta temporaneamente in B, 
- * ordina i restanti con 'sort_three' e reinserisce i minimi in testa ad A.*/
+/*
+** Sorts stacks of 4 or 5 elements by reducing the problem to a base case of 3.
+** Extracts the minimum values from A, temporarily moving them to B,
+** sorts the remaining with 'sort_three', and reinserts minimums to A's top.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark data tracking sorting operations.
+*/
 void	sort_five(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	int	size;

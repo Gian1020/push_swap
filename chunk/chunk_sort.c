@@ -12,6 +12,11 @@
 
 #include "../push_swap.h"
 
+/*
+** Allocates and initializes the range structure for chunk sorting.
+**
+** @return A pointer to the newly allocated t_i_range struct.
+*/
 static t_i_range	*init_i_range(void)
 {
 	t_i_range	*s_i_range;
@@ -22,12 +27,27 @@ static t_i_range	*init_i_range(void)
 	return (s_i_range);
 }
 
-/*Analizza la SIZE di A per scegliere un range adeguato.*/
+/*
+** Analyzes the size of stack A to determine an adequate chunk size using sqrt.
+**
+** @param size_a The number of elements currently in stack A.
+** @return The calculated optimal range size (integer square root).
+*/
 static int	select_range(int size_a)
 {
 	return (ft_sqrt(size_a));
 }
 
+/*
+** Optimizes pushing elements to B by doing simultaneous rotate or rotate B,
+** depending on the current element in A versus the calculated chunk bounds.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param s_i_range Pointer to the struct holding current range indices.
+** @param data Pointer to benchmark struct tracking operations.
+** @return 0 if simultaneous rotate (rr) was used, 1 if rotate B (rb) was used.
+*/
 static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
 		t_i_range	*s_i_range, t_data_bench *data)
 {
@@ -43,16 +63,19 @@ static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
 	}
 }
 
-/* Funzione che gestisce l ordinamento di A se SIZE > 5.
- * 1) Analizzo SIZE scegliere per un range adeguato tramite selection_range.
- * 2) Inseriamo tutti gli elementi di a in B con una pre-selezione.
- *    - Analizza l'indice di A:
- * 	se l indice fa parte del range corrente, lo inseriamo davanti in a B.
- *    - Altrimenti se fa parte del range subito successivo lo aggiungiamo in B
- * 	ma come ultimo elemento.
- *    - Altrimenti lo mettiamo in fondo ad A.
- * 3) Inseriamo il nodo più grande di B in A fino a che B non è vuoto.
- * */
+/*
+** Handles sorting for stacks larger than 5 elements using chunk ranges.
+** 1. Calculates a range using selection_range.
+** 2. Pushes all A elements to B via pre-selection:
+**    - If index is in the current range, pushes to the top of B.
+**    - If in the next immediate range, pushes to the bottom of B.
+**    - Otherwise rotates A.
+** 3. Pushes the highest nodes back from B to A until B is empty.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark struct tracking operations.
+*/
 void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	t_i_range	*s_i_range;

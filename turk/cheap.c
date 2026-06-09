@@ -12,6 +12,12 @@
 
 #include "../push_swap.h"
 
+/*
+** Iterates through the list and returns the node flagged as the cheapest.
+**
+** @param l_stack Pointer to the stack to search.
+** @return A pointer to the cheapest node, or NULL if none is flagged.
+*/
 t_stack	*find_cheap(t_stack *l_stack)
 {
 	t_stack	*temp;
@@ -26,6 +32,12 @@ t_stack	*find_cheap(t_stack *l_stack)
 	return (NULL);
 }
 
+/*
+** Finds the node with the absolute lowest total_cost and sets its is_cheap
+** flag to 1, while resetting the flag to 0 for all other nodes.
+**
+** @param l_stack Pointer to the stack whose elements will be evaluated.
+*/
 void	set_cheapest(t_stack *l_stack)
 {
 	t_stack	*cheapest_node;

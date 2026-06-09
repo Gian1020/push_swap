@@ -12,6 +12,11 @@
 
 #include "push_swap.h"
 
+/*
+** Prints the operation counts for swap and push instructions.
+**
+** @param data_bench Pointer to the struct holding the benchmark data.
+*/
 static void	bench_writer_row4(t_data_bench *data_bench)
 {
 	ft_putstr_fd("[bench] sa: ", 2);
@@ -26,6 +31,11 @@ static void	bench_writer_row4(t_data_bench *data_bench)
 	ft_putnbr_fd(data_bench->pb, 2);
 }
 
+/*
+** Prints the operation counts for rotate and reverse rotate instructions.
+**
+** @param data_bench Pointer to the struct holding the benchmark data.
+*/
 static void	bench_writer_row5(t_data_bench *data_bench)
 {
 	ft_putstr_fd("[bench] ra: ", 2);
@@ -42,6 +52,12 @@ static void	bench_writer_row5(t_data_bench *data_bench)
 	ft_putnbr_fd(data_bench->rrr, 2);
 }
 
+/*
+** Prints the algorithm complexity class based on flags or disorder ratio.
+**
+** @param data_bench Pointer to the struct holding benchmark data.
+** @param algo Pointer to the struct storing active algorithm flags.
+*/
 static void	print_complex(t_data_bench *data_bench, t_algo *algo)
 {
 	if (algo->simple)
@@ -58,6 +74,14 @@ static void	print_complex(t_data_bench *data_bench, t_algo *algo)
 		ft_putstr_fd("Adaptive / O(n log n)", 2);
 }
 
+/*
+** Prints a comprehensive benchmark summary of operations and strategy.
+** Calls helper functions to print disorder, complexity, and specific
+** instruction counts.
+**
+** @param data_bench Pointer to the struct holding benchmark data.
+** @param algo Pointer to the struct storing active algorithm flags.
+*/
 void	bench_writer(t_data_bench *data_bench, t_algo *algo)
 {
 	ft_putstr_fd("[bench] disorder: ", 2);

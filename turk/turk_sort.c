@@ -12,6 +12,14 @@
 
 #include "../push_swap.h"
 
+/*
+** Pushes elements back from B to A, locating their correct target in A,
+** and finally rotates A so the absolute minimum is at the top.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark tracking structure.
+*/
 void	turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_data_bench *data)
 {
@@ -26,6 +34,15 @@ void	turk_push_back(t_stack **l_stack_a, t_stack **l_stack_b,
 	bring_target_to_top_a(l_stack_a, find_min(*l_stack_a), data);
 }
 
+/*
+** Main Turk Algorithm implementation. Pushes two elements to B initially,
+** then continuously calculates targets and costs to push the cheapest
+** elements to B until 3 remain. Sorts A, and pushes everything back.
+**
+** @param l_stack_a Double pointer to stack A.
+** @param l_stack_b Double pointer to stack B.
+** @param data Pointer to benchmark tracking structure.
+*/
 void	turk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
 	t_stack	*cheap;

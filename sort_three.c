@@ -12,9 +12,13 @@
 
 #include "push_swap.h"
 
-/* Ordina uno stack di 3 elementi in massimo 2 mosse.
- * 1. Identifica e sposta il valore massimo in terza posizione (bottom).
- * 2. Verifica se il valore minimo è in prima posizione. */
+/*
+** Sorts a stack of 3 elements in a maximum of 2 moves.
+** Identifies the highest value to move to the bottom, then handles the rest.
+**
+** @param l_stack Double pointer to the stack to be sorted.
+** @param data Pointer to the benchmark tracking struct.
+*/
 void	sort_three(t_stack **l_stack, t_data_bench *data)
 {
 	t_stack	*a;

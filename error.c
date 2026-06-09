@@ -12,9 +12,15 @@
 
 #include "push_swap.h"
 
-/* Dealloca la lista come passata come parametro.
- * Stampa "Error\n" nello standard error (2).
- * Blocca il programma con exit(1).*/
+/*
+** Deallocates the stacks and structures passed as parameters.
+** Prints "Error\n" to the standard error output (file descriptor 2).
+** Halts the program execution using exit(1).
+**
+** @param l_stack_a Double pointer to stack A for deallocation.
+** @param l_stack_b Double pointer to stack B for deallocation.
+** @param algo Pointer to the algorithm struct for deallocation.
+*/
 void	handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo)
 {
 	if (l_stack_a && *l_stack_a)
@@ -27,6 +33,15 @@ void	handle_error(t_stack **l_stack_a, t_stack **l_stack_b, t_algo *algo)
 	exit(1);
 }
 
+/*
+** Clears memory of lists and structures before a successful program exit.
+** Halts the program using exit(0).
+**
+** @param l_stack_a Double pointer to stack A for deallocation.
+** @param l_stack_b Double pointer to stack B for deallocation.
+** @param data Pointer to the benchmark struct for deallocation.
+** @param algo Pointer to the algorithm struct for deallocation.
+*/
 void	finish_prog(t_stack **l_stack_a, t_stack **l_stack_b,
 			t_data_bench *data, t_algo *algo)
 {
