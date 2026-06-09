@@ -12,15 +12,24 @@
 
 #include "push_swap_bonus.h"
 
-void	result(t_stack **l_stack_a, t_stack **l_stack_b, char *line, char *msg)
+static void	result(t_stack **l_stack_a, t_stack **l_stack_b, char *line,
+		char *msg)
 {
+	if (!msg)
+	{
+		if (is_sorted(*l_stack_a))
+			result(l_stack_a, l_stack_b, line, "OK\n");
+		else
+			result(l_stack_a, l_stack_b, line, "KO\n");
+	}
 	if (l_stack_a)
 		list_clear(l_stack_a);
 	if (l_stack_b)
 		list_clear(l_stack_b);
 	if (line)
 		free(line);
-	ft_putstr_fd(msg, 1);
+	if (msg)
+		ft_putstr_fd(msg, 1);
 }
 
 int	is_move(char *line)
@@ -89,5 +98,5 @@ int	main(int argc, char **argv)
 		free(line);
 		line = get_next_line(0);
 	}
-	is_ok_or_ko(&l_stack_a, &l_stack_b, line);
+	result(&l_stack_a, &l_stack_b, line, NULL);
 }

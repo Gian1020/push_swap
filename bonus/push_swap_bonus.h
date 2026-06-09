@@ -27,6 +27,4 @@ void	rb_b(t_stack **l_stack_b);
 void	rr_b(t_stack **l_stack_a, t_stack **l_stack_b);
 void	pb_b(t_stack **l_stack_a, t_stack **l_stack_b);
 void	pa_b(t_stack **l_stack_a, t_stack **l_stack_b);
-void	is_ok_or_ko(t_stack **l_stack_a, t_stack **l_stack_b, char *line);
-void	result(t_stack **l_stack_a, t_stack **l_stack_b, char *line, char *msg);
 #endif
