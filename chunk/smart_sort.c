@@ -82,4 +82,5 @@ void	push_smart_to_a(t_stack **l_stack_a, t_stack **l_stack_b,
 	}
 	else if (choice == 2)
 		second_choice(l_stack_a, l_stack_b, pos_max, data);
+	free(pos_max);
 }

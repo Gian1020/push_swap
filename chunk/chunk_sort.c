@@ -55,7 +55,6 @@ static int	do_rr_or_rb(t_stack **l_stack_a, t_stack **l_stack_b,
  * */
 void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 {
-	int			flag;
 	t_i_range	*s_i_range;
 
 	s_i_range = init_i_range();
@@ -71,7 +70,7 @@ void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 		else if ((*l_stack_a)->idx <= (s_i_range->range + s_i_range->i))
 		{
 			pb(l_stack_a, l_stack_b, data);
-			flag = do_rr_or_rb(l_stack_a, l_stack_b, s_i_range, data);
+			do_rr_or_rb(l_stack_a, l_stack_b, s_i_range, data);
 			s_i_range->range++;
 		}
 		else
@@ -79,4 +78,5 @@ void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 	}
 	while (*l_stack_b)
 		push_smart_to_a(l_stack_a, l_stack_b, data);
+	free(s_i_range);
 }
