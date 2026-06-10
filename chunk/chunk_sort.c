@@ -6,7 +6,7 @@
 /*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 19:57:38 by gipimpin          #+#    #+#             */
-/*   Updated: 2026/06/08 11:22:11 by gpecelli         ###   ########.fr       */
+/*   Updated: 2026/06/10 14:25:17 by gipimpin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	chunk_sort(t_stack **l_stack_a, t_stack **l_stack_b, t_data_bench *data)
 		{
 			pb(l_stack_a, l_stack_b, data);
 			do_rr_or_rb(l_stack_a, l_stack_b, s_i_range, data);
-			s_i_range->range++;
+			s_i_range->i++;
 		}
 		else
 			ra(l_stack_a, data);
