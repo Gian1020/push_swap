@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: gpecelli <gpecelli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/07 19:07:49 by marvin            #+#    #+#             */
-/*   Updated: 2026/06/07 19:57:56 by gipimpin         ###   ########.fr       */
+/*   Updated: 2026/06/11 09:35:12 by gpecelli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,13 +107,19 @@ void	bring_target_to_top_a(t_stack **l_stack_a,
 	if (pos <= size / 2)
 	{
 		moves = pos;
-		while (moves-- > 0)
+		while (moves > 0)
+		{
+			moves--;
 			ra(l_stack_a, data);
+		}
 	}
 	else
 	{
 		moves = size - pos;
-		while (moves-- > 0)
+		while (moves > 0)
+		{
+			moves--;
 			rra(l_stack_a, data);
+		}
 	}
 }
